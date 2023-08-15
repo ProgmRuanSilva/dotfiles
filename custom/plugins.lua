@@ -47,6 +47,14 @@ local plugins = {
     end,
   },
 
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = ( "rafamadriz/friendly-snippets" ),
+    version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp"
+  }
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",

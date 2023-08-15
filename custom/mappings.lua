@@ -1,4 +1,5 @@
 ---@type MappingsTable
+-- use tcd command on : to jump to another folder
 local M = {}
 
 M.general = {
@@ -14,6 +15,9 @@ M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<leader>i"] = { "<cmd>vsplit<CR>", "new vertical split" },
+    ["<leader>p"] = {"<cmd>tabnew<CR>", "new tab"},
+    ["<leader><Tab>"] = {"<cmd>tabn<CR>", "switch tabs"},
+    ["<leader>w"] = {"<cmd>q<CR>", "close tab"},
   },
 }
 
