@@ -53,7 +53,29 @@ local plugins = {
     version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
     -- install jsregexp (optional!).
     build = "make install_jsregexp"
-  }
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+
+  {
+      "hrsh7th/nvim-cmp",
+      opts = {
+        sources = {
+          -- trigger_characters is for unocss lsp
+          { name = "nvim_lsp", trigger_characters = { "-" } },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "nvim_lua" },
+          { name = "path" },
+        },
+      },
+    },
 
   -- To make a plugin not be loaded
   -- {

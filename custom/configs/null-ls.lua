@@ -1,18 +1,24 @@
 local null_ls = require "null-ls"
 
-local b = null_ls.builtins
+local format = null_ls.builtins.formatting
+local lint = null_ls.builtins.diagnostics
 
 local sources = {
 
   -- webdev stuff
-  b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
-  b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
+  format.deno_fmt,
+  -- b.formatting.prettier,
+  format.prettier.with { filetypes = { "html", "markdown", "css" } },
 
   -- Lua
-  b.formatting.stylua,
+  format.stylua,
+
+  -- Shell
+  format.shfmt,
+  lint.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
   -- cpp
-  b.formatting.clang_format,
+  format.clang_format,
 }
 
 null_ls.setup {

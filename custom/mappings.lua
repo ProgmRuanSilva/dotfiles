@@ -10,16 +10,29 @@ M.general = {
     ["<C-e>"] = { "<C-o>u", "restore newest"},
     ["<C-d>"] = { "<C-o>dw", "delete next word"},
     ["<C-r>"] = { "<C-o><C-u>", "jump 5 lines up"},
-    ["<C-v>"] = { "<C-o><C-d>", "jump 5 lines down"}
+    ["<C-v>"] = { "<C-o><C-d>", "jump 5 lines down"},
+    ["<C-a>"] = { "<C-o><End>", "end of line"},
+    ["jk"] = {"<ESC>", "escape insert mode"},
   },
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<leader>i"] = { "<cmd>vsplit<CR>", "new vertical split" },
-    ["<leader>p"] = {"<cmd>tabnew<CR>", "new tab"},
     ["<leader><Tab>"] = {"<cmd>tabn<CR>", "switch tabs"},
+    ["<leader>p"] = {"<cmd>tabnew<CR>", "new tab"},
     ["<leader>w"] = {"<cmd>q<CR>", "close tab"},
   },
 }
 
+M.nvterm = {
+  n = {
+    ["<leader>gc"] = {
+      function()
+        require("nvterm.terminal").send("clear && g++ -o out " .. vim.fn.expand "%" .. " && ./out", "vertical")
+      end,
+
+      "compile & run a cpp file",
+    },
+  },
+}
 
 return M

@@ -27,20 +27,26 @@ M.mason = {
     "lua-language-server",
     "stylua",
 
-    -- web dev stuff
+    -- web dev
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
     "deno",
     "prettier",
+    -- "emmet-ls",
+    "json-lsp",
+    "tailwindcss-language-server",
 
-    -- c/cpp stuff
+    -- shell
+    "shfmt",
+    "shellcheck",
+    "bash-language-server",
+
     "clangd",
     "clang-format",
   },
 }
 
--- git support in nvimtree
 M.nvimtree = {
   git = {
     enable = true,
