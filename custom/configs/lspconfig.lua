@@ -10,7 +10,7 @@ local servers = {
   "bash-language-server",
   "docker-compose-language-server",
   "json-lsp",
-  "rubocop"
+  "rubocop",
 }
 
 for _, lsp in ipairs(servers) do
