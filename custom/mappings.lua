@@ -15,10 +15,10 @@ M.general = {
     ["<C-r>"] = { "<C-o><C-u>", "jump 5 lines up"},
     ["<C-v>"] = { "<C-o><C-d>", "jump 5 lines down"},
     ["<C-e>"] = {"<C-o><S-v>y<C-o>p", "paste content in line below"},
-    ["<C-q>"] = {"<C-o><S-v>y<C-o><S-p>", "paste content in line before"},
+    ["<C-x>"] = {"<C-o><S-v>x"}
   },
   n = {
-    ["<C-e>"] = {"<S-v>yp", "copy line below"},
+    ["<C-a>"] = {"<S-v>yp", "copy line below"},
     ["<leader>w"] = {"<cmd>q<CR>", "close tab"},
     ["<leader>p"] = {"<cmd>tabnew<CR>", "new tab"},
     ["<C-q>"] = {"<S-v>y<S-p>", "copy line before"},
@@ -26,6 +26,7 @@ M.general = {
     ["<leader>i"] = { "<cmd>vsplit<CR>", "new vertical split" },
     ["<leader>o"] = { "<cmd>split<CR>", "new horizontal split"},
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    ["<C-x>"] = {"<S-v>x", "exclude current line"},
   },
 }
 

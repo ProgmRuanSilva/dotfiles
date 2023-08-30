@@ -1,6 +1,6 @@
 local overrides = require("custom.configs.overrides")
 
----@type NvPluginSpec[]
+--@type NvPluginSpec[]
 local plugins = {
 
   -- Override plugin definition options
@@ -15,6 +15,14 @@ local plugins = {
           require "custom.configs.null-ls"
         end,
       },
+
+      {
+        "SmiteshP/nvim-navbuddy",
+          dependencies = {
+            "SmiteshP/nvim-navic",
+            "MunifTanjim/nui.nvim"
+          },
+      }
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -64,6 +72,16 @@ local plugins = {
   },
 
   {
+    "mattn/emmet-vim",
+    lazy = true,
+  },
+
+  {
+    "simrat39/symbols-outline.nvim",
+    lazy = true,
+  },
+
+  {
       "hrsh7th/nvim-cmp",
       opts = {
         sources = {
@@ -76,6 +94,8 @@ local plugins = {
         },
       },
     },
+
+
 
   -- To make a plugin not be loaded
   -- {
