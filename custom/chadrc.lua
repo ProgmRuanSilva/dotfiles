@@ -4,7 +4,6 @@ local M = {}
 -- Path to overriding theme and highlights files
 local highlights = require "custom.highlights"
 
-
 M.ui = {
   theme = "chadracula",
   theme_toggle = { "chadracula", "one_light" },
@@ -14,6 +13,7 @@ M.ui = {
 }
 
 M.plugins = "custom.plugins"
+
 
 -- Background to transparent
 vim.cmd('highlight Normal guibg=none')

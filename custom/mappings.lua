@@ -1,32 +1,62 @@
 ---@type MappingsTable
 -- use tcd command on : to jump to another folder
+
 local M = {}
 
 M.general = {
+
   i = {
+
+  --Navigation cursor
     ["<C-f>"] = { "<C-o>w", "next word"},
     ["<C-n>"] = { "<C-o>b", "back word"},
-    ["<C-s>"] = { "<cmd> w! <CR>", "save"},
-    ["<C-p>"] = {"<C-o>p", "simple paste"},
-    ["jk"] = {"<ESC>", "escape insert mode"},
-    ["<C-z>"] = { "<C-o>u", "restore newest"},
     ["<C-a>"] = { "<C-o><End>", "end of line"},
+
+  --Deletes cursor
     ["<C-d>"] = { "<C-o>dw", "delete next word"},
-    ["<C-r>"] = { "<C-o><C-u>", "jump 5 lines up"},
-    ["<C-v>"] = { "<C-o><C-d>", "jump 5 lines down"},
+    ["<C-x>"] = {"<C-o><S-v>x", "delete current line"},
+
+  --Save and Restore
+    ["<C-s>"] = { "<cmd> w! <CR>", "save"},
+    ["<C-z>"] = { "<C-o>u", "restore newest"},
+
+  --Clipboard
+    ["<C-p>"] = {"<C-o>p", "simple paste"},
     ["<C-e>"] = {"<C-o><S-v>y<C-o>p", "paste content in line below"},
-    ["<C-x>"] = {"<C-o><S-v>x"}
+
   },
+
   n = {
+
+  --Clipboard
     ["<C-a>"] = {"<S-v>yp", "copy line below"},
+
+  --Tabs
     ["<leader>w"] = {"<cmd>q<CR>", "close tab"},
     ["<leader>p"] = {"<cmd>tabnew<CR>", "new tab"},
-    ["<C-q>"] = {"<S-v>y<S-p>", "copy line before"},
     ["<leader><Tab>"] = {"<cmd>tabn<CR>", "switch tabs"},
+
+  --Splits
     ["<leader>i"] = { "<cmd>vsplit<CR>", "new vertical split" },
     ["<leader>o"] = { "<cmd>split<CR>", "new horizontal split"},
+
+  --Command mode
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
+
+  --Deletes
     ["<C-x>"] = {"<S-v>x", "exclude current line"},
+
+  --Navigation
+    ["f"] = {"<HOME>", "navigate to beggining of line"},
+    ["<S-f>"] = {"<END>", "navigate to end of line"},
+
+  --Line Addiction
+    ["m"] = {"o<C-c>", "add a new line in normal mode"},
+    ["<S-m>"] = {"<S-o><C-c>", "add a new line below in normal mode"},
+
+  --Navbuddy
+    ["<C-q>"] = { "<cmd>Navbuddy<CR>", "Navbuddy Toggle" },
+
   },
 }
 

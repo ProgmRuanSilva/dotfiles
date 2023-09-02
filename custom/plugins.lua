@@ -3,12 +3,19 @@ local overrides = require("custom.configs.overrides")
 --@type NvPluginSpec[]
 local plugins = {
 
-  -- Override plugin definition options
-
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- format & linting
+-- working config after
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+            "MunifTanjim/nui.nvim"
+        },
+        opts = { lsp = { auto_attach = true } }
+      },
+
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
@@ -16,13 +23,6 @@ local plugins = {
         end,
       },
 
-      {
-        "SmiteshP/nvim-navbuddy",
-          dependencies = {
-            "SmiteshP/nvim-navic",
-            "MunifTanjim/nui.nvim"
-          },
-      }
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -46,10 +46,9 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
-  -- Install a plugin
   {
     "max397574/better-escape.nvim",
-    event = "InsertEnter",
+--    event = "InsertEnter",
     config = function()
       require("better_escape").setup()
     end,
@@ -59,13 +58,12 @@ local plugins = {
     "L3MON4D3/LuaSnip",
     dependencies = ( "rafamadriz/friendly-snippets" ),
     version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
+    -- install jsregexp (optional!)
     build = "make install_jsregexp"
   },
 
   {
     "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
     config = function()
       require("nvim-ts-autotag").setup()
     end,
@@ -73,12 +71,36 @@ local plugins = {
 
   {
     "mattn/emmet-vim",
-    lazy = true,
   },
 
   {
-    "simrat39/symbols-outline.nvim",
-    lazy = true,
+    "wbthomason/packer.nvim",
+   lazy = false,
+  },
+
+  {
+    'Wansmer/treesj',
+    keys = { '<space>m' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('treesj').setup({--[[ your config ]]})
+    end,
+  },
+
+  {
+    "karb94/neoscroll.nvim",
+    keys = { "<C-d>", "<C-u>" },
+    config = function()
+      require("neoscroll").setup()
+    end,
+  },
+
+  {
+    "f-person/git-blame.nvim",
+  },
+
+  {
+    "mg979/vim-visual-multi"
   },
 
   {
@@ -94,7 +116,6 @@ local plugins = {
         },
       },
     },
-
 
 
   -- To make a plugin not be loaded

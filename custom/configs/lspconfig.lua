@@ -11,6 +11,7 @@ local servers = {
   "docker-compose-language-server",
   "json-lsp",
   "rubocop",
+  "emmet-ls",
 }
 
 for _, lsp in ipairs(servers) do
