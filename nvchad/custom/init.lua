@@ -1,9 +1,10 @@
-require "custom.autocmds"
+local opt = vim.opt
 
-local autocmd = vim.api.nvim_create_autocmd
+opt.number = false
 
 -- Packer nvim
 require('packer').startup(function (use)
+
   use 'wbthomason/packer.nvim'
 
   use {
@@ -16,8 +17,11 @@ require('packer').startup(function (use)
       }
   }
 
+  use {
+    'rmagatti/goto-preview',
+    config = function()
+      require('goto-preview').setup { default_mappings = true }
+    end
+  }
+
   end)
-
-
-
-

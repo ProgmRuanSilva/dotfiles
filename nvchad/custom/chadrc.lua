@@ -7,17 +7,18 @@ local highlights = require "custom.highlights"
 M.ui = {
   theme = "chadracula",
   theme_toggle = { "chadracula", "one_light" },
+  transparency = true,
 
   hl_override = highlights.override,
   hl_add = highlights.add,
+
+statusline =  {separator_style = "round"},
+
+
+nvdash = {load_on_startup = true},
 }
 
 M.plugins = "custom.plugins"
-
-
--- Background to transparent
-vim.cmd('highlight Normal guibg=none')
-vim.cmd('highlight NonText guibg=none')
 
 -- check core.mappings for table structure
 M.mappings = require "custom.mappings"

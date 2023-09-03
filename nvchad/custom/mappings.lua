@@ -60,6 +60,16 @@ M.general = {
   },
 }
 
+
+--Overwrites
+
+M.nvimtree = {
+  n = {
+    ["<C-n>"] = {"", "nothig to say"},
+    ["<leader>e"] = {"<cmd> NvimTreeToggle<CR>", "Focus nvimtree"}
+   }
+ }
+
 M.nvterm = {
   n = {
     ["<leader>gc"] = {

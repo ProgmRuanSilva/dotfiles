@@ -42,6 +42,7 @@ M.mason = {
     "shellcheck",
     "bash-language-server",
 
+    -- c/cpp stuff
     "clangd",
     "clang-format",
   },
