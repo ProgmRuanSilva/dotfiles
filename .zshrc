@@ -42,7 +42,7 @@ ZSH_THEME="spaceship"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -66,11 +66,7 @@ ZSH_THEME="spaceship"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# Plugins
 plugins=(
     alias-finder
     ansible
@@ -107,6 +103,15 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export MANPATH="/usr/local/man:$MANPATH"
+
+# alias-finder
+zstyle ':omz:plugins:alias-finder' autoload yes
+zstyle ':omz:plugins:alias-finder' longer yes 
+zstyle ':omz:plugins:alias-finder' exact yes 
+zstyle ':omz:plugins:alias-finder' cheaper yes 
+
+# aliases 
+alias le="ls -a"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
