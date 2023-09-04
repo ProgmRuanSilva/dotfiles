@@ -1,3 +1,8 @@
-# Example_config
+1. Allways install Packer with this command:
 
-This can be used as an example custom config for NvChad, this branch is a minimal one. Do check the feature_full branch if you need all the ease in your config.
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+2. Treesitter
+
+Remember to do TSInstall <language> it not install automatic

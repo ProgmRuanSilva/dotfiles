@@ -1,3 +1,5 @@
+require "custom.autocmds"
+
 local opt = vim.opt
 
 opt.number = false
