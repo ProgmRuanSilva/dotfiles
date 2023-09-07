@@ -1,5 +1,4 @@
 ---@type MappingsTable
--- use tcd command on : to jump to another folder
 
 local M = {}
 
@@ -27,6 +26,10 @@ M.general = {
   },
 
   n = {
+
+  --Move Lines
+    ["<C-j>"]= {"<S-v>xp"},
+    ["<C-k>"]= {"<S-v>xk<S-p>"},
 
   --Clipboard
     ["<C-a>"] = {"<S-v>yp", "copy line below"},

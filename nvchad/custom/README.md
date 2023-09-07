@@ -1,8 +1,3 @@
-1. Allways install Packer with this command:
+# Example_config
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-2. Treesitter
-
-Remember to do TSInstall <language> it not install automatic
+This can be used as an example custom config for NvChad. Do check the https://github.com/NvChad/nvcommunity

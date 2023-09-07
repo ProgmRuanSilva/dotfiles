@@ -4,18 +4,13 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export asdf="$HOME/.asdf/asdf.sh"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="spaceship"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -26,7 +21,7 @@ ZSH_THEME="spaceship"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -53,7 +48,7 @@ ENABLE_CORRECTION="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -67,6 +62,10 @@ ENABLE_CORRECTION="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Plugins
+
+# See configs oh-my-zsh plugins
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/`jump`
+
 plugins=(
     alias-finder
     ansible
@@ -100,19 +99,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-export MANPATH="/usr/local/man:$MANPATH"
-
-# alias-finder
-zstyle ':omz:plugins:alias-finder' autoload yes
-zstyle ':omz:plugins:alias-finder' longer yes 
-zstyle ':omz:plugins:alias-finder' exact yes 
-zstyle ':omz:plugins:alias-finder' cheaper yes 
-
-# aliases 
-alias le="ls -a"
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -130,7 +116,20 @@ alias le="ls -a"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Alias-finder
+zstyle ':omz:plugins:alias-finder' autoload yes
+zstyle ':omz:plugins:alias-finder' longer yes 
+zstyle ':omz:plugins:alias-finder' exact yes 
+zstyle ':omz:plugins:alias-finder' cheaper yes 
+
+# List
+alias le="ls -a"
+alias hm="cd ~/"
+
+# Configurations edits
+alias zshconfig="nvim ~/.zshrc"
+alias nvimcfg="cd ~/.config/nvim/;nvim"
+
+# Apps
+alias pgadmin="sudo /usr/pgadmin4/bin/setup-web.sh" # need pgadmin to run

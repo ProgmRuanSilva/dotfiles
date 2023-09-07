@@ -1,14 +1,9 @@
+local autocmd = vim.api.nvim_create_autocmd
+
 -- Replace string from file
 local function sed(from, to, fname)
   vim.cmd(string.format("silent !sed -i 's/%s/%s/g' %s", from, to, fname))
 end
-
-local autocmd = vim.api.nvim_create_autocmd
-
-autocmd("VimResized", {
-  pattern = "*",
-  command = "tabdo wincmd =",
-})
 
 -- Tab Alternation
    for i = 1, 9, 1 do
@@ -17,17 +12,23 @@ autocmd("VimResized", {
      end)
    end
 
+-- Tab Resize
+autocmd("VimResized", {
+  pattern = "*",
+  command = "tabdo wincmd =",
+})
 
--- Resorces for Xresources 
 
--- reloads xresources for current focused window onl
+
+--
+-- -- reloads xresources for current focused window onl
 -- local function liveReload_xresources()
 --   vim.cmd "silent !xrdb -merge ~/.Xresources"
 --   vim.cmd "silent !kill -USR1 $(xprop -id $(xdotool getwindowfocus) | grep '_NET_WM_PID' | grep -oE '[[:digit:]]*$')"
 -- end
 --
 --
--- Dynamic terminal padding with/without nvim (for siduck's st only)
+-- -- Dynamic terminal padding with/without nvim (for siduck's st only)
 -- autocmd({ "BufNewFile", "BufRead" }, {
 --   callback = function(ctx)
 --     -- remove terminal padding
@@ -46,7 +47,7 @@ autocmd("VimResized", {
 --   end,
 -- })
 --
--- add terminal padding
+-- -- add terminal padding
 -- autocmd("VimLeavePre", {
 --   callback = function()
 --     sed("st.borderpx: 0", "st.borderpx: 20", "~/.Xresources")

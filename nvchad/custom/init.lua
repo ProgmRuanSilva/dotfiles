@@ -1,5 +1,6 @@
 require "custom.autocmds"
 
+-- Init Overwrites
 local opt = vim.opt
 
 opt.number = false
@@ -25,5 +26,4 @@ require('packer').startup(function (use)
       require('goto-preview').setup { default_mappings = true }
     end
   }
-
   end)
