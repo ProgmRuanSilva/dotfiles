@@ -1,29 +1,21 @@
 require "custom.autocmds"
+require "custom.commands"
 
 -- Init Overwrites
 local opt = vim.opt
 
 opt.number = false
+opt.title = true
 
 -- Packer nvim
-require('packer').startup(function (use)
-
-  use 'wbthomason/packer.nvim'
-
-  use {
-      "SmiteshP/nvim-navbuddy",
-      requires = {
-          "neovim/nvim-lspconfig",
-          "SmiteshP/nvim-navic",
-          "MunifTanjim/nui.nvim",
-          "numToStr/Comment.nvim",
-      }
-  }
+require("packer").startup(function(use)
+  use "wbthomason/packer.nvim"
 
   use {
-    'rmagatti/goto-preview',
+    "rmagatti/goto-preview",
     config = function()
-      require('goto-preview').setup { default_mappings = true }
-    end
+      require("goto-preview").setup { default_mappings = true }
+    end,
   }
-  end)
+
+end)

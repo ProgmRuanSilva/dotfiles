@@ -5,12 +5,25 @@ local function sed(from, to, fname)
   vim.cmd(string.format("silent !sed -i 's/%s/%s/g' %s", from, to, fname))
 end
 
--- Tab Alternation
+-- Split Alternation
    for i = 1, 9, 1 do
      vim.keymap.set("n", string.format("<A-%s>", i), function()
        vim.api.nvim_set_current_buf(vim.t.bufs[i])
      end)
    end
+
+-- Window Alternation
+   -- for i = 1, 9, 1 do
+   --   vim.keymap.set("n", string.format("<leader-%s>", i), function()
+   --    tabd(i)
+   --   end)
+   -- end
+
+-- for i=0,9 do
+--   vim.keymap.set("n", string.format("<A-%s>", i), function ()
+--       vim.cmd(":lua tabn(i)")
+--     end)
+-- end
 
 -- Tab Resize
 autocmd("VimResized", {

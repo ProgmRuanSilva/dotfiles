@@ -1,19 +1,16 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
+local lspconfig = require("lspconfig")
+local util = require "lspconfig/util"
 
--- if you just want default config for the servers then put them in a table
-local servers = { 
-  "html", 
+local servers = {
+  "html",
   "cssls",
   "tsserver",
   "clangd",
   "bash-language-server",
-  "docker-compose-language-server",
-  "json-lsp",
   "rubocop",
-  "emmet-ls",
 }
 
 for _, lsp in ipairs(servers) do
@@ -23,5 +20,21 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- 
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {"gopls"},
+  filetypes = {"go", "gomod", "gowork", "gotmpl" },
+  root_dir = util.root_pattern("go_work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      completeUnimported = true,
+      usePlaceholders = true,
+      analyses = {
+        unusedparams = true,
+      },
+    },
+  },
+}
+
 -- lspconfig.pyright.setup { blabla}
