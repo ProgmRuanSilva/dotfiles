@@ -8,14 +8,14 @@ opt.number = false
 opt.title = true
 
 -- Packer nvim
-require("packer").startup(function(use)
-  use "wbthomason/packer.nvim"
-
-  use {
-    "rmagatti/goto-preview",
-    config = function()
-      require("goto-preview").setup { default_mappings = true }
-    end,
-  }
-
-end)
+-- require("packer").startup(function(use)
+--   use "wbthomason/packer.nvim"
+--
+--   use {
+--     "rmagatti/goto-preview",
+--     config = function()
+--       require("goto-preview").setup { default_mappings = true }
+--     end,
+--   }
+--
+-- end)
