@@ -1,15 +1,14 @@
 local overrides = require "custom.configs.overrides"
-local cmp = require "cmp"
 
---@type NvPluginSpec[]
+--@type NvPluginSpec
 local plugins = {
-
+-- Overrides
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
         "SmiteshP/nvim-navbuddy",
-        event = { "VimEnter" },
+        event = {"VimEnter"},
         dependencies = {
           "SmiteshP/nvim-navic",
           "MunifTanjim/nui.nvim",
@@ -31,13 +30,23 @@ local plugins = {
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
+    end,
   },
 
   {
-    "wbthomason/packer.nvim",
-    enabled = true,
-    lazy = false,
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    config = function ()
+      require "custom.configs.lint"
+    end
+  },
+
+  {
+    "mhartington/formatter.nvim",
+    event = "VeryLazy",
+    opts = function ()
+      return require "custom.configs.formatter"
+    end
   },
 
   {
@@ -55,84 +64,87 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
+
+  {
+    "NvChad/nvterm",
+    opts = overrides.nvterm,
+  },
+
+
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = overrides.telescope,
+  },
+
+
+  {
+    "hrsh7th/nvim-cmp",
+    opts = overrides.nvimcmp,
+  },
+
+  --Text Edition
   {
     "max397574/better-escape.nvim",
-    event = "VimEnter",
+    event = {"VimEnter"},
     config = function()
       require("better_escape").setup()
     end,
   },
 
   {
-    "L3MON4D3/LuaSnip",
-    dependencies = "rafamadriz/friendly-snippets",
-    version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!)
-    build = "make install_jsregexp",
-  },
-
-  {
     "windwp/nvim-ts-autotag",
-    event = { "VimEnter" },
+    event = {"VimEnter"},
     config = function()
-      require("nvim-ts-autotag").setup()
+      require("nvim-ts-autotag").setup{
+        autotag = {
+          enable = true,
+        }
+      }
     end,
   },
 
   {
     "Wansmer/treesj",
-    keys = { "<space>m" },
+    event = {"VimEnter"},
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      require("treesj").setup {}
+      require("treesj").setup {
+        use_default_keymaps = false,
+      }
     end,
   },
 
-  {
-    "karb94/neoscroll.nvim",
-    -- keys = { "q", "w" },
-    event = { "VimEnter" },
-    config = function()
-      require "custom.configs.neoscroll"
-    end,
-  },
-
-  {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    config = function()
-      require "custom.configs.zenmode"
-    end,
-  },
-
-  --Vim Plugins
   {
     "f-person/git-blame.nvim",
     cmd = "GitBlameToggle",
   },
   {
     "mg979/vim-visual-multi",
-    event = { "VimEnter" },
+    event = {"VimEnter"},
     enabled = true,
-  },
-
-  {
-    "francoiscabrol/ranger.vim",
-    cmd = "Ranger",
   },
 
   {
     "mattn/emmet-vim",
-    event = { "VimEnter" },
+    event = {"VimEnter"},
     enabled = true,
   },
 
+  -- Navigation
+  -- {
+  --   "rmagatti/goto-preview",
+  --   event = {"VimEnter"},
+  --   enabled = true,
+  --   config = function()
+  --     require("goto-preview").setup { default_config = true }
+  --   end,
+  -- },
+
   {
-    "rmagatti/goto-preview",
-    event = { "VimEnter" },
-    enabled = true,
+    "karb94/neoscroll.nvim",
+    event = {"VimEnter"},
     config = function()
-      require("goto-preview").setup { default_config = true }
+      require "custom.configs.neoscroll"
     end,
   },
 
@@ -144,108 +156,72 @@ local plugins = {
     end,
   },
 
-  --Overwrites
   {
-    "nvim-telescope/telescope.nvim",
-    opts = {
-      defaults = {
-        initial_mode = "normal",
-        mappings = {
-          n = {
-            ["o"] = require("telescope.actions").file_edit,
-            ["<A-j>"] = require("telescope.actions").file_edit,
-          },
-        },
-      },
-    },
+    "francoiscabrol/ranger.vim",
+    cmd = "Ranger",
+  },
+
+  --Boadding
+  {
+    "VonHeikemen/fine-cmdline.nvim",
+    event = {"VimEnter"},
+    -- dependencies = {'MunifTankim/nui.nvim'},
+    config = function ()
+      require"custom.configs.fine-line"
+    end
+  },
+
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    config = function()
+      require "custom.configs.zenmode"
+    end,
   },
 
   {
     "glepnir/dashboard-nvim",
-    event = "VimEnter",
+    event = {"VimEnter"},
+    dependencies = {"nvim-tree/nvim-web-devicons"},
     config = function()
-      require("dashboard").setup {
-        theme = "hyper",
-        config = {
-          week_header = {
-            enable = true,
-          },
-          shortcut = {
-            { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
-            {
-              icon = " ",
-              icon_hl = "@variable",
-              desc = "Files",
-              group = "Label",
-              action = "Telescope find_files",
-              key = "f",
-            },
-            {
-              desc = " Apps",
-              group = "DiagnosticHint",
-              action = "Telescope app",
-              key = "a",
-            },
-            {
-              desc = " dotfiles",
-              group = "Number",
-              action = "Telescope dotfiles",
-              key = "d",
-            },
-          },
-        },
-      }
+      require"custom.configs.dashboard"
     end,
-    dependencies = { { "nvim-tree/nvim-web-devicons" } },
+  },
+
+  --LLM
+  {
+    "David-Kunz/gen.nvim",
+    event = {"VimEnter"}
   },
 
   {
-    "NvChad/nvterm",
-    require("nvterm").setup {
-      terminals = {
-        type_opts = {
-          float = {
-            relative = "editor",
-            row = 0.09,
-            col = 0.22,
-            width = 0.55,
-            height = 0.75,
-            border = "single",
-          },
-        },
-      },
-    },
+    "nvim-lua/plenary.nvim",
+    event = {"VimEnter"}
   },
 
   {
-    "hrsh7th/nvim-cmp",
-    opts = {
-
-      mapping = {
-        ["<A-k>"] = cmp.mapping.select_prev_item(),
-        ["<A-j>"] = cmp.mapping.select_next_item(),
-        ["<A-l>"] = cmp.mapping.close(),
-        ["<A-h>"] = cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        },
-      },
-
-      sources = {
-        { name = "nvim_lsp", trigger_characters = { "-" } },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "nvim_lua" },
-        { name = "path" },
-      },
+    "pwntester/octo.nvim",
+    event = {"VimEnter"},
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
     },
+    config = function ()
+      require"custom.configs.octo"
+    end
   },
 
-  -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
+  {
+      "kylechui/nvim-surround",
+      version = "*",
+      event = "VeryLazy",
+      config = function()
+          require("nvim-surround").setup({
+              -- Configuration here, or leave empty to use defaults
+          })
+      end
+  }
 
   -- All NvChad plugins are lazy-loaded by default
   -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`

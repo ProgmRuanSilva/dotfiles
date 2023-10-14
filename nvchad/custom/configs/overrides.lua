@@ -1,7 +1,9 @@
 local M = {}
+local cmp = require'cmp'
 
-local HEIGHT_RATIO = 0.8 -- You can change this
-local WIDTH_RATIO = 0.5  -- You can change this too
+local HEIGHT_RATIO = 0.8
+local WIDTH_RATIO = 0.5
+
 
 M.treesitter = {
   ensure_installed = {
@@ -26,18 +28,16 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
-    -- lua stuff
     "lua-language-server",
     "stylua",
 
-    -- web dev stuff
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
+    "eslint-lsp",
     "deno",
     "prettier",
 
-    -- c/cpp stuff
     "clangd",
     "clang-format",
 
@@ -92,5 +92,53 @@ M.nvimtree = {
     },
   },
 }
+
+M.nvterm = {
+  terminals = {
+    type_opts = {
+      float = {
+        relative = "editor",
+        row = 0.09,
+        col = 0.22,
+        width = 0.55,
+        height = 0.75,
+        border = "single",
+      },
+    },
+  },
+}
+
+M.telescope = {
+  defaults = {
+    initial_mode = "normal",
+    mappings = {
+      n = {
+        ["o"] = require("telescope.actions").file_edit,
+        ["<A-j>"] = require("telescope.actions").file_edit,
+      },
+    },
+  },
+}
+
+M.nvimcmp = {
+    mapping = {
+      ["<A-k>"] = cmp.mapping.select_prev_item(),
+      ["<A-j>"] = cmp.mapping.select_next_item(),
+      ["<A-l>"] = cmp.mapping.close(),
+      ["<A-h>"] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      },
+    },
+
+    sources = {
+      { name = "nvim_lsp", trigger_characters = { "-" } },
+      { name = "luasnip" },
+      { name = "buffer" },
+      { name = "nvim_lua" },
+      { name = "path" },
+    },
+  }
+
 
 return M

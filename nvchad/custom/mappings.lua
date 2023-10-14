@@ -6,7 +6,7 @@ M.general = {
 
   i = {
 
-  --Navigate 
+  --Navigate
     ["<A-k>"] = { "<Up>", "Move up" },
     ["<A-j>"] = { "<Down>", "Move down" },
     ["<A-h>"] = { "<Left>", "Move left" },
@@ -14,12 +14,12 @@ M.general = {
     ["<A-n>"] = { "<C-o>b", "back word phrase"},
     ["<A-m>"] = { "<C-o>w", "next word phrase"},
     ["<A-g>"] = { "<C-o><End>", "end of line"},
-    ["<A-f>"] = { "<cmd>HopWord<CR>", "HopWord command to go to selected word"},
-    ["<A-c>"] = { "<cmd>HopAnywhere<CR>", "HopWord command to go to selected word"},
+    ["<A-f>"] = { "<cmd>HopWord<CR>i", "HopWord command to go to selected word"},
+    ["<A-c>"] = { "<cmd>HopAnywhere<CR>i", "HopWord command to go to selected word"},
 
   --Deletes cursor
     ["<A-o>"] = { "<C-o>dw", "delete next word"},
-    ["<A-i>"] = { "<C-o>db", "delete previews word"},
+    ["<A-i>"] = { "<C-o>db<Backspace>", "delete previews word"},
     ["<A-ç>"] = { "<Backspace>", "delete previews word"},
     ["<A-Ç>"] = { "<Backspace>", "delete previews word in CapsLock"},
     ["<A-d>"] = {"<C-o>d", "delete current line"},
@@ -100,7 +100,7 @@ M.general = {
     ["<leader>d"] = { "<cmd>Navbuddy<CR>", "Navbuddy Toggle" },
 
   --Command mode
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    [";"] = { "<cmd>FineCmdline<CR>", "enter command mode"},
     ["<A-q>"] = {"<Esc>", "esc key"},
 
   --Change Directory
@@ -108,12 +108,28 @@ M.general = {
     ["<leader>mp"] = {"<cmd>tcd ~/projects/<CR>", "change directory to projects folder"},
     ["<leader>mh"] = {"<cmd>tcd ~/<CR>", "change home directory"},
 
-  --test zone
+  --Deletes remapping
+    ["ç"] = {"<Delete>"},
     ["dm"] = {"dw"},
     ["dn"] = {"db"},
+    ["df"] = {"d$"},
 
-    ["<leader>kj"] = {"<cmd>HopWord<CR>"},
-    ["<leader>kk"] = {"<cmd>HopAnywhere<CR>"},
+  --Hop Configuration
+    ["<leader>kk"] = {"<cmd>HopWord<CR>"},
+    ["<leader>kj"] = {"<cmd>HopAnywhere<CR>"},
+
+  --Git
+    ["<leader>gf"] = {"<cmd>GitBlameToggle<CR>"},
+    ["<leader>gc"] = {"<cmd>Telescope git_commits<CR>"},
+    ["<leader>gv"] = {"<cmd>Telescope git_bcommits<CR>"},
+    ["<leader>gg"] = {"<cmd>Telescope git_files<CR>"},
+    ["<leader>gr"] = {"<cmd>Telescope git_stash<CR>"},
+
+  --Telescope
+    ["<leader>fe"] = {"<cmd>Telescope man_pages<CR>"},
+    ["<leader>fl"] = {"<cmd>Telescope jumplist<CR>"},
+    ["<leader>fn"] = {"<cmd>Telescope marks<CR>"},
+    ["<leader>fd"] = {"<cmd>Telescope oldfiles<CR>"},
 
   },
 
@@ -130,6 +146,16 @@ M.general = {
   --Escape Mode
     ["<A-q>"] = {"<Esc>"},
   },
+
+  c = {
+    --Moviments on Command mode
+    ["<A-ç>"] = {"<Backspace>"},
+    ["<A-j>"] = {"<Enter>"},
+    ["<A-h>"] = {"<Left>"},
+    ["<A-l>"] = {"<Right>"},
+    ["<A-n>"] = {"<C-b>"},
+  },
+
 }
 
 

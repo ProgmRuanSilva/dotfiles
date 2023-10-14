@@ -133,35 +133,35 @@ fi
 
 # Alias-finder
 # zstyle ':omz:plugins:alias-finder' autoload yes
-# zstyle ':omz:plugins:alias-finder' longer yes 
-# zstyle ':omz:plugins:alias-finder' exact yes 
-# zstyle ':omz:plugins:alias-finder' cheaper yes 
+# zstyle ':omz:plugins:alias-finder' longer yes
+# zstyle ':omz:plugins:alias-finder' exact yes
+# zstyle ':omz:plugins:alias-finder' cheaper yes
 
 
 # Mappings
 bindkey '^[j' accept-line
-bindkey '^[o' delete-word
+bindkey '^[e' delete-word
+bindkey '^[w' backward-delete-word
 bindkey '^[l' clear-screen
 bindkey '^[m' forward-word
 bindkey '^[n' backward-word
-bindkey '^[k' autosuggest-accept
+# bindkey '^[k' autosuggest-accept
 bindkey '^[h' backward-kill-line
 bindkey '^[ç' backward-delete-char
-bindkey '^[i' backward-delete-word
 bindkey '^[a' complete-word
 
 # List
 alias le="ls -a"
+alias lej="ls -a"
 alias hm="cd ~/"
 
 # Configurations Files
 alias zshcfg="nvim ~/.zshrc"
-alias nvimcfg="cd ~/.config/nvim/;nvim"
+alias nvcfg="cd ~/.config/nvim/;nvim"
 alias strcfg="nvim ~/.config/starship/starship.toml"
 
 # Apps
 alias nv="nvim"
-alias todo="nvim ~/projects/todo.txt"
 alias mjc="gitmoji -c"
 alias jp="jump"
 
@@ -170,9 +170,26 @@ alias dcb="sudo docker-compose build"
 alias dcu="sudo docker-compose up"
 alias dcub="sudo docker-compose up --build"
 
+# Podman
+alias pc-="podman-compose"
+alias pc-build="podman-compose build"
+
+# Postgres
+alias pg="psql -U postgres"
+alias pgcfg="cd /etc/postgresql/14/main/"
+
 # Packages
 alias ns="npm start"
 alias nd="npm run dev"
+
+# Ollama
+alias olm="ollama run mistral"
+alias olc="ollama run codellama"
+alias oll="ollama run llama2"
+
+# Todo
+alias td="nvim ~/projects/todo.txt"
+alias tds="cat ~/projects/todo.txt | less"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
