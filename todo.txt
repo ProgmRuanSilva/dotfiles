@@ -10,12 +10,17 @@ Arrumar:
 
   - colocar as configurações do gen.nvim pra fechar com q
 
-  - melhorar a configuração do commando do nvim (esqueci o nome)
+  - melhorar a configuração do terminal do nvim (esqueci o nome)
 
   - ver se tem como adicionar um <A-o> pro telescope rodar direto o primeiro arquivo
 
-  - arrumar o comando do hop no inersiton mode
+  - fazer a configuração do nvim-dap
 
+  - colocar os terminais usando <leader> pra abrir e alternar
+
+  - colocar o mapping do <S-k> pra sair com <A-q>
+
+  - colocar o <A-q> pra sair do modo de seleção
 Pesquisar:
   - buscar melhor o que é .pex (vi em um mod do starfield)
 

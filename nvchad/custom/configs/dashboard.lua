@@ -18,8 +18,8 @@ require("dashboard").setup({
       {
         desc = " Apps",
         group = "DiagnosticHint",
-        action = "Telescope app",
-        key = "a",
+        action = "Telescope zoxide list",
+        key = "k",
       },
       {
         desc = " Oldfiles",

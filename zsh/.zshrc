@@ -9,6 +9,7 @@ export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export FZF_BASE="/$HOME/.fzf/"
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -151,6 +152,7 @@ bindkey '^[ç' backward-delete-char
 bindkey '^[a' complete-word
 
 # List
+alias l="ls -a"
 alias le="ls -a"
 alias lej="ls -a"
 alias hm="cd ~/"
@@ -169,6 +171,7 @@ alias jp="jump"
 alias dcb="sudo docker-compose build"
 alias dcu="sudo docker-compose up"
 alias dcub="sudo docker-compose up --build"
+alias db="sudo docker build"
 
 # Podman
 alias pc-="podman-compose"
@@ -181,11 +184,16 @@ alias pgcfg="cd /etc/postgresql/14/main/"
 # Packages
 alias ns="npm start"
 alias nd="npm run dev"
+alias nr="npm run"
 
 # Ollama
 alias olm="ollama run mistral"
 alias olc="ollama run codellama"
 alias oll="ollama run llama2"
+
+#git
+alias gc="git checkout"
+alias gcb="git checkout -b"
 
 # Todo
 alias td="nvim ~/projects/todo.txt"

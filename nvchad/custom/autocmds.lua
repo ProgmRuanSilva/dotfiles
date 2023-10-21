@@ -12,7 +12,7 @@ end
      end)
    end
 
--- Window Alternation
+--vim Window Alternation
    -- for i = 1, 9, 1 do
    --   vim.keymap.set("n", string.format("<leader-%s>", i), function()
    --    tabd(i)

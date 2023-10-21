@@ -1,6 +1,6 @@
 require('hop').setup {
 
-keys = 'etovxqpdygfblzhckisuran',
+keys = 'eovqpdgflhckisuran',
 
 directions = require('hop.hint').HintDirection,
 

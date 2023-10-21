@@ -70,12 +70,28 @@ local plugins = {
     opts = overrides.nvterm,
   },
 
-
+-- Telescope
   {
     "nvim-telescope/telescope.nvim",
     opts = overrides.telescope,
   },
 
+
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  },
+
+
+  {
+    "nvim-telescope/telescope-project.nvim",
+    dependencies = {"nvim-telescope/telescope.nvim" }
+  },
+
+  {
+    "jvgrootveld/telescope-zoxide",
+    dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/popup.nvim" }
+  },
 
   {
     "hrsh7th/nvim-cmp",
@@ -131,14 +147,14 @@ local plugins = {
   },
 
   -- Navigation
-  -- {
-  --   "rmagatti/goto-preview",
-  --   event = {"VimEnter"},
-  --   enabled = true,
-  --   config = function()
-  --     require("goto-preview").setup { default_config = true }
-  --   end,
-  -- },
+  {
+    "rmagatti/goto-preview",
+    event = {"VimEnter"},
+    enabled = true,
+    config = function()
+      require("goto-preview").setup { default_config = true }
+    end,
+  },
 
   {
     "karb94/neoscroll.nvim",
@@ -159,6 +175,11 @@ local plugins = {
   {
     "francoiscabrol/ranger.vim",
     cmd = "Ranger",
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+    event = { "VimEnter" },
   },
 
   --Boadding

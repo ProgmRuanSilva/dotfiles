@@ -14,8 +14,8 @@ M.general = {
     ["<A-n>"] = { "<C-o>b", "back word phrase"},
     ["<A-m>"] = { "<C-o>w", "next word phrase"},
     ["<A-g>"] = { "<C-o><End>", "end of line"},
-    ["<A-f>"] = { "<cmd>HopWord<CR>i", "HopWord command to go to selected word"},
-    ["<A-c>"] = { "<cmd>HopAnywhere<CR>i", "HopWord command to go to selected word"},
+    ["<A-f>"] = { "<cmd>HopWord<CR>", "HopWord command to go to selected word"},
+    ["<A-c>"] = { "<cmd>HopAnywhere<CR>", "HopWord command to go to selected word"},
 
   --Deletes cursor
     ["<A-o>"] = { "<C-o>dw", "delete next word"},
@@ -27,7 +27,7 @@ M.general = {
   --Line addiction
     ["<A-,>"] = {"<C-o>o", "empty line on bottom"},
     ["<A-.>"] = {"<C-o><S-o>", "empty line on top"},
-    ["<A-a>"] = {"<C-o><S-v>y<C-o>p", "copy line below"},
+    ["<A-u>"] = {"<C-o><S-v>y<C-o>p", "copy line below"},
 
   --Save and Restore
     ["<A-s>"] = { "<cmd>w!<CR>", "save"},
@@ -40,12 +40,13 @@ M.general = {
   --Escape of insertion mode
     ["<A-v>"] = { "<ESC>", "escape insert mode" },
 
-  --Test
+  --Test Area
     ["<A-9>"] = {"()<Left>", "add comma on insertion mode"},
     ["<A-0>"] = {")", "add finaly comma on insertion mode"},
 
     ["<A-[>"] = {"{}<Left>", "add brackets on insetion mode"},
     ["<A-]>"] = {"}", "add finaly brackets on insetion mode"},
+    ["<A-a>"] = {"<Esc><right><Delete>i"},
 
   },
 
@@ -64,7 +65,7 @@ M.general = {
   --Tabs
     ["<leader>u"] = {"<cmd>q<CR>", "close tab"},
     ["<leader>h"] = {"<cmd>tabnew<CR>", "new tab"},
-    ["<leader>k"] = {"<cmd>tabn<CR>", "switch tabs"},
+    ["<leader>j"] = {"<cmd>tabn<CR>", "switch tabs"},
 
   --Splits
     ["<leader>i"] = { "<cmd>vsplit<CR>", "new vertical split" },
@@ -97,7 +98,10 @@ M.general = {
     ["<A-a>"] = {"<S-v>yp", "copy line below"},
 
   --Navbuddy
-    ["<leader>d"] = { "<cmd>Navbuddy<CR>", "Navbuddy Toggle" },
+    ["<leader>fd"] = { "<cmd>Navbuddy<CR>", "Navbuddy Toggle" },
+
+  --ZenMode
+    ["<leader>fb"] = {"<cmd>ZenMode<CR>"},
 
   --Command mode
     [";"] = { "<cmd>FineCmdline<CR>", "enter command mode"},
@@ -109,7 +113,7 @@ M.general = {
     ["<leader>mh"] = {"<cmd>tcd ~/<CR>", "change home directory"},
 
   --Deletes remapping
-    ["ç"] = {"<Delete>"},
+    ["ç"] = {"<right><Delete>"},
     ["dm"] = {"dw"},
     ["dn"] = {"db"},
     ["df"] = {"d$"},
@@ -122,14 +126,36 @@ M.general = {
     ["<leader>gf"] = {"<cmd>GitBlameToggle<CR>"},
     ["<leader>gc"] = {"<cmd>Telescope git_commits<CR>"},
     ["<leader>gv"] = {"<cmd>Telescope git_bcommits<CR>"},
-    ["<leader>gg"] = {"<cmd>Telescope git_files<CR>"},
-    ["<leader>gr"] = {"<cmd>Telescope git_stash<CR>"},
+    ["<leader>gb"] = {"<cmd>Telescope git_branches<CR>"},
 
   --Telescope
-    ["<leader>fe"] = {"<cmd>Telescope man_pages<CR>"},
-    ["<leader>fl"] = {"<cmd>Telescope jumplist<CR>"},
+    ["<leader><leader>"] = {"<cmd>Telescope find_files<CR>"},
+    ["<leader>fm"] = {"<cmd>Telescope man_pages<CR>"},
+    ["<leader>fp"] = {"<cmd>Telescope jumplist<CR>"},
     ["<leader>fn"] = {"<cmd>Telescope marks<CR>"},
-    ["<leader>fd"] = {"<cmd>Telescope oldfiles<CR>"},
+    ["<leader>d"] = {"<cmd>Telescope oldfiles<CR>"},
+    ["<leader>fj"] = {"<cmd>Telescope file_browser<CR>"},
+    ["<leader>k"] = {"<cmd>Telescope zoxide list<CR>"},
+
+  --Octo
+    ["<leader>gpl"] = {"<cmd>Octo pr list<CR>"},
+    ["<leader>gpc"] = {"<cmd>Octo pr create<CR>"},
+    ["<leader>gpd"] = {"<cmd>Octo pr delete<CR>"},
+
+    ["<leader>grl"] = {"<cmd>Octo repo list<CR>"},
+    ["<leader>grc"] = {"<cmd>Octo repo create<CR>"},
+    ["<leader>grd"] = {"<cmd>Octo repo delete<CR>"},
+
+    ["<leader>gil"] = {"<cmd>Octo issue list<CR>"},
+    ["<leader>gic"] = {"<cmd>Octo issue create<CR>"},
+    ["<leader>gid"] = {"<cmd>Octo issue delete<CR>"},
+
+    ["<S-k>"] = {
+      function()
+        require("nvchad.tabufline").tabuflineNext()
+      end,
+      "Goto next buffer",
+    },
 
   },
 
@@ -163,7 +189,7 @@ M.general = {
 M.nvimtree = {
   n = {
     ["<C-n>"] = {"", "none"},
-    ["<leader>j"] = {"<cmd>NvimTreeToggle<CR>", "Toggle nvimtree"}
+    ["<leader>l"] = {"<cmd>NvimTreeToggle<CR>", "Toggle nvimtree"}
    }
  }
 
@@ -179,6 +205,26 @@ M.telescope = {
   }
 
 }
+
+
+M.tabufline = {
+  n = {
+    ["<S-l>"] = {
+      function()
+        require("nvchad.tabufline").tabuflineNext()
+      end,
+      "Goto next buffer",
+    },
+
+    ["<S-j>"] = {
+      function()
+        require("nvchad.tabufline").tabuflinePrev()
+      end,
+      "Goto prev buffer",
+    },
+  },
+}
+
 
 M.nvterm = {
 
