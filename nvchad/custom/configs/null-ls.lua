@@ -1,6 +1,6 @@
 local null_ls = require "null-ls"
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local format = null_ls.builtins.formatting
 local lint = null_ls.builtins.diagnostics
 
@@ -30,7 +30,6 @@ local opts = {
     --Ruby
     lint.rubocop,
     format.rubocop,
-    format.rubyfm,
 
     --Html
     format.htmlbeautifier,

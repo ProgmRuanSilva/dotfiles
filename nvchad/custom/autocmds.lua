@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Replace string from file
-local function sed(from, to, fname)
+function sed(from, to, fname)
   vim.cmd(string.format("silent !sed -i 's/%s/%s/g' %s", from, to, fname))
 end
 
@@ -11,6 +11,14 @@ end
        vim.api.nvim_set_current_buf(vim.t.bufs[i])
      end)
    end
+
+   for i = 1, 9, 1 do
+     vim.keymap.set("n", string.format("<C-%s>", i), function()
+       vim.api.nvim_set_current_win(vim.w.wo[i])
+     end)
+   end
+
+
 
 --vim Window Alternation
    -- for i = 1, 9, 1 do

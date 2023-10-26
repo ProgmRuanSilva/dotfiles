@@ -1,21 +1,26 @@
+--@type NvPluginSpec
 local overrides = require "custom.configs.overrides"
 
---@type NvPluginSpec
 local plugins = {
--- Overrides
+-- Defaults
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
         "SmiteshP/nvim-navbuddy",
-        event = {"VimEnter"},
+        event = {"VeryLazy"},
         dependencies = {
           "SmiteshP/nvim-navic",
           "MunifTanjim/nui.nvim",
+          "numToStr/Comment.nvim",
+          "nvim-telescope/telescope.nvim",
         },
         opts = {
           lsp = { auto_attach = true },
         },
+        setup = function ()
+          require"custom.configs.navbuddy"
+        end,
       },
 
       {
@@ -70,32 +75,67 @@ local plugins = {
     opts = overrides.nvterm,
   },
 
+  {
+    "hrsh7th/nvim-cmp",
+    opts = overrides.nvimcmp,
+  },
+
 -- Telescope
   {
     "nvim-telescope/telescope.nvim",
     opts = overrides.telescope,
   },
 
-
   {
     "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  },
-
-
-  {
-    "nvim-telescope/telescope-project.nvim",
-    dependencies = {"nvim-telescope/telescope.nvim" }
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim" },
+    config = function ()
+      require"custom.configs.telescope.file-browser"
+    end
   },
 
   {
     "jvgrootveld/telescope-zoxide",
-    dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/popup.nvim" }
+    dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/popup.nvim" },
+    config = function ()
+      require"custom.configs.telescope.zoxide"
+    end
   },
 
   {
-    "hrsh7th/nvim-cmp",
-    opts = overrides.nvimcmp,
+    "lpoto/telescope-docker.nvim",
+    event = {"VimEnter"},
+    config = function ()
+      require"custom.configs.telescope.docker"
+    end
+  },
+
+  {
+    "olacin/telescope-gitmoji.nvim",
+    event = {"VeryLazy"},
+    config = function ()
+      require"custom.configs.telescope.gitmoji"
+    end
+  },
+
+  {
+    "f-person/git-blame.nvim",
+    cmd = "GitBlameToggle",
+  },
+
+  {
+    "pwntester/octo.nvim",
+    event = {"VimEnter"},
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function ()
+      require"custom.configs.telescope.octo"
+    end
   },
 
   --Text Edition
@@ -131,10 +171,6 @@ local plugins = {
   },
 
   {
-    "f-person/git-blame.nvim",
-    cmd = "GitBlameToggle",
-  },
-  {
     "mg979/vim-visual-multi",
     event = {"VimEnter"},
     enabled = true,
@@ -149,10 +185,10 @@ local plugins = {
   -- Navigation
   {
     "rmagatti/goto-preview",
-    event = {"VimEnter"},
+    event = {"VeryLazy"},
     enabled = true,
     config = function()
-      require("goto-preview").setup { default_config = true }
+      require"custom.configs.goto"
     end,
   },
 
@@ -172,32 +208,50 @@ local plugins = {
     end,
   },
 
-  {
-    "francoiscabrol/ranger.vim",
-    cmd = "Ranger",
-  },
-
-  {
-    "mfussenegger/nvim-dap",
-    event = { "VimEnter" },
-  },
-
-  --Boadding
-  {
-    "VonHeikemen/fine-cmdline.nvim",
-    event = {"VimEnter"},
-    -- dependencies = {'MunifTankim/nui.nvim'},
-    config = function ()
-      require"custom.configs.fine-line"
-    end
-  },
-
+  -- Visual
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
     config = function()
       require "custom.configs.zenmode"
     end,
+  },
+
+
+  {
+    "nvim-lua/plenary.nvim",
+    event = {"VimEnter"}
+  },
+
+
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+      })
+    end
+  },
+
+  {
+    "hrsh7th/cmp-cmdline",
+    event = "VeryLazy",
+    config = function ()
+      require"custom.configs.cmd"
+    end
+  },
+
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    config = function ()
+      require"custom.configs.noice"
+    end
   },
 
   {
@@ -209,44 +263,24 @@ local plugins = {
     end,
   },
 
-  --LLM
+-----------------
+--- TEST AREA----
+-----------------
+
   {
-    "David-Kunz/gen.nvim",
-    event = {"VimEnter"}
+    "mfussenegger/nvim-dap",
+    event = { "VeryLazy" },
   },
 
   {
-    "nvim-lua/plenary.nvim",
-    event = {"VimEnter"}
-  },
-
-  {
-    "pwntester/octo.nvim",
+    "nvim-telescope/telescope-dap.nvim",
     event = {"VimEnter"},
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function ()
-      require"custom.configs.octo"
-    end
   },
 
-  {
-      "kylechui/nvim-surround",
-      version = "*",
-      event = "VeryLazy",
-      config = function()
-          require("nvim-surround").setup({
-              -- Configuration here, or leave empty to use defaults
-          })
-      end
-  }
+  { --under tests
+    "sindrets/diffview.nvim",
+    event = {"VeryLazy"},
+  },
 
-  -- All NvChad plugins are lazy-loaded by default
-  -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
-  -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
 }
-
 return plugins

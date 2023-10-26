@@ -21,6 +21,13 @@ Arrumar:
   - colocar o mapping do <S-k> pra sair com <A-q>
 
   - colocar o <A-q> pra sair do modo de seleção
+
+  - colocar o mapeamento do bwtwm pra mover o foco da janela
+
+  - ajeitar o mapeamento e configuração do nvim-dap
+
+  - colocar o mapeamento correto do modo de procura
+
 Pesquisar:
   - buscar melhor o que é .pex (vi em um mod do starfield)
 

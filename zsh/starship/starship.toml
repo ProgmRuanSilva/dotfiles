@@ -1,0 +1,132 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$fill\
+$status\
+$git_status\
+$c\
+$nodejs\
+$rust\
+$python\
+$golang\
+$lua\
+$ruby\
+$shell\
+$cmake\
+$conda\
+$scala\
+$container\
+$docker_context\
+$terraform\
+$git_state\
+$jobs\
+$time\
+$line_break\
+$character\
+$cmd_duration\
+"""
+
+add_newline = false
+
+[c]
+format = "[$symbol($version )]($style)"
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+
+[golang]
+format = "[$symbol($version )]($style)"
+
+[rust]
+format = "[$symbol($version )]($style)"
+
+[lua]
+format = "[$symbol($version )]($style)"
+
+[python]
+format = "[$symbol($version )]($style)"
+
+[shell]
+format = "[$symbol($version )]($style)"
+
+[cmake]
+format = "[$symbol($version )]($style)"
+
+[conda]
+format = "[$symbol($version )]($style)"
+
+[ruby]
+format = "[$symbol($version )]($style)"
+
+[scala]
+format = "[$symbol($version )]($style)"
+
+[container]
+format = "[$symbol($version )]($style)"
+
+[docker_context]
+format = '[🐋 $context](blue bold)'
+
+[terraform]
+format = "[$symbol($version )]($style)"
+
+[fill]
+symbol = " "
+
+[status]
+disabled = true
+
+[directory]
+read_only = "🔒"
+# home_symbol = "🏠"
+truncation_length = 4
+truncate_to_repo = false
+style = "bright-black"
+
+[character]
+success_symbol = "[➜](purple)"
+error_symbol = "[➜](red)"
+vicmd_symbol = "[➜](green)"
+
+[git_metrics]
+disabled = false
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+style = "#bd93f4"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "#bd93f4"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[time]
+disabled = false
+format = "[$time]($style)"
+style = "bright-black"
+
+[cmd_duration]
+disabled = true
+format = "[$duration]($style)"
+style = "yellow"
+
+[memory_usage]
+symbol = " "
+
+[jobs]
+symbol = ""
+style = "bold red"
+number_threshold = 1
+format = "[$symbol]($style)"
+
+[custom.stunnel]
+when = "ps aux | grep stunnel | grep -v grep"
+command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
+format = "[TUNNEL OPEN for $output]($style)"
+style = "red"
