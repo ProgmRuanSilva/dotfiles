@@ -1,4 +1,12 @@
-sudo -i -u postgres 
+this is the defaults commands for configuration of postgres and psql
+
+sudo -i -u postgres
 psql
 \password
-sudo nvim /etc/postgresql/14/main/pg_hba.conf
+show hba_conf;
+
+on Ubuntu
+  sudo nvim /etc/postgresql/14/main/pg_hba.conf
+
+on Arch
+  sudo nvim /var/lib/postgres/pg_hba.conf
