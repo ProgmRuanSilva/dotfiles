@@ -1,24 +1,35 @@
-local on_attach = require("plugins.configs.lspconfig").on_attach
-local capabilities = require("plugins.configs.lspconfig").capabilities
-
+local config = require("plugins.configs.lspconfig")
 local lspconfig = require("lspconfig")
 local util = require "lspconfig/util"
+local on_attach = config.on_attach
+local capabilities = config.capabilities
 
-local servers = {
-  "html",
-  "cssls",
-  "tsserver",
-  "clangd",
-  "bash-language-server",
-  "rubocop",
-}
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
+-- local servers = {
+--   "html",
+--   "cssls",
+--   "tsserver",
+--   "clangd",
+--   "bash-language-server",
+--   "rubocop",
+-- }
+
+-- for _, lsp in ipairs(servers) do
+--   lspconfig[lsp].setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--   }
+-- end
+
+lspconfig.tsserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  init_options = {
+    preferences = {
+      disableSuggestions = true,
+    }
   }
-end
+}
 
 lspconfig.gopls.setup {
   on_attach = on_attach,

@@ -7,6 +7,7 @@ export asdf="$HOME/.asdf/asdf.sh"
 export MANPATH="/usr/local/man:$MANPATH"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export FZF_BASE="/$HOME/.fzf/"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
@@ -30,7 +31,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 DISABLE_MAGIC_FUNCTIONS="true"
@@ -48,7 +49,7 @@ ENABLE_CORRECTION="true"
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -63,9 +64,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
+# Mapping for Abnt keyborad (if u are ussing)
+setxkbmap -model abnt2 -layout br -variant abnt2
+setxkbmap -option terminate:ctrl_alt_bksp
 
 # Plugins
 # See configs oh-my-zsh plugins
@@ -99,7 +100,6 @@ plugins=(
     singlechar
     systemd
     sudo
-    thefuck
     web-search
     last-working-dir
     zsh-interactive-cd
@@ -115,22 +115,17 @@ source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='nvim'
-fi
+# Default Editor
+export EDITOR="/usr/bin/nvim"
+export VISUAL="/usr/bin/nvim"
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-
-# LEMBRAR DE USAR O XARGS PRA ARGUMENTOS EM BASH
 
 # Alias-finder
 # zstyle ':omz:plugins:alias-finder' autoload yes
@@ -144,22 +139,24 @@ bindkey '^[j' accept-line
 bindkey '^[e' delete-word
 bindkey '^[w' backward-delete-word
 bindkey '^[l' clear-screen
+bindkey '^[k' clear-screen
 bindkey '^[m' forward-word
 bindkey '^[n' backward-word
 # bindkey '^[k' autosuggest-accept
 bindkey '^[h' backward-kill-line
-bindkey '^[ç' backward-delete-char
+bindkey '^[p' backward-delete-char
 bindkey '^[a' complete-word
 
 # List
 alias l="ls -a"
 alias le="ls -a"
 alias lej="ls -a"
+alias ke="ls -a"
 alias hm="cd ~/"
 
 # Configurations Files
 alias zshcfg="nvim ~/.zshrc"
-alias nvcfg="cd ~/.config/nvim/;nvim"
+alias nvcfg="cd ~/.config/nvim/lua/custom/;nvim"
 alias strcfg="nvim ~/.config/starship/starship.toml"
 
 # Apps
@@ -191,13 +188,10 @@ alias olm="ollama run mistral"
 alias olc="ollama run codellama"
 alias oll="ollama run llama2"
 
-#git
+# Git
 alias gc="git checkout"
 alias gcb="git checkout -b"
 
 # Todo
 alias td="nvim ~/projects/todo.txt"
 alias tds="cat ~/projects/todo.txt | less"
-
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
