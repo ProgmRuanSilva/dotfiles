@@ -194,4 +194,7 @@ alias gcb="git checkout -b"
 
 # Todo
 alias td="nvim ~/projects/todo.txt"
-alias tds="cat ~/projects/todo.txt | less"
+alias tds="cat ~/projects/todo.txt | bat"
+
+# Backup
+alias backup="sh ~/dotfiles/scripts/backup.sh"
