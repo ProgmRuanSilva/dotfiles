@@ -1,5 +1,4 @@
 ubuntu:
   sudo apt-get install sqlite3 libsqlite3-dev mysql-server libmysqlclient-dev postgresql postgresql-client postgresql-contrib libpq-dev redis-server memcached imagemagick ffmpeg mupdf mupdf-tools libxml2-dev build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget liblzma-dev curl gcc git vim ripgrep zsh fzf make libz-dev openssl libyaml-dev cmake bat
 
-Arch:
-  sudo pacman -S make gcc wget curl fzf openssl libyaml ripgrep zsh sqlite mariadb libmariadbclient mariadb-clients postgresql postgresql-libs redis memcached imagemagick ffmpeg mupdf mupdf-tools poppler yarn libxml2
+Arch:  sudo pacman -S make gcc wget curl fzf openssl libyaml ripgrep zsh sqlite mariadb libmariadbclient mariadb-clients postgresql postgresql-libs redis memcached imagemagick ffmpeg mupdf mupdf-tools poppler yarn libxml2

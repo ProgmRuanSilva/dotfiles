@@ -1,4 +1,0 @@
-sudo -i -u postgres 
-psql
-\password
-sudo nvim /etc/postgresql/14/main/pg_hba.conf
