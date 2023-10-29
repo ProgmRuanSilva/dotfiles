@@ -75,8 +75,8 @@ M.general = {
   --TabResize
     ["<S-c>"] = {"<C-w>>", "move current split to left"},
     ["<S-b>"] = {"<C-w><", "move current split to right"},
-    -- ["<S-m>"] = {"<C-w>-", "move current split to down"},
-    -- ["<S-n>"] = {"<C-w>+", "move current split to up"},
+    ["<S-o>"] = {"<C-w>-", "move current split to down"},
+    ["<S-p>"] = {"<C-w>+", "move current split to up"},
 
   --Navigation
     ["f"] = {"<END>", "navigate to end of line"},
@@ -127,11 +127,11 @@ M.general = {
   --Telescope
     ["<leader><leader>"] = {"<cmd>Telescope find_files<CR>"},
     ["<leader>fm"] = {"<cmd>Telescope man_pages<CR>"},
-    ["<leader>fp"] = {"<cmd>Telescope jumplist<CR>"},
-    ["<leader>fn"] = {"<cmd>Telescope marks<CR>"},
+    -- ["<leader>fp"] = {"<cmd>Telescope jumplist<CR>"},
+    -- ["<leader>fn"] = {"<cmd>Telescope marks<CR>"},
     ["<leader>d"] = {"<cmd>Telescope oldfiles<CR>"},
     ["<leader>j"] = {"<cmd>Telescope file_browser<CR>"},
-    ["<leader>k"] = {"<cmd>Telescope zoxide list<CR>"},
+    ["<leader>l"] = {"<cmd>Telescope zoxide list<CR>"},
 
     --Docker
     ["<leader>wc"] = {"<cmd>Telescope docker containers<CR>"},
@@ -189,12 +189,15 @@ M.general = {
     ["<leader>grl"] = {"<cmd>Octo review close<CR>"},
 
   --Goto-Preview
-    ["<C-j>"] = {"<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "help page of Octo"},
-    ["<S-l>"] = {"<cmd>lua require('goto-preview').goto_preview_references()<CR>", "help page of Octo"},
-    ["<S-a>"] = {"<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", "help page of Octo"},
-    ["<C-l>"] = {"<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", "help page of Octo"},
-    ["<C-f>"] = {"<cmd>lua require('goto-preview').goto_preview_declaration()<CR> ", "help page of Octo"},
-    -- ["<A-w>"] = {"<cmd>lua require('goto-preview').close_all_win()<CR>", "help page of Octo"},
+    ["gpd"] = {"<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "goto definition"},
+    ["gpn"] = {"<cmd>lua require('goto-preview').goto_preview_references()<CR>", "goto reference"},
+    ["gpi"] = {"<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", "goto implementation"},
+    ["gpf"] = {"<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", "goto type"},
+    ["gpm"] = {"<cmd>lua require('goto-preview').goto_preview_declaration()<CR> ", "goto declaration"},
+    ["<A-w>"] = {"<cmd>lua require('goto-preview').close_all_win()<CR>", "close goto tabs"},
+
+  --Database
+    ["<leader>q"] = {"<cmd>DBUIToggle<CR>"},
 
   },
 
@@ -231,7 +234,7 @@ M.general = {
 M.nvimtree = {
   n = {
     ["<C-n>"] = {"", "none"},
-    ["<leader>l"] = {"<cmd>NvimTreeToggle<CR>", "Toggle nvimtree"}
+    ["<leader>]"] = {"<cmd>NvimTreeToggle<CR>", "Toggle nvimtree"}
    }
  }
 
@@ -310,7 +313,20 @@ M.nvterm = {
       end,
       "compile & run go file",
     },
+  },
+}
 
+M.dap = {
+  plugin = true,
+  n = {
+    ["<leader>af"] = {
+      "<cmd> DapToggleBreakpoint <CR>",
+      "Add breakpoint at line"
+    },
+    ["<leader>ac"] = {
+      "<cmd> DapContinue <CR>",
+      "Run or continue the debugger"
+    }
   },
 }
 

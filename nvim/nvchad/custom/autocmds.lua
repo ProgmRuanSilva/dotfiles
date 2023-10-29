@@ -6,21 +6,18 @@ function sed(from, to, fname)
 end
 
 -- Split Alternation
-   for i = 1, 9, 1 do
-     vim.keymap.set("n", string.format("<A-%s>", i), function()
-       vim.api.nvim_set_current_buf(vim.t.bufs[i])
-     end)
-   end
+ for i = 1, 9, 1 do
+   vim.keymap.set("n", string.format("<A-%s>", i), function()
+     vim.api.nvim_set_current_buf(vim.t.bufs[i])
+   end)
+ end
 
-   for i = 1, 9, 1 do
-     vim.keymap.set("n", string.format("<C-%s>", i), function()
-       vim.api.nvim_set_current_win(vim.w.wo[i])
-     end)
-   end
+ for j = 1, 9, 1 do
+   vim.keymap.set("n", string.format("<C-%s>", j), function()
+   end)
+ end
 
-
-
---vim Window Alternation
+-- Window Alternation
    -- for i = 1, 9, 1 do
    --   vim.keymap.set("n", string.format("<leader-%s>", i), function()
    --    tabd(i)

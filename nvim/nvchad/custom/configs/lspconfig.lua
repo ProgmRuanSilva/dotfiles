@@ -47,5 +47,3 @@ lspconfig.gopls.setup {
     },
   },
 }
-
--- lspconfig.pyright.setup { blabla}

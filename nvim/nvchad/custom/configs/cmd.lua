@@ -1,8 +1,12 @@
 local cmp = require("cmp")
-  local mapping = {
+  local mappings = {
+
     ["<A-j>"] = cmp.mapping.confirm({ select = true }),
+    ["<A-q>"] = cmp.mapping.close({ select = true}),
+
     ["<A-l>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
     ["<A-k>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+
     ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
     ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
   }
@@ -13,7 +17,7 @@ local cmp = require("cmp")
     completion = {
       completeopt = "menu,preview,menuone,noselect",
     },
-    mapping = mapping,
+    mapping = mappings,
     sources = {
       { name = "buffer" },
     },
@@ -29,7 +33,7 @@ local cmp = require("cmp")
     completion = {
       completeopt = "menu,preview,menuone,noselect",
     },
-    mapping = mapping,
+    mapping = mappings,
     sources = cmp.config.sources({
       { name = "path" },
     }, {
@@ -40,4 +44,3 @@ local cmp = require("cmp")
       native_menu = false,
     },
   })
-

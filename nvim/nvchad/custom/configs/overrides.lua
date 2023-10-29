@@ -48,7 +48,6 @@ M.telescope = {
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-    -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     mappings = {
       i = {
@@ -56,44 +55,49 @@ M.telescope = {
         --Moviment
         ["<A-k>"] = require("telescope.actions").move_selection_next,
         ["<A-l>"] = require("telescope.actions").move_selection_previous,
-        ["<A-j>"] = require("telescope.actions").file_edit,
+        ["<A-j>"] = require("telescope.actions").select_default,
 
         --Splits
-        ["<A-a>"] = require("telescope.actions").file_vsplit,
-        ["<A-s>"] = require("telescope.actions").file_split,
+        ["<A-i>"] = require("telescope.actions").file_vsplit,
+        ["<A-o>"] = require("telescope.actions").file_split,
 
         --Preview View
-        ["<A-w>"] = require("telescope.actions").preview_scrolling_up,
-        ["<A-e>"] = require("telescope.actions").preview_scrolling_down,
+        ["<A-w>"] = require("telescope.actions").results_scrolling_up,
+        ["<A-e>"] = require("telescope.actions").results_scrolling_down,
+
+        ["<A-m>"] = require("telescope.actions").preview_scrolling_down,
+        ["<A-n>"] = require("telescope.actions").preview_scrolling_down,
 
         --Edit
         ["<A-q>"] = require("telescope.actions").close,
+
+        ["<A-a>"] = require("telescope.actions").toggle_all,
 
       },
 
       n = {
         --Edition
         ["j"] = require("telescope.actions").file_edit,
-        ["q"] = require("telescope.actions").close,
         ["<A-j>"] = require("telescope.actions").file_edit,
-        ["<A-q>"] = require("telescope.actions").close,
 
         --Moviment
         ["k"] = require("telescope.actions").move_selection_next,
         ["l"] = require("telescope.actions").move_selection_previous,
 
         --Splits
-        ["<A-o>"] = require("telescope.actions").file_vsplit,
-        ["<A-i>"] = require("telescope.actions").file_split,
+        ["<A-i>"] = require("telescope.actions").file_vsplit,
+        ["<A-o>"] = require("telescope.actions").file_split,
 
         --Preview View
-        ["<A-w>"] = require("telescope.actions").preview_scrolling_up,
-        ["<A-e>"] = require("telescope.actions").preview_scrolling_down,
+        ["<A-n>"] = require("telescope.actions").preview_scrolling_up,
+        ["<A-m>"] = require("telescope.actions").preview_scrolling_down,
 
+        --Git
+        ["<A-f>"] = require("telescope.actions").git_create_branch,
 
-        --git
-        ["<A-c>"] = require("telescope.actions").git_create_branch,
-
+        --Exit
+        ["q"] = require("telescope.actions").close,
+        ["<A-q>"] = require("telescope.actions").close,
       },
     },
   },
@@ -201,8 +205,8 @@ M.nvterm = {
     type_opts = {
       float = {
         relative = "editor",
-        row = 0.09,
-        col = 0.15,
+        row = 0.12,
+        col = 0.20,
         width = 0.65,
         height = 0.9,
         border = "rounded",
@@ -229,6 +233,9 @@ M.nvimcmp = {
       { name = "buffer" },
       { name = "nvim_lua" },
       { name = "path" },
+      { name = "hrsh7th/cmp-nvim-lsp" },
+      { name = "L3MON4D3/LuaSnip" },
+      { name = "saadparwaiz1/cpm_luasnip" },
     },
   }
 
