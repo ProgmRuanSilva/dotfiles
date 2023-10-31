@@ -111,6 +111,25 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
+colorscript random
+
+# session_name="sesh"
+#
+# # 1. First you check if a tmux session exists with a given name.
+# tmux has-session -t=$session_name 2> /dev/null
+#
+# # 2. Create the session if it doesn't exists.
+# if [[ $? -ne 0 ]]; then
+#   TMUX='' tmux new-session -d -s "$session_name"
+# fi
+#
+# # 3. Attach if outside of tmux, switch if you're in tmux.
+# if [[ -z "$TMUX" ]]; then
+#   tmux attach -t "$session_name"
+# else
+#   tmux switch-client -t "$session_name"
+# fi
+
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -136,8 +155,8 @@ export ARCHFLAGS="-arch x86_64"
 
 # Mappings
 bindkey '^[j' accept-line
-bindkey '^[e' delete-word
-bindkey '^[w' backward-delete-word
+bindkey '^[w' delete-word
+bindkey '^[q' backward-delete-word
 bindkey '^[l' clear-screen
 bindkey '^[k' clear-screen
 bindkey '^[m' forward-word
@@ -147,12 +166,51 @@ bindkey '^[h' backward-kill-line
 bindkey '^[p' backward-delete-char
 bindkey '^[a' complete-word
 
+# Remappings for new commands
+
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq);yay -c' #Cleanup orphaned packages
+alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
+alias df='df -h'
+alias grep='grep --color=auto'
+alias jctl="journalctl -p 3 -xb" #get the error messages from journalctl
+alias killp='killprocess'
+alias kp='killprocess'
+alias mem="ps axch -o cmd:15,%mem --sort=-%mem | head"
+alias mv='mv -i'
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl" #Recent Installed Packages
+alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
+alias wget="wget -c" # continue the download
+
+# Bindkeys for vi-mode
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -v '^?' backward-delete-char
+# bindkey -s '^x' '\nexit\n'
+# bindkey -s '^o' 'rangercd\n'
+# bindkey -s '^g' 'git pull && git status\n'
+# bindkey '^R' history-incremental-search-backward
+# bindkey -v
+
+
+# Bat
+alias less='bat -pf'
+alias cat='bat'
+
 # List
-alias l="ls -a"
-alias le="ls -a"
-alias lej="ls -a"
-alias ke="ls -a"
+alias l='exa -DF --color=always --icons --sort=size --group-directories-first'
+alias ls="exa -T --color=always --icons --group-directories-first"
+alias le='exa -GF --color=always --icons --sort=size --group-directories-first'
+alias lej="exa -GF --color=always --icons --sort=size --group-directories-first"
+alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
+
+# Zsh
+alias q='exit'
 alias hm="cd ~/"
+alias rst="touch ~/.zshsrc"
+alias rm='rm -rf'
+alias update='sudo pacman -Syu'
 
 # Configurations Files
 alias zshcfg="nvim ~/.zshrc"

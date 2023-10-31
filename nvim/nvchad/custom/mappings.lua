@@ -79,8 +79,10 @@ M.general = {
     ["<S-p>"] = {"<C-w>+", "move current split to up"},
 
   --Navigation
-    ["f"] = {"<END>", "navigate to end of line"},
-    ["ff"] = {"<HOME>", "navigate to beggining of line"},
+    ["çç"] = {"<END>", "navigate to end of line"},
+    ["ç"] = {"<HOME>", "navigate to beggining of line"},
+    ["f"] = {"<cmd>HopWord<CR>"},
+    ["c"] = {"<cmd>HopAnywhere<CR>"},
 
   --Navigation between splits
     ["<A-j>"] = { "<C-w>h", "Window left" },
@@ -113,7 +115,6 @@ M.general = {
     ["<A-q>"] = {"<Esc>", "esc key"},
 
   --Deletes remapping
-    ["ç"] = {"<right><Delete>"},
     ["dm"] = {"dw"},
     ["dn"] = {"db"},
     ["df"] = {"d$"},
@@ -121,8 +122,6 @@ M.general = {
   --Hop Configuration
     ["<leader>kk"] = {"<cmd>HopWord<CR>"},
     ["<leader>kj"] = {"<cmd>HopAnywhere<CR>"},
-
-    ["["] = {"<cmd>NoiceTelescope<CR>"},
 
   --Telescope
     ["<leader><leader>"] = {"<cmd>Telescope find_files<CR>"},
@@ -132,6 +131,7 @@ M.general = {
     ["<leader>d"] = {"<cmd>Telescope oldfiles<CR>"},
     ["<leader>j"] = {"<cmd>Telescope file_browser<CR>"},
     ["<leader>l"] = {"<cmd>Telescope zoxide list<CR>"},
+    ["<leader>["] = {"<cmd>Telescope notify<CR>"},
 
     --Docker
     ["<leader>wc"] = {"<cmd>Telescope docker containers<CR>"},
@@ -153,7 +153,7 @@ M.general = {
 
   --Octo
 
-    ["<leader>ga"] = {"<cmd>Octo actions<CR>", "help command of Octo"},
+    ["<leader>gh"] = {"<cmd>Octo actions<CR>", "help command of Octo"},
 
     --Pull Requests
     ["<leader>gpl"] = {"<cmd>Octo pr list<CR>"},
