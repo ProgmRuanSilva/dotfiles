@@ -1,4 +1,9 @@
-sudo -i -u postgres 
+sudo -i -u postgres
 psql
 \password
-sudo nvim /etc/postgresql/14/main/pg_hba.conf
+
+ubuntu
+  sudo nvim /etc/postgresql/14/main/pg_hba.conf
+
+arch
+  sudo nvim /var/lib/postgres/data/pg_hba.conf

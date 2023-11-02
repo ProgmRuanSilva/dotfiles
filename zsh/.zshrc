@@ -1,16 +1,15 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export asdf="$HOME/.asdf/asdf.sh"
 export MANPATH="/usr/local/man:$MANPATH"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export FZF_BASE="/$HOME/.fzf/"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+export FLYCTL_INSTALL="/home/dev/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -64,6 +63,16 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+
+# Default Editor
+export EDITOR="/usr/bin/nvim"
+export VISUAL="/usr/bin/nvim"
+
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+
 # Mapping for Abnt keyborad (if u are ussing)
 setxkbmap -model abnt2 -layout br -variant abnt2
 setxkbmap -option terminate:ctrl_alt_bksp
@@ -76,32 +85,32 @@ setxkbmap -option terminate:ctrl_alt_bksp
 # https://github.com/junegunn/fzf#installation
 
 plugins=(
-    starship
+    git
+    ruby
+    asdf
+    rails
+    docker
+    golang
+    heroku
+    bundler
+    postgres
+    gitignore
+    jsontools
+    docker-machine
     alias-finder
     ansible
-    asdf
-    bundler
     catimg
-    command-not-found
     copyfile
-    docker
-    docker-machine
     extract
     fzf
-    git
-    gitignore
-    heroku
-    jsontools
-    postgres
     jump
-    rails
-    ruby
-    golang
-    singlechar
-    systemd
     sudo
+    singlechar
+    starship
+    systemd
     web-search
     last-working-dir
+    command-not-found
     zsh-interactive-cd
     zsh-autosuggestions
     zsh-cargo-completion
@@ -111,6 +120,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
+
+# Shell Colored Scripts
 colorscript random
 
 # session_name="sesh"
@@ -131,128 +142,96 @@ colorscript random
 # fi
 
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# Default Editor
-export EDITOR="/usr/bin/nvim"
-export VISUAL="/usr/bin/nvim"
-
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
 # Alias-finder
-# zstyle ':omz:plugins:alias-finder' autoload yes
-# zstyle ':omz:plugins:alias-finder' longer yes
-# zstyle ':omz:plugins:alias-finder' exact yes
-# zstyle ':omz:plugins:alias-finder' cheaper yes
+  # zstyle ':omz:plugins:alias-finder' autoload yes
+  # zstyle ':omz:plugins:alias-finder' longer yes
+  # zstyle ':omz:plugins:alias-finder' exact yes
+  # zstyle ':omz:plugins:alias-finder' cheaper yes
+
+# Command-Line Mappings
+  bindkey '^[j' accept-line
+  bindkey '^[w' delete-word
+  bindkey '^[q' backward-delete-word
+  bindkey '^[l' clear-screen
+  bindkey '^[k' clear-screen
+  bindkey '^[m' forward-word
+  bindkey '^[n' backward-word
+  # bindkey '^[k' autosuggest-accept
+  bindkey '^[h' backward-kill-line
+  bindkey '^[p' backward-delete-char
+  bindkey '^[a' complete-word
+
+# Defaults Commands
+    alias kp='killprocess'
+    alias killp='killprocess'
+    alias grep='grep --color=auto'
+    alias jctl="journalctl -p 3 -xb"                        # get the error messages from journalctl
+    alias cleanup='sudo pacman -Rns $(pacman -Qtdq);yay -c' # cleanup orphaned packages
 
 
-# Mappings
-bindkey '^[j' accept-line
-bindkey '^[w' delete-word
-bindkey '^[q' backward-delete-word
-bindkey '^[l' clear-screen
-bindkey '^[k' clear-screen
-bindkey '^[m' forward-word
-bindkey '^[n' backward-word
-# bindkey '^[k' autosuggest-accept
-bindkey '^[h' backward-kill-line
-bindkey '^[p' backward-delete-char
-bindkey '^[a' complete-word
+  # Find
+    alias find='fd'
 
-# Remappings for new commands
+  # Bat
+    alias less='bat --color always'
+    alias cat='bat --theme base 16 --color always '
 
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq);yay -c' #Cleanup orphaned packages
-alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
-alias df='df -h'
-alias grep='grep --color=auto'
-alias jctl="journalctl -p 3 -xb" #get the error messages from journalctl
-alias killp='killprocess'
-alias kp='killprocess'
-alias mem="ps axch -o cmd:15,%mem --sort=-%mem | head"
-alias mv='mv -i'
-alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl" #Recent Installed Packages
-alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
-alias wget="wget -c" # continue the download
-
-# Bindkeys for vi-mode
-# bindkey -M menuselect 'h' vi-backward-char
-# bindkey -M menuselect 'k' vi-up-line-or-history
-# bindkey -M menuselect 'l' vi-forward-char
-# bindkey -M menuselect 'j' vi-down-line-or-history
-# bindkey -v '^?' backward-delete-char
-# bindkey -s '^x' '\nexit\n'
-# bindkey -s '^o' 'rangercd\n'
-# bindkey -s '^g' 'git pull && git status\n'
-# bindkey '^R' history-incremental-search-backward
-# bindkey -v
+  # Exa
+    alias l='exa -DF --color=always --icons --sort=size --group-directories-first'
+    alias ls="exa -T --color=always --icons --group-directories-first"
+    alias le='exa -GF --color=always --icons --sort=size --group-directories-first'
+    alias lej="exa -GF --color=always --icons --sort=size --group-directories-first"
+    alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
 
 
-# Bat
-alias less='bat -pf'
-alias cat='bat'
+#System Information
+  alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
+  alias df='df -h'
+  alias mem="ps axch -o cmd:15,%mem --sort=-%mem | head"
+  alias mv='mv -i'
 
-# List
-alias l='exa -DF --color=always --icons --sort=size --group-directories-first'
-alias ls="exa -T --color=always --icons --group-directories-first"
-alias le='exa -GF --color=always --icons --sort=size --group-directories-first'
-alias lej="exa -GF --color=always --icons --sort=size --group-directories-first"
-alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
+  #List Rececents Packages
+  alias lstrpkg="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+  alias lstrpkglong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
 
 # Zsh
-alias q='exit'
-alias hm="cd ~/"
-alias rst="touch ~/.zshsrc"
-alias rm='rm -rf'
-alias update='sudo pacman -Syu'
+  alias q='exit'
+  alias hm="cd ~/"
+  alias rm='rm -rf'
+  alias rst="touch ~/.zshsrc"
+  alias update='sudo pacman -Syu'
+  alias backup="sh ~/dotfiles/scripts/backup.sh"
 
 # Configurations Files
-alias zshcfg="nvim ~/.zshrc"
-alias nvcfg="cd ~/.config/nvim/lua/custom/;nvim"
-alias strcfg="nvim ~/.config/starship/starship.toml"
+  alias zshcfg="nvim ~/.zshrc"
+  alias nvcfg="cd ~/.config/nvim/lua/custom/;nvim"
+  alias strcfg="nvim ~/.config/starship/starship.toml"
 
 # Apps
-alias nv="nvim"
-alias mjc="gitmoji -c"
-alias jp="jump"
+  alias nv="nvim"
+  alias n="nvim"
+  alias mjc="gitmoji -c"
+  alias jp="jump"
 
 # Docker Compose
-alias dcb="sudo docker-compose build"
-alias dcu="sudo docker-compose up"
-alias dcub="sudo docker-compose up --build"
-alias db="sudo docker build"
-
-# Podman
-alias pc-="podman-compose"
-alias pc-build="podman-compose build"
+  alias dcb="sudo docker-compose build"
+  alias dcu="sudo docker-compose up"
+  alias dcub="sudo docker-compose up --build"
+  alias db="sudo docker build"
 
 # Postgres
-alias pg="psql -U postgres"
-alias pgcfg="cd /etc/postgresql/14/main/"
+  alias pg="psql -U postgres"
 
-# Packages
-alias ns="npm start"
-alias nd="npm run dev"
-alias nr="npm run"
+# Npm
+  alias ns="npm start"
+  alias nd="npm run dev"
+  alias nr="npm run"
 
 # Ollama
-alias olm="ollama run mistral"
-alias olc="ollama run codellama"
-alias oll="ollama run llama2"
+  alias olm="ollama run mistral"
+  alias olc="ollama run codellama"
+  alias oll="ollama run llama2"
 
 # Git
-alias gc="git checkout"
-alias gcb="git checkout -b"
-
-# Todo
-alias td="nvim ~/projects/todo.txt"
-alias tds="cat ~/projects/todo.txt | bat"
-
-# Backup
-alias backup="sh ~/dotfiles/scripts/backup.sh"
+  alias gc="git checkout"
+  alias gcb="git checkout -b"

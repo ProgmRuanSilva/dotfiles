@@ -26,7 +26,7 @@ require("telescope").setup {
       dir_icon = "",
       dir_icon_hl = "Default",
       display_stat = { date = false, size = false, mode = false},
-      hijack_netrw = false,
+      hijack_netrw = true,
       use_fd = true,
       git_status = true,
       mappings = {

@@ -28,6 +28,15 @@ M.ui = {
       { "  Mappings", "Spc c h", "NvCheatsheet" },
     },
   },
+
+  cmp = {
+    icons = false,
+    style = "default",
+    lspkind_text = true,
+    selected_item_bg = "colored",
+  },
+
+  telescope = { style = "bordered" },
 }
 
 M.plugins = "custom.plugins"

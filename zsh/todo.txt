@@ -4,50 +4,14 @@ Arrumar:
 
   - adicionar o resto das configurações de linguagens no nvim
 
-  - arrumar o docker-compose do projeto do blog (acho q é alguma coisa no pg_hba.conf do psql que não ta rodando)
-
-  - colocar o windows no grup (tem alguma configuração que eu to com preguiça de ver)
-
-  - colocar as configurações do gen.nvim pra fechar com q
-
-  - melhorar a configuração do terminal do nvim (esqueci o nome)
-
-  - ver se tem como adicionar um <A-o> pro telescope rodar direto o primeiro arquivo
-
-  - fazer a configuração do nvim-dap
-
-  - colocar os terminais usando <leader> pra abrir e alternar
-
-  - colocar o mapping do <S-k> pra sair com <A-q>
-
-  - colocar o <A-q> pra sair do modo de seleção
-
-  - colocar o mapeamento do bwtwm pra mover o foco da janela
-
-  - ajeitar o mapeamento e configuração do nvim-dap
-
-  - colocar o mapeamento correto do modo de procura
-
 Pesquisar:
-  - buscar melhor o que é .pex (vi em um mod do starfield)
+  - buscar melhor o que é .pex
 
   - aprimorar python orientado a objetos (Bóson)
 
   - implementar regreção linear e gradiente (ver mais sobre o curso do MIT)
 
-  - ver melhor sobre debugging em js
-
-  - ver melhor sobre testes em js (mocha)
-
-  - ver melhor sobre o k6 e os testes de carga
-
   - ver melhor o uso da vpn (video do akita) e tambem olhar o wireguard
-
-  - ver alguma coisa sobre usar o git dentro do nvim
-
-  - ver alguma alternativa pro NavBuddy (embora bonito só funciona com a lsp "meio obsoleto")
-
-  - ver se é possivel usar o AltGr (alt do lado direito) como tecla no nvim
 
   - ver se tem como colorir o txt ou md pro todolist
 
@@ -56,18 +20,4 @@ Pesquisar:
   - pesquisar sobre o morgan npm
 
 Fazer:
-  - adicionar ao devdocs.io o zsh e algumas outras documentações
-
-  - criar um script shell pra automatizar a instalação do ubuntu e do archlinux (dotfiles)
-
   - adicionar ao linkedin minhas competencias e melhorar o perfil do meu github
-
-  - criar um modo de compilar direto com as opções (mesmo que vscode) de compilar melhor
-
-  - dar uma olhada no desafio do devgym (do git)
-
-  - criar um shortcut pra entrar no insertion mode na ultima linha
-
-  - criar um plugin com o nvimui pra orquestrar o ollama
-
-  - implementar o nvim-dap pro nvchad

@@ -26,8 +26,8 @@ M.telescope = {
     layout_config = {
       horizontal = {
         prompt_position = "top",
-        preview_width = 0.55,
-        results_width = 0.8,
+        preview_width = 0.50,
+        results_width = 0.10,
       },
       vertical = {
         mirror = false,
@@ -58,12 +58,12 @@ M.telescope = {
         ["<A-j>"] = require("telescope.actions").select_default,
 
         --Splits
-        ["<A-i>"] = require("telescope.actions").file_vsplit,
-        ["<A-o>"] = require("telescope.actions").file_split,
+        ["<A-w>"] = require("telescope.actions").file_vsplit,
+        ["<A-e>"] = require("telescope.actions").file_split,
 
         --Preview View
-        ["<A-w>"] = require("telescope.actions").results_scrolling_up,
-        ["<A-e>"] = require("telescope.actions").results_scrolling_down,
+        -- ["<A-w>"] = require("telescope.actions").results_scrolling_up,
+        -- ["<A-e>"] = require("telescope.actions").results_scrolling_down,
 
         ["<A-m>"] = require("telescope.actions").preview_scrolling_down,
         ["<A-n>"] = require("telescope.actions").preview_scrolling_down,
@@ -77,23 +77,23 @@ M.telescope = {
 
       n = {
         --Edition
-        ["j"] = require("telescope.actions").file_edit,
-        ["<A-j>"] = require("telescope.actions").file_edit,
+        ["j"] = require("telescope.actions").select_default,
+        ["<A-j>"] = require("telescope.actions").select_default,
 
         --Moviment
         ["k"] = require("telescope.actions").move_selection_next,
         ["l"] = require("telescope.actions").move_selection_previous,
 
         --Splits
-        ["<A-i>"] = require("telescope.actions").file_vsplit,
-        ["<A-o>"] = require("telescope.actions").file_split,
+        ["<A-w>"] = require("telescope.actions").file_vsplit,
+        ["<A-e>"] = require("telescope.actions").file_split,
 
         --Preview View
         ["<A-n>"] = require("telescope.actions").preview_scrolling_up,
         ["<A-m>"] = require("telescope.actions").preview_scrolling_down,
 
         --Git
-        ["<A-f>"] = require("telescope.actions").git_create_branch,
+        ["<A-c>"] = require("telescope.actions").git_create_branch,
 
         --Exit
         ["q"] = require("telescope.actions").close,
@@ -101,7 +101,7 @@ M.telescope = {
       },
     },
   },
-  extensions_list = { "themes", "terms", "fzf" },
+  extensions_list = { "themes", "terms", "fzf", "docker", "gitmoji", "octo"  },
   extensions = {
     fzf = {
       fuzzy = true,
@@ -141,14 +141,20 @@ M.mason = {
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
+    "unocss-language-server",
     "eslint-lsp",
     "deno",
     "prettier",
+    "json-lsp",
 
     "clangd",
     "clang-format",
 
     "gopls",
+
+    "shfmt",
+    "shellcheck",
+    "bash-language-server",
   },
 }
 
@@ -236,6 +242,9 @@ M.nvimcmp = {
       { name = "hrsh7th/cmp-nvim-lsp" },
       { name = "L3MON4D3/LuaSnip" },
       { name = "saadparwaiz1/cpm_luasnip" },
+    },
+    experimental = {
+      ghost_text = true,
     },
   }
 

@@ -48,6 +48,7 @@ M.general = {
     ["<A-]>"] = {"}", "add finaly brackets on insetion mode"},
     ["<A-a>"] = {"<Esc><right><Delete>i"},
 
+    ["<A-q>"] = {"<Esc>", "esc key"},
   },
 
   n = {
@@ -79,10 +80,10 @@ M.general = {
     ["<S-p>"] = {"<C-w>+", "move current split to up"},
 
   --Navigation
-    ["çç"] = {"<END>", "navigate to end of line"},
-    ["ç"] = {"<HOME>", "navigate to beggining of line"},
-    ["f"] = {"<cmd>HopWord<CR>"},
-    ["c"] = {"<cmd>HopAnywhere<CR>"},
+    ["f"] = {"<END>", "navigate to end of line"},
+    ["ff"] = {"<HOME>", "navigate to beggining of line"},
+    ["<A-f>"] = {"<cmd>HopWord<CR>"},
+    ["<A-c>"] = {"<cmd>HopAnywhere<CR>"},
 
   --Navigation between splits
     ["<A-j>"] = { "<C-w>h", "Window left" },
@@ -108,7 +109,7 @@ M.general = {
     ["<leader>s"] = { "<cmd>Navbuddy<CR>", "Navbuddy Toggle" },
 
   --ZenMode
-    ["<leader>fb"] = {"<cmd>ZenMode<CR>"},
+    ["<leader>fz"] = {"<cmd>ZenMode<CR>"},
 
   --Command mode
     [";"] = { ":", "enter command mode"},
@@ -190,7 +191,7 @@ M.general = {
 
   --Goto-Preview
     ["gpd"] = {"<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "goto definition"},
-    ["gpn"] = {"<cmd>lua require('goto-preview').goto_preview_references()<CR>", "goto reference"},
+    ["<S-d>"] = {"<cmd>lua require('goto-preview').goto_preview_references()<CR>", "goto reference"},
     ["gpi"] = {"<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", "goto implementation"},
     ["gpf"] = {"<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", "goto type"},
     ["gpm"] = {"<cmd>lua require('goto-preview').goto_preview_declaration()<CR> ", "goto declaration"},
@@ -198,6 +199,10 @@ M.general = {
 
   --Database
     ["<leader>q"] = {"<cmd>DBUIToggle<CR>"},
+
+  -- Undo
+    ["<C-z>"] = {"<cmd>UndotreeToggle<CR>"},
+
 
   },
 
@@ -221,7 +226,7 @@ M.general = {
     ["<A-j>"] = {"<Enter>"},
     ["<A-h>"] = {"<Left>"},
     ["<A-l>"] = {"<Right>"},
-    ["<A-c>"] = {"n"},
+    ["<A-n>"] = {"<C-b>"},
   },
 
   --test
@@ -265,7 +270,7 @@ M.nvterm = {
     ["<A-ç>"] = {"<Backspace>", "insert enter key in terminal mode"},
     ["<A-h>"] = {"<A-h>", "clear line terminal"},
 
-    ["<A-f>"] = {
+    ["<A-g>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
@@ -275,7 +280,7 @@ M.nvterm = {
 
   n = {
 
-    ["<A-f>"] = {
+    ["<A-g>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
@@ -327,6 +332,18 @@ M.dap = {
       "<cmd> DapContinue <CR>",
       "Run or continue the debugger"
     }
+  },
+}
+
+M.lsp = {
+  n = {
+    ["<leader>fm"] = {
+
+      function()
+        require("conform").format()
+      end,
+      "format with conform",
+    },
   },
 }
 

@@ -23,8 +23,8 @@ t['e'] = {'scroll', { 'vim.wo.scroll', 'true', '250'},{'zt', {'250'}}}
 t['<A-w>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '450'}}
 -- t['<C-y>'] = {'scroll', {'-0.10', 'false', '100'}}
 -- t['<C-e>'] = {'scroll', { '0.10', 'false', '100'}}
-t['çl']    = {'zt', {'250'}}
-t['çj']    = {'zz', {'250'}}
-t['çk']    = {'zb', {'250'}}
+t['fl']    = {'zt', {'250'}}
+t['fj']    = {'zz', {'250'}}
+t['fk']    = {'zb', {'250'}}
 
 require("neoscroll.config").set_mappings(t)

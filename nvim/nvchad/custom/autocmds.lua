@@ -14,6 +14,7 @@ end
 
  for j = 1, 9, 1 do
    vim.keymap.set("n", string.format("<C-%s>", j), function()
+     vim.cmd("tabN[j]")
    end)
  end
 

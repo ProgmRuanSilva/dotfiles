@@ -42,6 +42,9 @@ cursor:
 
   unfocused_hollow: false
 
+font:
+  size: 9
+
 ## Live config reload
 live_config_reload: true
 
@@ -50,6 +53,7 @@ shell:
   program: /bin/zsh
   args:
     - --login
+
 colors:
   primary:
     background: '#282a36'

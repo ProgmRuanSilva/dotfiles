@@ -8,17 +8,16 @@ local plugins = {
     dependencies = {
       {
         "SmiteshP/nvim-navbuddy",
-        event = {"VeryLazy"},
         dependencies = {
           "SmiteshP/nvim-navic",
           "MunifTanjim/nui.nvim",
-          "numToStr/Comment.nvim",
-          "nvim-telescope/telescope.nvim",
+          -- "numToStr/Comment.nvim",
+          -- "nvim-telescope/telescope.nvim",
         },
         opts = {
           lsp = { auto_attach = true },
         },
-        setup = function ()
+        setup = function()
           require"custom.configs.navbuddy"
         end,
       },
@@ -31,12 +30,77 @@ local plugins = {
         end,
       },
     },
-
     config = function()
-      require "plugins.configs.lspconfig"
+      -- require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end,
   },
+
+  {
+    "gpanders/nvim-parinfer",
+    event = "InsertEnter",
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    opts = overrides.nvimcmp,
+
+    dependencies = {
+      {
+        -- snippet plugin
+        "L3MON4D3/LuaSnip",
+        config = function(_, opts)
+          -- load default luasnip config
+          require("plugins.configs.others").luasnip(opts)
+
+          local luasnip = require "luasnip"
+          luasnip.filetype_extend("javascriptreact", { "html" })
+          luasnip.filetype_extend("typescriptreact", { "html" })
+          require("luasnip/loaders/from_vscode").lazy_load()
+        end,
+      },
+
+      -- ai based completion
+      {
+        "jcdickinson/codeium.nvim",
+        config = function()
+          require("codeium").setup {}
+        end,
+      },
+    },
+  },
+
+-----------------
+--- TEST AREA----
+-----------------
+
+  {
+    "stevearc/conform.nvim",
+    config = function()
+      require "custom.configs.conform"
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = overrides.treesitter,
+
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "syntax")
+      require("nvim-treesitter.configs").setup(opts)
+
+      -- register mdx ft
+      vim.filetype.add {
+        extension = { mdx = "mdx" },
+      }
+
+      vim.treesitter.language.register("markdown", "mdx")
+    end,
+  },
+
+-----------------
+--- TEST AREA----
+-----------------
 
   {
     "mfussenegger/nvim-lint",
@@ -60,11 +124,6 @@ local plugins = {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
-  },
-
-  {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
@@ -73,11 +132,6 @@ local plugins = {
   {
     "NvChad/nvterm",
     opts = overrides.nvterm,
-  },
-
-  {
-    "hrsh7th/nvim-cmp",
-    opts = overrides.nvimcmp,
   },
 
 -- Telescope
@@ -143,7 +197,7 @@ local plugins = {
     "max397574/better-escape.nvim",
     event = {"VimEnter"},
     config = function()
-      require("better_escape").setup()
+      require"custom.configs.better_escape"
     end,
   },
 
@@ -151,11 +205,7 @@ local plugins = {
     "windwp/nvim-ts-autotag",
     event = {"VimEnter"},
     config = function()
-      require("nvim-ts-autotag").setup{
-        autotag = {
-          enable = true,
-        }
-      }
+      require"custom.configs.autotag"
     end,
   },
 
@@ -186,24 +236,25 @@ local plugins = {
 
  {
   'rmagatti/goto-preview',
+    event = "VeryLazy",
     config = function()
       require('goto-preview').setup {
-        width = 120; -- Width of the floating window
-        height = 15; -- Height of the floating window
-        border = {"↖", "─" ,"╮", "│", "╯", "─", "╰", "│"}; -- Border characters of the floating window
+        width = 120;                                        -- Width of the floating window
+        height = 15;                                        -- Height of the floating window
+        border = {"↖", "─" ,"╮", "│", "╯", "─", "╰", "│"};  -- Border characters of the floating window
         default_mappings = false;
-        debug = false; -- Print debug information
-        opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
-        resizing_mappings = false; -- Binds arrow keys to resizing the floating window.
-        post_open_hook = nil; -- A function taking two arguments, a buffer and a window to be ran as a hook.
-        references = { -- Configure the telescope UI for slowing the references cycling window.
-          telescope = require("telescope.themes").get_dropdown({ hide_preview = false })
+        debug = false;                                      -- Print debug information
+        opacity = nil;                                      -- 0-100 opacity level of the floating window where 100 is fully transparent.
+        resizing_mappings = false;                          -- Binds arrow keys to resizing the floating window.
+        post_open_hook = nil;                               -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        references = {                                      -- Configure the telescope UI for slowing the references cycling window.
+          telescope = require("telescope")
         };
-        focus_on_open = true; -- Focus the floating window when opening it.
-        dismiss_on_move = true; -- Dismiss the floating window when moving the cursor.
-        force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
-        bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
-        stack_floating_preview_windows = true, -- Whether to nest floating windows
+        focus_on_open = true;                               -- Focus the floating window when opening it.
+        dismiss_on_move = true;                             -- Dismiss the floating window when moving the cursor.
+        force_close = true,                                 -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
+        bufhidden = "wipe",                                 -- the bufhidden option to set on the floating window. See :h bufhidden
+        stack_floating_preview_windows = true,              -- Whether to nest floating windows
         preview_window_title = { enable = true, position = "left" }, -- Whether
       }
     end
@@ -247,7 +298,17 @@ local plugins = {
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({
+        --We need configurate on surround file
       })
+    end
+  },
+
+    -- opts = overrides.telescope,
+
+  {
+    "hrsh7th/cmp-buffer",
+    event = "VeryLazy",
+    config = function ()
     end
   },
 
@@ -255,7 +316,7 @@ local plugins = {
     "hrsh7th/cmp-cmdline",
     event = "VeryLazy",
     config = function ()
-      require"custom.configs.cmd"
+      require"custom.configs.cmp"
     end
   },
 
@@ -333,13 +394,18 @@ local plugins = {
 
   {
     "tpope/vim-dadbod",
+    event = "VeryLazy",
+  },
+
+  {
+    "tpope/vim-dadbod",
     opt = true,
     requires = {
       "kristijanhusak/vim-dadbod-ui",
       "kristijanhusak/vim-dadbod-completion",
     },
     config = function()
-      require("configs.dadbod").setup()
+      require("custom.configs.dadbod").setup()
     end,
   },
 
@@ -348,22 +414,20 @@ local plugins = {
     event = "VeryLazy",
   },
 
-
   {
     "kristijanhusak/vim-dadbod-completion",
     event = "VeryLazy",
   },
 
+  {
+    "mbbill/undotree",
+    event = "VeryLazy",
+  },
 
-  -- {
-  --   "",
-  --   event = "VeryLazy",
-  -- },
-
-  -- {
-  --   "",
-  --   event = "VeryLazy",
-  -- },
+  {
+    "tpope/vim-fugitive",
+    event = "VeryLazy",
+  },
 
   -- {
   --   "",

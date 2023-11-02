@@ -68,7 +68,7 @@ format = "[$symbol($version )]($style)"
 
 [docker_context]
 format = '[🐋 $context](blue bold)'
-detect_files = ['docker-compose', 'Dockerfile']
+detect_files = ['docker-compose.yml', 'Dockerfile']
 
 [terraform]
 format = "[$symbol($version )]($style)"

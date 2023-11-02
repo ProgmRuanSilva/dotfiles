@@ -6,6 +6,5 @@ local opt = vim.opt
 
 vim.o.termguicolors = true
 
-
 opt.number = false
 opt.title = true

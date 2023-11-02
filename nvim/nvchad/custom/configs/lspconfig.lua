@@ -4,6 +4,18 @@ local util = require "lspconfig/util"
 local on_attach = config.on_attach
 local capabilities = config.capabilities
 
+config = {
+border = {
+  {"|", "FloatBorder"},
+  {"▔", "FloatBorder"},
+  {"🭾", "FloatBorder"},
+  {"▕", "FloatBorder"},
+  {"🭿", "FloatBorder"},
+  {"▁", "FloatBorder"},
+  {"🭼", "FloatBorder"},
+  {"▏", "FloatBorder"},
+}
+}
 
 -- local servers = {
 --   "html",
