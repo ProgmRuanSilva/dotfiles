@@ -1,4 +1,5 @@
 sudo -i -u postgres
+initdb -D /var/lib/postgres/data/
 psql
 \password
 

@@ -89,7 +89,6 @@ plugins=(
     ruby
     asdf
     rails
-    docker
     golang
     heroku
     bundler
@@ -141,15 +140,14 @@ colorscript random
 #   tmux switch-client -t "$session_name"
 # fi
 
-
 # Alias-finder
   # zstyle ':omz:plugins:alias-finder' autoload yes
   # zstyle ':omz:plugins:alias-finder' longer yes
   # zstyle ':omz:plugins:alias-finder' exact yes
   # zstyle ':omz:plugins:alias-finder' cheaper yes
 
-# Command-Line Mappings
-    # zle -al to see all widgets avalible
+
+# Command-Line Mappings #zle -al to see all widgets avalible
   bindkey '^[j' accept-line
 
   bindkey '^[w' delete-word
@@ -174,43 +172,53 @@ colorscript random
 
 
 # Defaults Commands
-    alias kp='killprocess'
-    alias killp='killprocess'
-    alias grep='grep --color=auto'
-    alias jctl="journalctl -p 3 -xb"                        # get the error messages from journalctl
+    alias killp='kill -9'
+    alias jctl="journalctl -xb"
     alias cleanup='sudo pacman -Rns $(pacman -Qtdq);yay -c' # cleanup orphaned packages
-    alias volume='pavucontrol' # works just on archcraft
+    alias showbinds='zle -al'
+
+  # Grep
+    alias grep='grep --color=auto'
+
+  # XH
+    alias http='xh'
+    alias httph='xh --help | bat'
+
+  # Duf
+    alias dufh='duf --help | bat'
+
+  # Jqp
+    alias jqph='jqp --help | bat'
 
   # Find
     alias find='fd'
 
   # Bat
-    alias less='bat --color always'
-    alias cat='bat --theme base 16 --color always '
+    alias less='bat  --theme=Dracula --color always'
+    alias cat='bat --theme=Dracula --color always '
 
-  # Exa
+  # Exa List
     alias l='exa -DF --color=always --icons --sort=size --group-directories-first'
     alias ls="exa -T --color=always --icons --group-directories-first"
-    alias le='exa -GF --color=always --icons --sort=size --group-directories-first'
-    alias lej="exa -GF --color=always --icons --sort=size --group-directories-first"
+    alias le='exa -GFA --color=always --icons --sort=size --group-directories-first'
+    alias lej="exa -GFA --color=always --icons --sort=size --group-directories-first"
     alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
 
-
-#System Information
+# System Information
   alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
   alias df='df -h'
   alias mem="ps axch -o cmd:15,%mem --sort=-%mem | head"
-  alias mv='mv -i'
 
-  #List Rececents Packages
-  alias lstrpkg="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-  alias lstrpkglong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
+# List Rececents Packages
+  alias lspkg="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+  alias lspkglong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
 
 # Zsh
   alias q='exit'
-  alias hm="cd ~/"
+  alias mv='mv -i'
+  alias hm='cd ~/'
   alias rm='rm -rf'
-  alias rst="touch ~/.zshsrc"
+  alias rst='touch ~/.zshsrc'
   alias update='sudo pacman -Syu'
   alias backup="sh ~/dotfiles/scripts/backup.sh"
 
@@ -222,14 +230,8 @@ colorscript random
 # Apps
   alias nv="nvim"
   alias n="nvim"
-  alias mjc="gitmoji -c"
   alias jp="jump"
-
-# Docker Compose
-  alias dcb="sudo docker-compose build"
-  alias dcu="sudo docker-compose up"
-  alias dcub="sudo docker-compose up --build"
-  alias db="sudo docker build"
+  alias volume='pavucontrol'
 
 # Postgres
   alias pg="psql -U postgres"
@@ -239,11 +241,28 @@ colorscript random
   alias nd="npm run dev"
   alias nr="npm run"
 
+# Git
+  alias gco="gitmoji -c"
+  alias gc="git checkout"
+  alias gcb="git checkout -b"
+
+# Docker Compose
+  alias dr="docker run"
+  alias db="docker build"
+  alias dimg="docker image ls"
+  alias dps="docker"
+  alias dh="docker --help"
+
+  alias dc="docker-compose"
+  alias dcu="docker-compose up"
+  alias dcd="docker-compose down"
+  alias dcps="docker-compose ps"
+  alias dcb="docker-compose build"
+  alias dch="docker-compose --help"
+  alias dimg="docker-compose image ls"
+  alias dcub="docker-compose up --build"
+
 # Ollama
   alias olm="ollama run mistral"
   alias olc="ollama run codellama"
   alias oll="ollama run llama2"
-
-# Git
-  alias gc="git checkout"
-  alias gcb="git checkout -b"

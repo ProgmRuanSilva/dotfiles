@@ -22,11 +22,10 @@ splash() {
 
 install_process() {
     mkdir -p ${HOME}/.config/psql
-    cp -frv .config/psql/* ${HOME}/.config/psql
-    cp -frv .psqlrc ${HOME}/
+    cp -frv config/psql/* ${HOME}/.config/psql
+    cp -frv ${HOME}/dotfiles/zsh/psql/config/.psqlrc ${HOME}/
     return $?
 }
-
 
 splash
 
@@ -49,5 +48,3 @@ fi
 echo "Install finished"
 
 exit ${RETVAL}
-
-
