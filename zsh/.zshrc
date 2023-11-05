@@ -149,6 +149,7 @@ colorscript random
   # zstyle ':omz:plugins:alias-finder' cheaper yes
 
 # Command-Line Mappings
+    # zle -al to see all widgets avalible
   bindkey '^[j' accept-line
 
   bindkey '^[w' delete-word
@@ -168,14 +169,9 @@ colorscript random
   bindkey '^[s' end-of-line
   bindkey '^[a' beginning-of-line
 
-  bindkey '^[c' undo
-  bindkey '^[u' bracketed-paste
   bindkey '^[,' up-line-or-history
   bindkey '^[.' down-line-or-history
 
-# zle -al to see all widgets avalible
-
-  # bindkey '^[k' autosuggest-accept
 
 # Defaults Commands
     alias kp='killprocess'
