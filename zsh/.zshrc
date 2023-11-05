@@ -242,6 +242,7 @@ colorscript random
   alias nr="npm run"
 
 # Git
+  alias gph="git push"
   alias gco="gitmoji -c"
   alias gc="git checkout"
   alias gcb="git checkout -b"
