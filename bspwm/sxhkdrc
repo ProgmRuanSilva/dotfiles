@@ -27,8 +27,8 @@ alt + F2
 	rofi_runner
 
 # Rofi Menus/Applets
-super + {b,r,s,t,w,x}
-	{rofi_bluetooth,rofi_asroot,rofi_screenshot,rofi_themes,rofi_windows,rofi_powermenu}
+super + {b,m,n,r,s,t,w,x}
+	{rofi_bluetooth,rofi_music,nmd,rofi_asroot,rofi_screenshot,rofi_themes,rofi_windows,rofi_powermenu}
 
 ##---------- Applications ----------##
 
@@ -124,12 +124,13 @@ super + {_,shift + }{1-8}
 super + ctrl + shift + {Left,Right}
 	bspc node -d {prev,next} '--follow'
 
-# Change focus of the Node or Swap Nodes
-super + {_,shift + }{j,l,h,k}
-	bspc node -{f,s} {west,south,north,east}
+# # Change focus of the Node or Swap Nodes
+# super + {_,shift + }{Left,Down,Up,Right}
+# 	bspc node -{f,s} {west,south,north,east}
 
-super + {_,shift + }{n,m}
-	bspc node -{f,s} {west,east}
+# Change focus of the Node or Swap Nodes
+super + {_,shift + }{j,h,l,k}
+	bspc node -{f,s} {west,south,north,east}
 
 # Move floating windows
 super + alt + shift + {Left,Down,Up,Right}
@@ -151,8 +152,8 @@ super + {h,v,q}
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
-super + o
 # Toggle Layout (Tiled/Monocle)
+super + o
 	bspc desktop -l next
 
 # Toggle Fullscreen

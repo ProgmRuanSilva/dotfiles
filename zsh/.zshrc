@@ -150,16 +150,32 @@ colorscript random
 
 # Command-Line Mappings
   bindkey '^[j' accept-line
+
   bindkey '^[w' delete-word
   bindkey '^[q' backward-delete-word
-  bindkey '^[l' clear-screen
-  bindkey '^[k' clear-screen
+
+  bindkey '^[p' backward-delete-char
+  bindkey '^[e' kill-buffer
+
+  bindkey '^[k' forward-char
+  bindkey '^[h' backward-char
+
   bindkey '^[m' forward-word
   bindkey '^[n' backward-word
+
+  bindkey '^[l' clear-screen
+
+  bindkey '^[s' end-of-line
+  bindkey '^[a' beginning-of-line
+
+  bindkey '^[c' undo
+  bindkey '^[u' bracketed-paste
+  bindkey '^[,' up-line-or-history
+  bindkey '^[.' down-line-or-history
+
+# zle -al to see all widgets avalible
+
   # bindkey '^[k' autosuggest-accept
-  bindkey '^[h' backward-kill-line
-  bindkey '^[p' backward-delete-char
-  bindkey '^[a' complete-word
 
 # Defaults Commands
     alias kp='killprocess'
@@ -167,7 +183,7 @@ colorscript random
     alias grep='grep --color=auto'
     alias jctl="journalctl -p 3 -xb"                        # get the error messages from journalctl
     alias cleanup='sudo pacman -Rns $(pacman -Qtdq);yay -c' # cleanup orphaned packages
-
+    alias volume='pavucontrol' # works just on archcraft
 
   # Find
     alias find='fd'
