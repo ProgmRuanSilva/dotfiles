@@ -159,7 +159,7 @@ M.general = {
     ["<leader>gv"] = {"<cmd>Telescope git_bcommits<CR>"},
     ["<leader>gb"] = {"<cmd>Telescope git_branches<CR>"},
     ["<leader>gs"] = {"<cmd>Telescope git_status<CR>"},
-    ["<leader>gd"] = {"<cmd>DiffviewOpen<CR>"},
+    ["<leader>gd"] = {"<cmd>LazyGit<CR>"},
 
 
   --Octo

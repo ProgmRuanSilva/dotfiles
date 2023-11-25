@@ -214,6 +214,7 @@ bindkey -r '^T'
     alias ls="exa -T --color=always --icons --group-directories-first"
     alias le='exa -GA --color=always --icons --sort=size --group-directories-first'
     alias lej='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias el='exa -xA --color=always --icons --sort=size --group-directories-first'
     alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
 
 # System Information
