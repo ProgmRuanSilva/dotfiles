@@ -1,0 +1,109 @@
+###############################################################################
+# fzf
+#
+# fzf is a general-purpose command-line fuzzy finder.
+#
+# https://github.com/junegunn/fzf
+#
+# File locations:
+# - ~/.fzf
+# - ~/.fzf.bash
+# - ~/.fzf.zsh
+# - ~/.profile.d/fzf.sh
+###############################################################################
+
+# Dracula Theme
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--color=dark
+--color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
+--color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7
+'
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="
+  --preview 'bat -n --color=always {}'
+  --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'
+  "
+
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --preview 'bat -n --color=always {}'
+  --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'"
+
+# Tmux
+export FZF_TMUX_OPTS='-p80%,60%'
+
+# Options to fzf command
+export FZF_COMPLETION_OPTS='--border --info=inline'
+
+# Commands
+
+# Open File or Directory
+ff() {
+  IFS=$'\n' files=($(fzf-tmux -p80%,60%  --preview 'bat -n --color=always {}' --query="$1" --multi --select-1 --reverse --exit-0  --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'  ))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+# fh - repeat history
+fh() {
+  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+}
+
+# Another CTRL-T script to select a directory and paste it into line
+ffs ()
+{
+  builtin typeset READLINE_LINE_NEW="$(
+    command find -L . \( -path '*/\.*' -o -fstype dev -o -fstype proc \) \
+            -prune \
+            -o -type f -print \
+            -o -type d -print \
+            -o -type l -print 2>/dev/null \
+    | command sed 1d \
+    | command cut -b3- \
+    | env fzf -m
+  )"
+
+  if
+    [[ -n $READLINE_LINE_NEW ]]
+  then
+    builtin bind '"\er": redraw-current-line'
+    builtin bind '"\e^": magic-space'
+    READLINE_LINE=${READLINE_LINE:+${READLINE_LINE:0:READLINE_POINT}}${READLINE_LINE_NEW}${READLINE_LINE:+${READLINE_LINE:READLINE_POINT}}
+    READLINE_POINT=$(( READLINE_POINT + ${#READLINE_LINE_NEW} ))
+  else
+    builtin bind '"\er":'
+    builtin bind '"\e^":'
+  fi
+}
+
+# Select a running docker container to stop
+function dcps() {
+  local cid
+  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker stop "$cid"
+}
+
+
+
+
+
+
+# Setup fzf
+# ---------
+if [[ ! "$PATH" = /usr/share/fzf/* ]]; then
+  export PATH="$PATH:$HOME/.fzf/bin"
+fi
+
+# Man path
+# --------
+# if [[ ! "$MANPATH" =~ "$HOME"/.fzf/man && -d "$HOME/.fzf/man" ]]; then
+#   export MANPATH="$MANPATH:$HOME/.fzf/man"
+# fi
+
+# Auto-completion
+# ---------------
+[[ $- =~ i ]] && source "/usr/share/fzf/completion.zsh"
+
+# Key bindings
+# ------------
+source "/usr/share/fzf/key-bindings.zsh"
