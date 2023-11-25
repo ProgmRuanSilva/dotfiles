@@ -259,6 +259,7 @@ bindkey -r '^T'
   alias gco="gitmoji -c"
   alias gc="git checkout"
   alias gcb="git checkout -b"
+  alias gd="lazygit"
 
 # Docker Compose
   alias dr="docker run"
