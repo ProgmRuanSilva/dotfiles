@@ -10,6 +10,12 @@ cp -frv ~/.zshrc ~/dotfiles/zsh/ ;
 cp -frv ~/.psqlrc ~/dotfiles/psql/config/ ;
 cp -frv ~/.config/psql/* ~/dotfiles/psql/config/psql/ ;
 
-# cp -r ~/
-# cp -r ~/
-# cp -r ~/
+cp -frv ~/.fzf.zsh ~/dotfiles/fzf/ ;
+cp -frv ~/.gitconfig ~/dotfiles/git/ ;
+
+# cp -frv ~/dotfiles/
+# cp -frv ~/dotfiles/
+# cp -frv ~/dotfiles/
+# cp -frv ~/dotfiles/
+# cp -frv ~/dotfiles/
+# cp -frv ~/dotfiles/

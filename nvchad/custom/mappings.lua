@@ -28,11 +28,11 @@ M.general = {
   --Line addiction
     ["<A-o>"] = {"<C-o>o", "empty line on bottom"},
     -- ["<A-o>"] = {"<C-o><S-o>", "empty line on top"},
-    -- ["<A-u>"] = {"<C-o><S-v>y<C-o>p", "copy line below"},
+    ["<A-b>"] = {"<C-o><S-v>y<C-o>p", "copy line below"},
 
   --Save and Restore
     ["<A-g>"] = { "<cmd>w!<CR>", "save"},
-    ["<A-b>"] = { "<C-o>u", "restore newest"},
+    -- ["<A-b>"] = { "<C-o>u", "restore newest"},
     ["<A-r>"] = {"<C-o><C-r>", "undo restore"},
 
   --Clipboard
@@ -112,7 +112,7 @@ M.general = {
     [","] = {"o<C-c>", "add a new line in normal mode"},
     ["."] = {"<S-o><C-c>", "add a new line below in normal mode"},
     ["<A-o>"] = {"<S-o>", "insert on line below"},
-    -- ["<A-a>"] = {"<S-v>yp", "copy line below"},
+    ["<A-b>"] = {"<S-v>yp", "copy line below"},
 
   --Navbuddy
     ["<leader>s"] = { "<cmd>Navbuddy<CR>", "Navbuddy Toggle" },
