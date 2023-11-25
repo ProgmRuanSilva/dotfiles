@@ -6,6 +6,7 @@ M.general = {
 
   i = {
 
+    -- ainda temos o <A-o> pra poder usar
   --Navigate
     ["<A-k>"] = { "<Up>", "Move up" },
     ["<A-j>"] = { "<Down>", "Move down" },
@@ -13,25 +14,25 @@ M.general = {
     ["<A-l>"] = { "<Right>", "Move right" },
     ["<A-n>"] = { "<C-o>b", "back word phrase"},
     ["<A-m>"] = { "<C-o>w", "next word phrase"},
-    ["<A-g>"] = { "<C-o><End>", "end of line"},
+    ["<A-s>"] = { "<C-o><End>", "end of line"},
     ["<A-f>"] = { "<cmd>HopWord<CR>", "HopWord command to go to selected word"},
-    ["<A-c>"] = { "<cmd>HopAnywhere<CR>", "HopWord command to go to selected word"},
+    ["<A-a>"] = { "<cmd>HopAnywhere<CR>", "HopWord command to go to selected word"},
 
   --Deletes cursor
-    ["<A-o>"] = { "<C-o>dw", "delete next word"},
-    ["<A-i>"] = { "<C-o>db<Backspace>", "delete previews word"},
+    ["<A-w>"] = { "<C-o>dw", "delete next word"},
+    ["<A-q>"] = { "<C-o>db<Backspace>", "delete previews word"},
     ["<A-p>"] = { "<Backspace>", "delete previews word"}, -- not working on arch craft
-    ["<A-Ç>"] = { "<Backspace>", "delete previews word in CapsLock"},
-    ["<A-d>"] = {"<C-o>d", "delete current line"},
+    -- ["<A-Ç>"] = { "<Backspace>", "delete previews word in CapsLock"},
+    -- ["<A-d>"] = {"<C-o>d", "delete current line"},
 
   --Line addiction
-    ["<A-,>"] = {"<C-o>o", "empty line on bottom"},
-    ["<A-.>"] = {"<C-o><S-o>", "empty line on top"},
+    ["<A-o>"] = {"<C-o>o", "empty line on bottom"},
+    -- ["<A-o>"] = {"<C-o><S-o>", "empty line on top"},
     -- ["<A-u>"] = {"<C-o><S-v>y<C-o>p", "copy line below"},
 
   --Save and Restore
-    ["<A-s>"] = { "<cmd>w!<CR>", "save"},
-    ["<A-w>"] = { "<C-o>u", "restore newest"},
+    ["<A-g>"] = { "<cmd>w!<CR>", "save"},
+    ["<A-b>"] = { "<C-o>u", "restore newest"},
     ["<A-r>"] = {"<C-o><C-r>", "undo restore"},
 
   --Clipboard
@@ -44,11 +45,11 @@ M.general = {
     ["<A-9>"] = {"()<Left>", "add comma on insertion mode"},
     ["<A-0>"] = {")", "add finaly comma on insertion mode"},
 
-    ["<A-[>"] = {"{}<Left>", "add brackets on insetion mode"},
-    ["<A-]>"] = {"}", "add finaly brackets on insetion mode"},
-    ["<A-a>"] = {"<Esc><right><Delete>i"},
+    -- ["<A-[>"] = {"{}<Left>", "add brackets on insetion mode"},
+    -- ["<A-]>"] = {"}", "add finaly brackets on insetion mode"},
+    -- ["<A-a>"] = {"<Esc><right><Delete>i"},
 
-    ["<A-q>"] = {"<Esc>", "esc key"},
+    -- ["<A-q>"] = {"<Esc>", "esc key"},
   },
 
   n = {
@@ -62,6 +63,7 @@ M.general = {
 
   --Restoration
     ["<A-r>"] = {"<C-r>", "undo restore"},
+    ["<A-f>"] = {"<cmd>HopWord<CR>", "undo restore"},
 
   --Tabs
     ["<leader>u"] = {"<cmd>q<CR>", "close tab"},
@@ -82,14 +84,21 @@ M.general = {
   --Navigation
     ["f"] = {"<END>", "navigate to end of line"},
     ["ff"] = {"<HOME>", "navigate to beggining of line"},
-    ["<A-f>"] = {"<cmd>HopWord<CR>"},
-    ["<A-c>"] = {"<cmd>HopAnywhere<CR>"},
+    ["<A-c>"] = {"<cmd>HopWord<CR>"},
+    ["<A-a>"] = {"<cmd>HopAnywhere<CR>"},
 
   --Navigation between splits
     ["<A-j>"] = { "<C-w>h", "Window left" },
-    ["<A-l>"] = { "<C-w>l", "Window right" },
-    ["<A-h>"] = { "<C-w>j", "Window down" },
+    -- ["<A-l>"] = { "vim.fn.tabpagewinnr(0) == 1 || vim.fn.tabpagewinnr(0, '$') == 1 ? l :<cmd>TmuxNavigateLeft<CR> ", "Window right | <cmd>TmuxNavigateLeft<CR>" },
+    ["<A-l>"] = { "<C-w>l", "Window right"},
+    ["<A-h>"] = { "<C-w>j", "Window down"},
     ["<A-k>"] = { "<C-w>k", "Window up" },
+
+    --Tmux
+    ["<C-l>"] = {"<cmd>TmuxNavigateLeft<CR>"},
+    ["<C-h>"] = {"<cmd>TmuxNavigateRight<CR>"},
+    ["<C-k>"] = {"<cmd>TmuxNavigateDown<CR>"},
+    ["<C-j>"] = {"<cmd>TmuxNavigateUp<CR>"},
 
   --Navigate Words
     ["n"] = {"b", "back one word for lazy people"},
@@ -103,7 +112,7 @@ M.general = {
     [","] = {"o<C-c>", "add a new line in normal mode"},
     ["."] = {"<S-o><C-c>", "add a new line below in normal mode"},
     ["<A-o>"] = {"<S-o>", "insert on line below"},
-    ["<A-a>"] = {"<S-v>yp", "copy line below"},
+    -- ["<A-a>"] = {"<S-v>yp", "copy line below"},
 
   --Navbuddy
     ["<leader>s"] = { "<cmd>Navbuddy<CR>", "Navbuddy Toggle" },
@@ -126,13 +135,14 @@ M.general = {
 
   --Telescope
     ["<leader><leader>"] = {"<cmd>Telescope find_files<CR>"},
-    ["<leader>fm"] = {"<cmd>Telescope man_pages<CR>"},
+    ["<leader>fm"] = {"<cmd>Format<CR>"},
     -- ["<leader>fp"] = {"<cmd>Telescope jumplist<CR>"},
     -- ["<leader>fn"] = {"<cmd>Telescope marks<CR>"},
     ["<leader>d"] = {"<cmd>Telescope oldfiles<CR>"},
     ["<leader>j"] = {"<cmd>Telescope file_browser<CR>"},
     ["<leader>l"] = {"<cmd>Telescope zoxide list<CR>"},
     ["<leader>["] = {"<cmd>Telescope notify<CR>"},
+    ["<leader>pp"] = {"<cmd>Telescope package_info<CR>"},
 
     --Docker
     ["<leader>wc"] = {"<cmd>Telescope docker containers<CR>"},
@@ -335,16 +345,16 @@ M.dap = {
   },
 }
 
-M.lsp = {
-  n = {
-    ["<leader>fm"] = {
-
-      function()
-        require("conform").format()
-      end,
-      "format with conform",
-    },
-  },
-}
+-- M.lsp = {
+--   n = {
+--     ["<leader>fm"] = {
+--
+--       function()
+--         require("conform").format()
+--       end,
+--       "format with conform",
+--     },
+--   },
+-- }
 
 return M

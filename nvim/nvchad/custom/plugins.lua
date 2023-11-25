@@ -37,11 +37,6 @@ local plugins = {
   },
 
   {
-    "gpanders/nvim-parinfer",
-    event = "InsertEnter",
-  },
-
-  {
     "hrsh7th/nvim-cmp",
     opts = overrides.nvimcmp,
 
@@ -60,47 +55,15 @@ local plugins = {
         end,
       },
 
-      -- ai based completion
-      {
-        "jcdickinson/codeium.nvim",
-        config = function()
-          require("codeium").setup {}
-        end,
-      },
+      -- Ai based completion
+      -- {
+      --   "jcdickinson/codeium.nvim",
+      --   config = function()
+      --     require("codeium").setup {}
+      --   end,
+      -- },
     },
   },
-
------------------
---- TEST AREA----
------------------
-
-  {
-    "stevearc/conform.nvim",
-    config = function()
-      require "custom.configs.conform"
-    end,
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
-
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
-      require("nvim-treesitter.configs").setup(opts)
-
-      -- register mdx ft
-      vim.filetype.add {
-        extension = { mdx = "mdx" },
-      }
-
-      vim.treesitter.language.register("markdown", "mdx")
-    end,
-  },
-
------------------
---- TEST AREA----
------------------
 
   {
     "mfussenegger/nvim-lint",
@@ -276,6 +239,11 @@ local plugins = {
     end,
   },
 
+  {
+    "christoomey/vim-tmux-navigator",
+    event = "VimEnter",
+  },
+
   -- Visual
   {
     "folke/zen-mode.nvim",
@@ -350,6 +318,11 @@ local plugins = {
     end,
   },
 
+  {
+    "David-Kunz/gen.nvim",
+    event = "VeryLazy",
+  },
+
 -----------------
 --- TEST AREA----
 -----------------
@@ -387,11 +360,6 @@ local plugins = {
     end
   },
 
-  { --under tests
-    "sindrets/diffview.nvim",
-    event = {"VeryLazy"},
-  },
-
   {
     "tpope/vim-dadbod",
     event = "VeryLazy",
@@ -424,14 +392,61 @@ local plugins = {
     event = "VeryLazy",
   },
 
+
+  -- {
+  --   "jackMort/ChatGPT.nvim",
+  --     event = "VeryLazy",
+  --     config = function()
+  --       require("custom.configs.gpt").setup()
+  --     end,
+  --     dependencies = {
+  --       "MunifTanjim/nui.nvim",
+  --       "nvim-lua/plenary.nvim",
+  --       "nvim-telescope/telescope.nvim"
+  --     }
+  -- },
+
+
   {
-    "tpope/vim-fugitive",
+    "kdheepak/lazygit.nvim",
     event = "VeryLazy",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
+  },
+
+  {
+    "vuki656/package-info.nvim",
+    event = "VeryLazy",
+    config = function ()
+      require('package-info').setup()
+    end
+  },
+
+  {
+    "Exafunction/codeium.vim",
+    event = "BufEnter",
+    config = function ()
+      vim.keymap.set('i', '<A-i>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+      vim.keymap.set('i', '<A-[>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      vim.keymap.set('i', '<A-]>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+      vim.keymap.set('i', '<A-p>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+    end
   },
 
   -- {
   --   "",
-  --   event = "VimEnter",
+  --   event = "VeryLazy",
+  -- },
+
+  -- {
+  --   "",
+  --   event = "VeryLazy",
+  -- },
+
+  -- {
+  --   "",
+  --   event = "VeryLazy",
   -- },
 
   -- {
@@ -448,6 +463,17 @@ local plugins = {
   --   "",
   --   event = "VeryLazy",
   -- },
+
+  -- {
+  --   "",
+  --   event = "VeryLazy",
+  -- },
+
+  -- {
+  --   "",
+  --   event = "VeryLazy",
+  -- },
+
 
 }
 return plugins

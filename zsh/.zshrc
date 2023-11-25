@@ -9,7 +9,8 @@ export FLYCTL_INSTALL="/home/dev/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Auto commands
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -122,6 +123,10 @@ source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
 
 # Shell Colored Scripts
 colorscript random
+# Fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Tmux
+tmux
 
 # session_name="sesh"
 #
@@ -147,6 +152,11 @@ colorscript random
   # zstyle ':omz:plugins:alias-finder' cheaper yes
 
 
+
+
+# Unmapppings
+bindkey -r '^T'
+
 # Command-Line Mappings #zle -al to see all widgets avalible
   bindkey '^[j' accept-line
 
@@ -167,9 +177,11 @@ colorscript random
   bindkey '^[s' end-of-line
   bindkey '^[a' beginning-of-line
 
-  bindkey '^[,' up-line-or-history
-  bindkey '^[.' down-line-or-history
+  bindkey '^[i' up-line-or-history
+  bindkey '^[o' down-line-or-history
 
+  bindkey '^[f' fzf-file-widget
+  bindkey '^[c' fzf-cd-widget
 
 # Defaults Commands
     alias killp='kill -9'
@@ -198,10 +210,10 @@ colorscript random
     alias cat='bat --theme=Dracula --color always '
 
   # Exa List
-    alias l='exa -DF --color=always --icons --sort=size --group-directories-first'
+    alias l='exa -D --color=always --icons --sort=size --group-directories-first'
     alias ls="exa -T --color=always --icons --group-directories-first"
-    alias le='exa -GFA --color=always --icons --sort=size --group-directories-first'
-    alias lej="exa -GFA --color=always --icons --sort=size --group-directories-first"
+    alias le='exa -GA --color=always --icons --sort=size --group-directories-first'
+    alias lej='exa -xA --color=always --icons --sort=size --group-directories-first'
     alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
 
 # System Information
@@ -218,6 +230,7 @@ colorscript random
   alias mv='mv -i'
   alias hm='cd ~/'
   alias rm='rm -rf'
+  alias cp='cp -r'
   alias rst='touch ~/.zshsrc'
   alias update='sudo pacman -Syu'
   alias backup="sh ~/dotfiles/scripts/backup.sh"
@@ -250,20 +263,24 @@ colorscript random
 # Docker Compose
   alias dr="docker run"
   alias db="docker build"
-  alias dimg="docker image ls"
-  alias dps="docker"
+  alias dimg="docker image ls" # not working
+  alias d="docker"
   alias dh="docker --help"
 
   alias dc="docker-compose"
   alias dcu="docker-compose up"
   alias dcd="docker-compose down"
-  alias dcps="docker-compose ps"
+  # alias dcps="docker-compose ps"
   alias dcb="docker-compose build"
   alias dch="docker-compose --help"
   alias dimg="docker-compose image ls"
   alias dcub="docker-compose up --build"
+  alias dcud="docker-compose up --detach"
 
 # Ollama
   alias olm="ollama run mistral"
   alias olc="ollama run codellama"
-  alias oll="ollama run llama2"
+  alias oll="ollama run llama"
+
+  alias off="poweroff"
+  alias rbt="reboot"

@@ -17,14 +17,14 @@ border = {
 }
 }
 
--- local servers = {
---   "html",
---   "cssls",
---   "tsserver",
---   "clangd",
---   "bash-language-server",
---   "rubocop",
--- }
+local servers = {
+  "html",
+  "cssls",
+  "tsserver",
+  "clangd",
+  "bash-language-server",
+  "rubocop",
+}
 
 -- for _, lsp in ipairs(servers) do
 --   lspconfig[lsp].setup {
@@ -33,12 +33,27 @@ border = {
 --   }
 -- end
 
+
+
+lspconfig.eslint.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {".tsx", ".ts", ".js", ".mjs", ".cjs"},
+  root_dir = util.root_pattern(".eslintignore", ".eslintrc.mjs", ".eslintrc.cjs"),
+  cmd = {"eslint"},
+  init_options = {
+    preferences = {
+      disableSuggestions = false,
+    }
+  }
+}
+
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   init_options = {
     preferences = {
-      disableSuggestions = true,
+      disableSuggestions = false,
     }
   }
 }

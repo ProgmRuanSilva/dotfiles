@@ -6,24 +6,45 @@ function sed(from, to, fname)
 end
 
 -- Split Alternation
- for i = 1, 9, 1 do
-   vim.keymap.set("n", string.format("<A-%s>", i), function()
-     vim.api.nvim_set_current_buf(vim.t.bufs[i])
-   end)
- end
+for i = 1, 9, 1 do
+  vim.keymap.set("n", string.format("<A-%s>", i), function()
+    vim.api.nvim_set_current_buf(vim.t.bufs[i])
+  end)
+end
 
- for j = 1, 9, 1 do
-   vim.keymap.set("n", string.format("<C-%s>", j), function()
-     vim.cmd("tabN[j]")
-   end)
- end
+for j = 1, 9, 1 do
+  vim.keymap.set("n", string.format("<C-%s>", j), function()
+    vim.cmd "tabN[j]"
+  end)
+end
+
+-- -- Define a variable for the key
+-- local l = "l"
+--
+-- -- Define a Lua function for the conditional mapping
+-- function ConditionalMapping()
+--     -- Check if there is a split in the current window
+--     local isSplit = vim.fn.tabpagewinnr(0) > 1 or vim.fn.tabpagewinnr(0, '$') > 1
+--
+--     -- Choose the command based on the split condition
+--     local command = isSplit and ":TmuxNavigateLeft<CR>" or "" .. l
+--
+--     -- Execute the chosen command
+--     return vim.cmd(command)
+-- end
+--
+-- -- Set the keymap in Lua
+-- vim.api.nvim_set_keymap('n', string.format('<A-%s>', l), ':lua ConditionalMapping()<CR>', { noremap = true, silent = true })
+
+
+
 
 -- Window Alternation
-   -- for i = 1, 9, 1 do
-   --   vim.keymap.set("n", string.format("<leader-%s>", i), function()
-   --    tabd(i)
-   --   end)
-   -- end
+-- for i = 1, 9, 1 do
+--   vim.keymap.set("n", string.format("<leader-%s>", i), function()
+--    tabd(i)
+--   end)
+-- end
 
 -- for i=0,9 do
 --   vim.keymap.set("n", string.format("<A-%s>", i), function ()
@@ -36,8 +57,6 @@ autocmd("VimResized", {
   pattern = "*",
   command = "tabdo wincmd =",
 })
-
-
 
 --
 -- -- reloads xresources for current focused window onl

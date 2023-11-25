@@ -1,41 +1,41 @@
 local null_ls = require "null-ls"
 
 -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local format = null_ls.builtins.formatting
+local formatting = null_ls.builtins.formatting
 local lint = null_ls.builtins.diagnostics
 
 local opts = {
   sources = {
 
-    format.gofumpt,
-    format.goimports_reviser,
-    format.golines,
+    formatting.gofumpt,
+    formatting.goimports_reviser,
+    formatting.golines,
 
     --Deno
-    format.deno_fmt,
+    formatting.deno_fmt,
 
     --Prettier
-    format.prettier.with { filetypes = { "html", "markdown", "css" } },
+    formatting.prettier,
 
     --Lua
-    format.stylua,
+    formatting.stylua,
 
     --Shell
-    format.shfmt,
+    formatting.shfmt,
     lint.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
     --C++
-    format.clang_format,
+    formatting.clang_format,
 
     --Ruby
     lint.rubocop,
-    format.rubocop,
+    formatting.rubocop,
 
     --Html
-    format.htmlbeautifier,
+    formatting.htmlbeautifier,
 
     --Yaml
-    format.yamlfmt,
+    formatting.yamlfmt,
   },
 }
 

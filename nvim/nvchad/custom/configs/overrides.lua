@@ -242,6 +242,7 @@ M.nvimcmp = {
       { name = "hrsh7th/cmp-nvim-lsp" },
       { name = "L3MON4D3/LuaSnip" },
       { name = "saadparwaiz1/cpm_luasnip" },
+      { name = "Exafunction/codeium.vim" },
     },
     experimental = {
       ghost_text = true,
