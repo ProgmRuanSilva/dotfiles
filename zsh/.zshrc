@@ -115,11 +115,9 @@ plugins=(
     zsh-autosuggestions
     zsh-cargo-completion
     zsh-syntax-highlighting
-    zsh-interactive-cd # fzf required
 )
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.oh-my-zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
 
 # Shell Colored Scripts
 colorscript random
@@ -128,31 +126,11 @@ colorscript random
 # Tmux
 tmux
 
-# session_name="sesh"
-#
-# # 1. First you check if a tmux session exists with a given name.
-# tmux has-session -t=$session_name 2> /dev/null
-#
-# # 2. Create the session if it doesn't exists.
-# if [[ $? -ne 0 ]]; then
-#   TMUX='' tmux new-session -d -s "$session_name"
-# fi
-#
-# # 3. Attach if outside of tmux, switch if you're in tmux.
-# if [[ -z "$TMUX" ]]; then
-#   tmux attach -t "$session_name"
-# else
-#   tmux switch-client -t "$session_name"
-# fi
-
 # Alias-finder
   # zstyle ':omz:plugins:alias-finder' autoload yes
   # zstyle ':omz:plugins:alias-finder' longer yes
   # zstyle ':omz:plugins:alias-finder' exact yes
   # zstyle ':omz:plugins:alias-finder' cheaper yes
-
-
-
 
 # Unmapppings
 bindkey -r '^T'
@@ -182,6 +160,7 @@ bindkey -r '^T'
 
   bindkey '^[f' fzf-file-widget
   bindkey '^[c' fzf-cd-widget
+  bindkey '^[g' zsh-interactive-cd
 
 # Defaults Commands
     alias killp='kill -9'
@@ -238,6 +217,7 @@ bindkey -r '^T'
 
 # Configurations Files
   alias zshcfg="nvim ~/.zshrc"
+  alias fzfcfg="nvim ~/.fzf.zsh"
   alias nvcfg="cd ~/.config/nvim/lua/custom/;nvim"
   alias strcfg="nvim ~/.config/starship/starship.toml"
 
@@ -258,12 +238,14 @@ bindkey -r '^T'
 # Git
   alias gph="git push"
   alias gco="gitmoji -c"
+  alias gch="git checkout"
   alias gc="git checkout"
   alias gcb="git checkout -b"
   alias gd="lazygit"
 
 # Docker Compose
   alias dr="docker run"
+  alias dps="lazydocker"
   alias db="docker build"
   alias dimg="docker image ls" # not working
   alias d="docker"

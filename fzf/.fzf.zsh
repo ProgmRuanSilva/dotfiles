@@ -20,23 +20,30 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 '
 # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="
+  --border
+  --margin=1
+  --padding=1
+  --height=80%
   --preview 'bat -n --color=always {}'
   --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'
   "
 
-# Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
+  --border
+  --margin=1
+  --padding=1
+  --height=80%
   --preview 'bat -n --color=always {}'
   --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'"
 
 # Tmux
-export FZF_TMUX_OPTS='-p80%,60%'
+# export FZF_TMUX_OPTS='-p80%,60%'
 
 # Options to fzf command
-export FZF_COMPLETION_OPTS='--border --info=inline'
+export FZF_COMPLETION_TRIGGER=''
+export FZF_COMPLETION_OPTS=' --height=40% --layout=reverse --info=inline --border --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle,alt-l:up''
 
 # Commands
-
 # Open File or Directory
 ff() {
   IFS=$'\n' files=($(fzf-tmux -p80%,60%  --preview 'bat -n --color=always {}' --query="$1" --multi --select-1 --reverse --exit-0  --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'  ))
@@ -45,7 +52,7 @@ ff() {
 
 # fh - repeat history
 fh() {
-  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --reverse --border --height=40% --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'| sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }
 
 # Another CTRL-T script to select a directory and paste it into line
@@ -76,17 +83,35 @@ ffs ()
 }
 
 # Select a running docker container to stop
-function dcps() {
+function dkp() {
   local cid
   cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
 
   [ -n "$cid" ] && docker stop "$cid"
 }
 
-
-
-
-
+# Custom fuzzy completion for "doge" command
+#   e.g. doge **<TAB>
+# _fzf_complete_doge() {
+#   _fzf_complete --multi --reverse --prompt="doge> " -- "$@" < <(
+#     echo very
+#     echo wow
+#     echo such
+#     echo doge
+#   )
+# }
+#
+# _fzf_complete_foo() {
+#  _fzf_complete --multi --reverse --header-lines=3 -- "$@" < <(
+#    exa -xA --color=always --icons --sort=size --group-directories-first
+#  )
+# }
+#
+# _fzf_complete_foo_post() {
+#  awk '{print $NF}'
+# }
+#
+# [ -n "$BASH" ] && complete -F _fzf_complete_foo -o default -o bashdefault foo
 
 # Setup fzf
 # ---------

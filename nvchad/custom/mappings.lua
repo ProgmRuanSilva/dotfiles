@@ -14,7 +14,7 @@ M.general = {
     ["<A-l>"] = { "<Right>", "Move right" },
     ["<A-n>"] = { "<C-o>b", "back word phrase"},
     ["<A-m>"] = { "<C-o>w", "next word phrase"},
-    ["<A-s>"] = { "<C-o><End>", "end of line"},
+    ["<A-g>"] = { "<C-o><End>", "end of line"},
     ["<A-f>"] = { "<cmd>HopWord<CR>", "HopWord command to go to selected word"},
     ["<A-a>"] = { "<cmd>HopAnywhere<CR>", "HopWord command to go to selected word"},
 
@@ -31,7 +31,7 @@ M.general = {
     ["<A-b>"] = {"<C-o><S-v>y<C-o>p", "copy line below"},
 
   --Save and Restore
-    ["<A-g>"] = { "<cmd>w!<CR>", "save"},
+    ["<A-s>"] = { "<cmd>w!<CR>", "save"},
     -- ["<A-b>"] = { "<C-o>u", "restore newest"},
     ["<A-r>"] = {"<C-o><C-r>", "undo restore"},
 
@@ -272,64 +272,64 @@ M.tabufline = {
 }
 
 
-M.nvterm = {
+-- M.nvterm = {
 
-  t = {
-    ["<A-d>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
-    ["<A-j>"] = {"<Enter>", "insert enter key in terminal mode"},
-    ["<A-ç>"] = {"<Backspace>", "insert enter key in terminal mode"},
-    ["<A-h>"] = {"<A-h>", "clear line terminal"},
-
-    ["<A-g>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
-    },
-  },
-
-  n = {
-
-    ["<A-g>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
-    },
-
-    --C++
-    ["<leader>cp"] = {
-      function()
-        require("nvterm.terminal").send("clear && g++ -o out " .. vim.fn.expand "%" .. " && ./out", "vertical")
-      end,
-      "compile & run a cpp file",
-    },
-
-    --C
-    ["<leader>cc"] = {
-      function()
-        require("nvterm.terminal").send("clear && gcc -o out " .. vim.fn.expand "%" .. " && ./out", "vertical")
-      end,
-      "compile & run a c file",
-    },
-
-    --Rust
-    ["<leader>cr"] = {
-      function()
-        require("nvterm.terminal").send("clear && cargo run ." .. vim.fn.expand "%","vertical")
-      end,
-      "compile & run rust file",
-    },
-
-    --Go
-    ["<leader>cg"] = {
-      function()
-        require("nvterm.terminal").send("clear && go run ." .. vim.fn.expand "%","vertical")
-      end,
-      "compile & run go file",
-    },
-  },
-}
+--   t = {
+--     ["<A-d>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
+--     ["<A-j>"] = {"<Enter>", "insert enter key in terminal mode"},
+--     ["<A-ç>"] = {"<Backspace>", "insert enter key in terminal mode"},
+--     ["<A-h>"] = {"<A-h>", "clear line terminal"},
+--
+--     ["<A-g>"] = {
+--       function()
+--         require("nvterm.terminal").toggle "horizontal"
+--       end,
+--       "Toggle horizontal term",
+--     },
+--   },
+--
+--   n = {
+--
+--     ["<A-g>"] = {
+--       function()
+--         require("nvterm.terminal").toggle "horizontal"
+--       end,
+--       "Toggle horizontal term",
+--     },
+--
+--     --C++
+--     ["<leader>cp"] = {
+--       function()
+--         require("nvterm.terminal").send("clear && g++ -o out " .. vim.fn.expand "%" .. " && ./out", "vertical")
+--       end,
+--       "compile & run a cpp file",
+--     },
+--
+--     --C
+--     ["<leader>cc"] = {
+--       function()
+--         require("nvterm.terminal").send("clear && gcc -o out " .. vim.fn.expand "%" .. " && ./out", "vertical")
+--       end,
+--       "compile & run a c file",
+--     },
+--
+--     --Rust
+--     ["<leader>cr"] = {
+--       function()
+--         require("nvterm.terminal").send("clear && cargo run ." .. vim.fn.expand "%","vertical")
+--       end,
+--       "compile & run rust file",
+--     },
+--
+--     --Go
+--     ["<leader>cg"] = {
+--       function()
+--         require("nvterm.terminal").send("clear && go run ." .. vim.fn.expand "%","vertical")
+--       end,
+--       "compile & run go file",
+--     },
+--   },
+-- }
 
 M.dap = {
   plugin = true,

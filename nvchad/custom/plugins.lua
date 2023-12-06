@@ -77,7 +77,7 @@ local plugins = {
     "mhartington/formatter.nvim",
     event = "VeryLazy",
     opts = function ()
-      return require "custom.configs.formatter"
+      return require"custom.configs.formatter"
     end
   },
 
@@ -309,14 +309,14 @@ local plugins = {
     end
   },
 
-  {
-    "glepnir/dashboard-nvim",
-    event = {"VimEnter"},
-    dependencies = {"nvim-tree/nvim-web-devicons"},
-    config = function()
-      require"custom.configs.dashboard"
-    end,
-  },
+  -- {
+  --   "glepnir/dashboard-nvim",
+  --   event = {"VimEnter"},
+  --   dependencies = {"nvim-tree/nvim-web-devicons"},
+  --   config = function()
+  --     require"custom.configs.dashboard"
+  --   end,
+  -- },
 
   {
     "David-Kunz/gen.nvim",
@@ -428,9 +428,9 @@ local plugins = {
     event = "BufEnter",
     config = function ()
       vim.keymap.set('i', '<A-i>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-      vim.keymap.set('i', '<A-[>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      -- vim.keymap.set('i', '<A-[>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
       vim.keymap.set('i', '<A-]>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-      vim.keymap.set('i', '<A-p>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+      vim.keymap.set('i', '<A-[>', function() return vim.fn['codeium#Clear']() end, { expr = true })
     end
   },
 
