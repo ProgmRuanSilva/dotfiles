@@ -1,5 +1,5 @@
 require("dashboard").setup({
-  -- theme = "hyper",
+  theme = "hyper",
   disable_move = true,
   config = {
     week_header = {

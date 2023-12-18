@@ -12,8 +12,9 @@ cp -frv ~/.config/psql/* ~/dotfiles/psql/config/psql/ ;
 
 cp -frv ~/.fzf.zsh ~/dotfiles/fzf/ ;
 cp -frv ~/.gitconfig ~/dotfiles/git/ ;
+cp -frv ~/.config/tmux/tmux.conf ~/dotfiles/tmux/ ;
+cp -frv ~/.config/tmux/tmux.conf.local ~/dotfiles/tmux/ ;
 
-# cp -frv ~/dotfiles/
 # cp -frv ~/dotfiles/
 # cp -frv ~/dotfiles/
 # cp -frv ~/dotfiles/

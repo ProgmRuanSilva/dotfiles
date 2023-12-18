@@ -124,13 +124,21 @@ colorscript random
 # Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Tmux
-tmux
+tmux attach || tmux
 
 # Alias-finder
   # zstyle ':omz:plugins:alias-finder' autoload yes
   # zstyle ':omz:plugins:alias-finder' longer yes
   # zstyle ':omz:plugins:alias-finder' exact yes
   # zstyle ':omz:plugins:alias-finder' cheaper yes
+
+# List directories with exa
+# Todo make the line break
+leja() {
+  exa -xA --color=always --icons --sort=size --group-directories-first
+  zle reset-prompt
+}
+  zle -N leja
 
 # Unmapppings
 bindkey -r '^T'
@@ -161,6 +169,7 @@ bindkey -r '^T'
   bindkey '^[f' fzf-file-widget
   bindkey '^[c' fzf-cd-widget
   bindkey '^[g' zsh-interactive-cd
+  bindkey '^[v' leja
 
 # Defaults Commands
     alias killp='kill -9'
@@ -246,8 +255,8 @@ bindkey -r '^T'
 # Docker Compose
   alias dr="docker run"
   alias dps="lazydocker"
-  alias db="docker build"
-  alias dimg="docker image ls" # not working
+  alias db="docker build -t {} ."
+  alias dls="docker image ls" # not working
   alias d="docker"
   alias dh="docker --help"
 

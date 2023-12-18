@@ -106,8 +106,8 @@ tmux_conf_theme_colour_17="#e4e4e4"   # white
 #tmux_conf_theme_colour_17="colour15"
 
 # window style
-tmux_conf_theme_window_fg="default"
-tmux_conf_theme_window_bg="default"
+tmux_conf_theme_window_fg="#252834"
+tmux_conf_theme_window_bg="#252834"
 
 # highlight focused pane, possible values are:
 #   - true
