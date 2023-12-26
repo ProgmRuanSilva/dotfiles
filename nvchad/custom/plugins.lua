@@ -309,14 +309,14 @@ local plugins = {
     end
   },
 
-  {
-    "glepnir/dashboard-nvim",
-    event = {"VimEnter"},
-    dependencies = {"nvim-tree/nvim-web-devicons"},
-    config = function()
-      require"custom.configs.dashboard"
-    end,
-  },
+  -- {
+  --   "glepnir/dashboard-nvim",
+  --   event = {"VimEnter"},
+  --   dependencies = {"nvim-tree/nvim-web-devicons"},
+  --   config = function()
+  --     require"custom.configs.dashboard"
+  --   end,
+  -- },
 
   {
     "David-Kunz/gen.nvim",
