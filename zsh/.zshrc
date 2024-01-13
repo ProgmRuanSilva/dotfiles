@@ -98,7 +98,6 @@ plugins=(
     jsontools
     docker-machine
     alias-finder
-    ansible
     catimg
     copyfile
     extract
@@ -134,6 +133,12 @@ tmux attach || tmux
 
 # List directories with exa
 # Todo make the line break
+cdback() {
+  cd ..
+  zle reset-prompt
+}
+  zle -N cdback
+
 leja() {
   exa -xA --color=always --icons --sort=size --group-directories-first
   zle reset-prompt
@@ -169,7 +174,8 @@ bindkey -r '^T'
   bindkey '^[f' fzf-file-widget
   bindkey '^[c' fzf-cd-widget
   bindkey '^[g' zsh-interactive-cd
-  bindkey '^[v' leja
+  bindkey '^[f' leja
+  bindkey '^[v' cdback
 
 # Defaults Commands
     alias killp='kill -9'
@@ -221,7 +227,7 @@ bindkey -r '^T'
   alias rm='rm -rf'
   alias cp='cp -r'
   alias rst='touch ~/.zshsrc'
-  alias update='sudo pacman -Syu'
+  alias update='backup; sudo yay -Syu'
   alias backup="sh ~/dotfiles/scripts/backup.sh"
 
 # Configurations Files
@@ -243,30 +249,32 @@ bindkey -r '^T'
   alias ns="npm start"
   alias nd="npm run dev"
   alias nr="npm run"
+  alias ni="npm install"
 
 # Git
+  alias gd="lazygit"
   alias gph="git push"
   alias gco="gitmoji -c"
-  alias gch="git checkout"
   alias gc="git checkout"
+  alias gch="git checkout"
   alias gcb="git checkout -b"
-  alias gd="lazygit"
+  alias gstp="git fetch; git pull origin main"
 
 # Docker Compose
+  alias d="docker"
   alias dr="docker run"
   alias dps="lazydocker"
-  alias db="docker build -t {} ."
-  alias dls="docker image ls" # not working
-  alias d="docker"
-  alias dh="docker --help"
+  alias dhelp="docker --help"
+  alias dimg="docker image ls"
+  alias dexec="docker exec -it"
+  alias dbuild="docker build -it "
 
   alias dc="docker-compose"
   alias dcu="docker-compose up"
   alias dcd="docker-compose down"
-  # alias dcps="docker-compose ps"
+  alias dcps="docker-compose ps"
   alias dcb="docker-compose build"
   alias dch="docker-compose --help"
-  alias dimg="docker-compose image ls"
   alias dcub="docker-compose up --build"
   alias dcud="docker-compose up --detach"
 

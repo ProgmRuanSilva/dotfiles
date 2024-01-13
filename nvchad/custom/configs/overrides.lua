@@ -101,7 +101,7 @@ M.telescope = {
       },
     },
   },
-  extensions_list = { "themes", "terms", "fzf", "docker", "gitmoji", "octo"  },
+  extensions_list = { "themes", "terms", "fzf", "docker", "gitmoji" },
   extensions = {
     fzf = {
       fuzzy = true,

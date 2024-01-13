@@ -151,6 +151,7 @@ M.general = {
     ["<leader>ws"] = {"<cmd>Telescope docker volumes<CR>"},
     ["<leader>wm"] = {"<cmd>Telescope docker machines<CR>"},
     ["<leader>wf"] = {"<cmd>Telescope docker compose<CR>"},
+    ["<leader>ld"] = {"<cmd>LazyDocker<CR>"},
 
 
     --Git

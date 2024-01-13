@@ -142,18 +142,18 @@ local plugins = {
     cmd = "GitBlameToggle",
   },
 
-  {
-    "pwntester/octo.nvim",
-    event = {"VimEnter"},
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function ()
-      require"custom.configs.telescope.octo"
-    end
-  },
+  -- {
+  --   "pwntester/octo.nvim",
+  --   event = {"VimEnter"},
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim",
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  --   config = function ()
+  --     require"custom.configs.telescope.octo"
+  --   end
+  -- },
 
   --Text Edition
   {
@@ -433,6 +433,15 @@ local plugins = {
       vim.keymap.set('i', '<A-[>', function() return vim.fn['codeium#Clear']() end, { expr = true })
     end
   },
+
+  {
+    "crnvl96/lazydocker.nvim",
+    event = "VeryLazy",
+    opts = {},
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    }
+}
 
   -- {
   --   "",

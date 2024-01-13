@@ -126,7 +126,7 @@ format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
 
 [time]
-disabled = false
+disabled = true
 format = "[$time]($style)"
 style = "bright-black"
 
@@ -139,6 +139,7 @@ style = "yellow"
 symbol = " "
 
 [jobs]
+disabled = true
 symbol = ""
 style = "bold red"
 number_threshold = 1
