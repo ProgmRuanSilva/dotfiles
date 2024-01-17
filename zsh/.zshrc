@@ -7,6 +7,7 @@ export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export FZF_BASE="/$HOME/.fzf/"
 export FLYCTL_INSTALL="/home/dev/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
+export EDITOR="nvim"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
@@ -68,7 +69,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 export LANG=en_US.UTF-8
 
 # Default Editor
-export EDITOR="/usr/bin/nvim"
+# export EDITOR="/usr/bin/nvim"
 export VISUAL="/usr/bin/nvim"
 
 # Compilation flags
@@ -119,11 +120,13 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Shell Colored Scripts
-colorscript random
+  colorscript random
+
 # Fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Tmux
-tmux attach || tmux
+  tmux attach || tmux
 
 # Alias-finder
   # zstyle ':omz:plugins:alias-finder' autoload yes
@@ -131,22 +134,20 @@ tmux attach || tmux
   # zstyle ':omz:plugins:alias-finder' exact yes
   # zstyle ':omz:plugins:alias-finder' cheaper yes
 
-# List directories with exa
-# Todo make the line break
-cdback() {
-  cd ..
-  zle reset-prompt
-}
+  cdback() {
+    cd ..
+    zle reset-prompt
+  }
   zle -N cdback
 
-leja() {
-  exa -xA --color=always --icons --sort=size --group-directories-first
-  zle reset-prompt
-}
+  leja() {
+    exa -xA --color=always --icons --sort=size --group-directories-first
+    zle reset-prompt
+  }
   zle -N leja
 
 # Unmapppings
-bindkey -r '^T'
+  bindkey -r '^T'
 
 # Command-Line Mappings #zle -al to see all widgets avalible
   bindkey '^[j' accept-line
@@ -174,6 +175,7 @@ bindkey -r '^T'
   bindkey '^[f' fzf-file-widget
   bindkey '^[c' fzf-cd-widget
   bindkey '^[g' zsh-interactive-cd
+
   bindkey '^[f' leja
   bindkey '^[v' cdback
 
@@ -181,7 +183,7 @@ bindkey -r '^T'
     alias killp='kill -9'
     alias jctl="journalctl -xb"
     alias cleanup='sudo pacman -Rns $(pacman -Qtdq);yay -c' # cleanup orphaned packages
-    alias showbinds='zle -al'
+    alias showbinds='zle -al | less'
 
   # Grep
     alias grep='grep --color=auto'
@@ -223,6 +225,7 @@ bindkey -r '^T'
 # Zsh
   alias q='exit'
   alias mv='mv -i'
+  alias rnm='vidir'
   alias hm='cd ~/'
   alias rm='rm -rf'
   alias cp='cp -r'

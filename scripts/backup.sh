@@ -13,7 +13,8 @@ cp -frv ~/.config/psql/* ~/dotfiles/psql/config/psql/ ;
 cp -frv ~/.fzf.zsh ~/dotfiles/fzf/ ;
 cp -frv ~/.gitconfig ~/dotfiles/git/ ;
 cp -frv ~/.config/tmux/tmux.conf ~/dotfiles/tmux/ ;
-cp -frv ~/.config/tmux/tmux.conf.local ~/dotfiles/tmux/ ;
+cp -frv ~/.config/lazydocker/config.yml  ~/dotfiles/lazydocker/ ;
+cp -frv ~/.config/lazygit/config.yml  ~/dotfiles/lazygit/ ;
 
 # cp -frv ~/dotfiles/
 # cp -frv ~/dotfiles/
