@@ -117,16 +117,17 @@ plugins=(
     zsh-syntax-highlighting
 )
 
-source $ZSH/oh-my-zsh.sh
+# Tmux
+tmux
 
-# Shell Colored Scripts
-  colorscript random
+# Oh My Zsh
+source $ZSH/oh-my-zsh.sh
 
 # Fzf
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Tmux
-  tmux attach || tmux
+# Shell Colored Scripts
+  colorscript random
 
 # Alias-finder
   # zstyle ':omz:plugins:alias-finder' autoload yes
@@ -211,6 +212,7 @@ source $ZSH/oh-my-zsh.sh
     alias le='exa -GA --color=always --icons --sort=size --group-directories-first'
     alias lej='exa -xA --color=always --icons --sort=size --group-directories-first'
     alias el='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias ej='exa -xA --color=always --icons --sort=size --group-directories-first'
     alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
 
 # System Information
@@ -257,6 +259,7 @@ source $ZSH/oh-my-zsh.sh
 # Git
   alias gd="lazygit"
   alias gph="git push"
+  alias gpl="git pull"
   alias gco="gitmoji -c"
   alias gc="git checkout"
   alias gch="git checkout"
@@ -280,6 +283,7 @@ source $ZSH/oh-my-zsh.sh
   alias dch="docker-compose --help"
   alias dcub="docker-compose up --build"
   alias dcud="docker-compose up --detach"
+  alias dcubd="docker-compose up --build --detach"
 
 # Ollama
   alias olm="ollama run mistral"
