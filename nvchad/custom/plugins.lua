@@ -309,6 +309,23 @@ local plugins = {
     end
   },
 
+  {
+    "crnvl96/lazydocker.nvim",
+    event = "VeryLazy",
+    opts = {},
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    }
+  },
+
+  {
+    "kdheepak/lazygit.nvim",
+    event = "VeryLazy",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
+  },
+
   -- {
   --   "glepnir/dashboard-nvim",
   --   event = {"VimEnter"},
@@ -322,6 +339,26 @@ local plugins = {
     "David-Kunz/gen.nvim",
     event = "VeryLazy",
   },
+
+  {
+    "vuki656/package-info.nvim",
+    event = "VeryLazy",
+    config = function ()
+      require('package-info').setup()
+    end
+  },
+
+  {
+    "Exafunction/codeium.vim",
+    event = "BufEnter",
+    config = function ()
+      vim.keymap.set('i', '<A-i>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+      -- vim.keymap.set('i', '<A-[>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      vim.keymap.set('i', '<A-]>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+      vim.keymap.set('i', '<A-[>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+    end
+  },
+
 
 -----------------
 --- TEST AREA----
@@ -406,47 +443,17 @@ local plugins = {
   --     }
   -- },
 
-
   {
-    "kdheepak/lazygit.nvim",
+    "MunifTanjim/prettier.nvim",
     event = "VeryLazy",
     dependencies = {
-        "nvim-lua/plenary.nvim",
+      "neovim/nvim-lspconfig",
+      "jose-elias-alvarez/null-ls.nvim",
     },
-  },
-
-  {
-    "vuki656/package-info.nvim",
-    event = "VeryLazy",
-    config = function ()
-      require('package-info').setup()
+    config = function()
+      require("custom.configs.prettier")
     end
   },
-
-  {
-    "Exafunction/codeium.vim",
-    event = "BufEnter",
-    config = function ()
-      vim.keymap.set('i', '<A-i>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-      -- vim.keymap.set('i', '<A-[>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-      vim.keymap.set('i', '<A-]>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-      vim.keymap.set('i', '<A-[>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-    end
-  },
-
-  {
-    "crnvl96/lazydocker.nvim",
-    event = "VeryLazy",
-    opts = {},
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    }
-}
-
-  -- {
-  --   "",
-  --   event = "VeryLazy",
-  -- },
 
   -- {
   --   "",

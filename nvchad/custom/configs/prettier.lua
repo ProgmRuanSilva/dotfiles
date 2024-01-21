@@ -1,0 +1,41 @@
+local prettier = require("prettier")
+
+prettier.setup({
+  bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+  cli_options = {
+    arrow_parens = "avoid",
+    bracket_spacing = true,
+    bracket_same_line = false,
+    embedded_language_formatting = "auto",
+    end_of_line = "lf",
+    html_whitespace_sensitivity = "css",
+    insertPragma = false,
+    -- jsx_bracket_same_line = false,
+    jsx_single_quote = false,
+    print_width = 80,
+    prose_wrap = "always",
+    quote_props = "as-needed",
+    requirePragma = false,
+    semi = false,
+    single_attribute_per_line = false,
+    single_quote = true,
+    tab_width = 2,
+    trailing_comma = "all",
+    use_tabs = false,
+    vue_indent_script_and_style = false,
+  },
+  filetypes = {
+    "css",
+    "graphql",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "less",
+    "markdown",
+    "scss",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+  },
+})
