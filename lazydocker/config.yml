@@ -52,10 +52,22 @@ commandTemplates:
   serviceTop: '{{ .DockerCompose }} top {{ .Service.Name }}'
 customCommands:
   containers:
-    - name: 'psql in container'
+    - name: 'Open postgres'
       attach: true
       command: 'docker exec -it {{ .Container.ID }} psql -U postgres'
       description: 'Open psql in the container'
+
+  images:
+    - name: 'Build image'
+      attach: false
+      command: 'docker buildx {{ .Container.ID }} .'
+      description: 'Build image container'
+
+    - name: 'Run image'
+      attach: true
+      command: 'docker run -it {{ .Container.ID }} -P '
+      description: 'Run image in the container'
+
 oS:
   openCommand: nvim {{filename}}
   openLinkCommand: xdg-open {{link}}

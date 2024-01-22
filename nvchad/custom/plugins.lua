@@ -364,6 +364,19 @@ local plugins = {
 --- TEST AREA----
 -----------------
 
+  -- {
+  --   "jackMort/ChatGPT.nvim",
+  --     event = "VeryLazy",
+  --     config = function()
+  --       require("custom.configs.gpt").setup()
+  --     end,
+  --     dependencies = {
+  --       "MunifTanjim/nui.nvim",
+  --       "nvim-lua/plenary.nvim",
+  --       "nvim-telescope/telescope.nvim"
+  --     }
+  -- },
+
   {
     "nvim-telescope/telescope-dap.nvim",
     event = {"VimEnter"},
@@ -424,24 +437,6 @@ local plugins = {
     event = "VeryLazy",
   },
 
-  {
-    "mbbill/undotree",
-    event = "VeryLazy",
-  },
-
-
-  -- {
-  --   "jackMort/ChatGPT.nvim",
-  --     event = "VeryLazy",
-  --     config = function()
-  --       require("custom.configs.gpt").setup()
-  --     end,
-  --     dependencies = {
-  --       "MunifTanjim/nui.nvim",
-  --       "nvim-lua/plenary.nvim",
-  --       "nvim-telescope/telescope.nvim"
-  --     }
-  -- },
 
   {
     "MunifTanjim/prettier.nvim",
@@ -455,10 +450,11 @@ local plugins = {
     end
   },
 
-  -- {
-  --   "",
-  --   event = "VeryLazy",
-  -- },
+  -- https://github.com/jamestthompson3/nvim-remote-containers?tab=readme-ov-file
+  {
+    "jamestthompson3/nvim-remote-containers",
+    event = "VeryLazy",
+  },
 
   -- {
   --   "",
