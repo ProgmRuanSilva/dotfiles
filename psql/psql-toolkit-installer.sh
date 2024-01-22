@@ -21,9 +21,9 @@ splash() {
 }
 
 install_process() {
-    mkdir -p ${HOME}/.config/psql
-    cp -frv config/psql/* ${HOME}/.config/psql
-    cp -frv ${HOME}/dotfiles/zsh/psql/config/.psqlrc ${HOME}/
+    mkdir -p ${HOME}/.config/psql/
+    cp -frv ${HOME}/dotfiles/psql/config/psql/* ${HOME}/.config/psql/
+    cp -frv ${HOME}/dotfiles/psql/config/.psqlrc ${HOME}/
     return $?
 }
 
