@@ -6,7 +6,7 @@ yay -S asdf-vm --noconfirm ;
 asdf plugin add nodejs;asdf plugin add python; asdf plugin add ruby; asdf plugin add golang; asdf plugin add rust; asdf plugin add lua; asdf install nodejs latest; asdf install rust latest; asdf install lua latest; asdf install golang latest; asdf install python latest; asdf install ruby latest; asdf global nodejs latest; asdf global rust latest; asdf global lua latest; asdf global golang latest; asdf global python latest; asdf global ruby latest;
 
 # Proceed installation
-yay -S --noconfirm sqlite postgresql postgresql-libs redis libxml2 zlib ncurses5-compat-libs gdbm nss readline libffi yaml-cpp unzip gcc wget curl openssl libyaml ripgrep zsh memcached imagemagick ffmpeg mupdf mupdf-tools poppler yarn libxml2 ffmpeg mupdf mupdf-tools wget curl gcc git vim make cmake unzip mesa docker docker-compose docker-machine docker-buildx unixodbc sxhkd fzf gyp bat github-cli microsoft-edge-beta neovim fd shell-color-scripts sd exa dog xh duf jq jqp netcat ansible expac mariadb mariadb-libs libmariadbclient mariadb-clients lazygit tmux entr w3m parallel docker-scout
+yay -S --noconfirm sqlite  postgresql postgresql-libs redis libxml2 zlib ncurses5-compat-libs gdbm nss readline libffi yaml-cpp unzip gcc wget curl openssl libyaml ripgrep zsh memcached imagemagick ffmpeg mupdf mupdf-tools poppler yarn libxml2 ffmpeg mupdf mupdf-tools wget curl gcc git vim make cmake unzip mesa docker docker-compose docker-machine docker-buildx  unixodbc sxhkd fzf gyp bat github-cli microsoft-edge-beta neovim fd shell-color-scripts sd exa dog xh duf jq jqp netcat ansible expac mariadb mariadb-libs libmariadbclient mariadb-clients lazygit tmux entr w3m parallel docker-scout
 
 # Bspwm
 cp -r ../bspwm/bspwmrc ~/.config/bspwm/
@@ -19,15 +19,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 curl -sS https://starship.rs/install.sh | sh
 
 # Starship
-mkdir ~/.config/starship
 cp -r ../starship/starship.toml ~/.config/starship/ ;
 
 # Lazygit
-mkdir ~/.config/lazygit
 cp -r ../lazygit/config.yml ~/.config/lazygit/ ;
 
 # Lazydocker
-mkdir ~/.config/lazydocker
 cp -r ../lazydocker/config.yml ~/.config/lazydocker/ ;
 
 # Zsh
@@ -43,11 +40,10 @@ cp -r ../git/.gitconfig ~/ ;
 cp -r ../fzf/.fzf.zsh ~/ ;
 
 # Tmux
-mkdir ~/.config/tmux
 cp -r ../tmux/tmux.conf ~/ ;
 
 # Nvchad
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim && cp -r ../nvchad/custom/* ~/.config/nvim/lua/custom/ ;
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && mkdir ~/.config/nvim/lua/custom && nvim && cp -r ../nvchad/custom/* ~/.config/nvim/lua/custom/ ;
 
 # Keygen
 mkdir ~/.ssh/ && ssh-keygen ;

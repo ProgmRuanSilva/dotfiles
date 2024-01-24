@@ -1,0 +1,2 @@
+sqlite mariadb mariadb-libs postgresql postgresql-libs redis libxml2 zlib ncurses5-compat-libs gdbm nss openssl readline libffi xz zlib yaml-cpp
+unzip nvidia-dkms mesa docker docker-compose docker-machine docker-buildx asdf-vm unixodbc sxhkd ripgrep fzf gyp bat

@@ -11,8 +11,6 @@ export EDITOR="nvim"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
-# Auto commands
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -125,6 +123,13 @@ source $ZSH/oh-my-zsh.sh
 
 # Fzf
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Switch groups, Necessary for docker run
+if [[ `id -gn` != "docker" ]]
+then
+    newgrp docker
+    exit
+fi
 
 # Shell Colored Scripts
   colorscript random

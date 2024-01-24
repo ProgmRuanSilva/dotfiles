@@ -18,6 +18,20 @@ for j = 1, 9, 1 do
   end)
 end
 
+-- Autoformat
+vim.api.nvim_create_augroup("AutoFormat", {})
+
+vim.api.nvim_create_autocmd(
+    "BufWritePost",
+    {
+        pattern = "*.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.md,*.html,*.yaml",
+        group = "AutoFormat",
+        callback = function()
+            vim.cmd("silent !black --quiet %")
+            vim.cmd("Prettier")
+        end,
+    }
+)
 -- -- Define a variable for the key
 -- local l = "l"
 --
