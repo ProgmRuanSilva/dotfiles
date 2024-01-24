@@ -86,7 +86,7 @@ git:
   allBranchesLogCmd: 'git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium'
   overrideGpg: false # prevents lazygit from spawning a separate process when using GPG
   disableForcePushing: false
-  parseEmoji: false
+  parseEmoji: true
 os:
   copyToClipboardCmd: '' # See 'Custom Command for Copying to Clipboard' section
   editPreset: '' # see 'Configuring File Editing' section

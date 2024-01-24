@@ -203,11 +203,16 @@ source $ZSH/oh-my-zsh.sh
     alias find='fd'
 
   # Bat
-    alias less='bat  --theme=Dracula --color always'
+    alias less='bat --theme=Dracula --color always --decorations always --style full'
     alias cat='bat --theme=Dracula --color always '
+
+  # ACT
+    alias actr='act -j'
+    alias actl='act -l'
 
   # Exa List
     alias l='exa -D --color=always --icons --sort=size --group-directories-first'
+    alias e='exa -xA --color=always --icons --sort=size --group-directories-first'
     alias ls="exa -T --color=always --icons --group-directories-first"
     alias le='exa -GA --color=always --icons --sort=size --group-directories-first'
     alias lej='exa -xA --color=always --icons --sort=size --group-directories-first'
@@ -277,6 +282,7 @@ source $ZSH/oh-my-zsh.sh
 
   alias dc="docker-compose"
   alias dcu="docker-compose up"
+  alias dcw="docker-compose watch"
   alias dcd="docker-compose down"
   alias dcps="docker-compose ps"
   alias dcb="docker-compose build"
@@ -290,5 +296,6 @@ source $ZSH/oh-my-zsh.sh
   alias olc="ollama run codellama"
   alias oll="ollama run llama"
 
+# System
   alias off="poweroff"
   alias rbt="reboot"

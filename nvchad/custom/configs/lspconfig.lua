@@ -40,7 +40,7 @@ lspconfig.eslint.setup {
   capabilities = capabilities,
   filetypes = {".tsx", ".ts", ".js", ".mjs", ".cjs"},
   root_dir = util.root_pattern(".eslintignore", ".eslintrc.mjs", ".eslintrc.cjs"),
-  cmd = {"eslint"},
+  cmd = {"Prettier"},
   init_options = {
     preferences = {
       disableSuggestions = false,
