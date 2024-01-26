@@ -2,7 +2,7 @@
 	name = Ruan Silva
 	email = progmruansilva@gmail.com
 [core]
-    editor = "NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+    editor = "nvim"
     pager = diff-highlight | diff-so-fancy | less --tabs=4 -RSFX
 [diff]
     tool = lazygit
@@ -41,8 +41,6 @@
 [mergetool "splice"]
     cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
     trustExitCode = true
-[init]
-    templatedir = ~/.git_template
 [push]
     default = simple
 [rerere]
