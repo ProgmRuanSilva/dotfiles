@@ -53,8 +53,8 @@ M.telescope = {
       i = {
 
         --Moviment
-        ["<A-k>"] = require("telescope.actions").move_selection_next,
-        ["<A-l>"] = require("telescope.actions").move_selection_previous,
+        ["<A-m>"] = require("telescope.actions").move_selection_next,
+        ["<A-n>"] = require("telescope.actions").move_selection_previous,
         ["<A-j>"] = require("telescope.actions").select_default,
 
         --Splits
@@ -65,8 +65,8 @@ M.telescope = {
         -- ["<A-w>"] = require("telescope.actions").results_scrolling_up,
         -- ["<A-e>"] = require("telescope.actions").results_scrolling_down,
 
-        ["<A-m>"] = require("telescope.actions").preview_scrolling_down,
-        ["<A-n>"] = require("telescope.actions").preview_scrolling_down,
+        -- ["<A-m>"] = require("telescope.actions").preview_scrolling_down,
+        -- ["<A-n>"] = require("telescope.actions").preview_scrolling_down,
 
         --Edit
         ["<A-q>"] = require("telescope.actions").close,
@@ -81,16 +81,16 @@ M.telescope = {
         ["<A-j>"] = require("telescope.actions").select_default,
 
         --Moviment
-        ["k"] = require("telescope.actions").move_selection_next,
-        ["l"] = require("telescope.actions").move_selection_previous,
+        ["m"] = require("telescope.actions").move_selection_next,
+        ["n"] = require("telescope.actions").move_selection_previous,
 
         --Splits
         ["<A-w>"] = require("telescope.actions").file_vsplit,
         ["<A-e>"] = require("telescope.actions").file_split,
 
         --Preview View
-        ["<A-n>"] = require("telescope.actions").preview_scrolling_up,
-        ["<A-m>"] = require("telescope.actions").preview_scrolling_down,
+        -- ["<A-n>"] = require("telescope.actions").preview_scrolling_up,
+        -- ["<A-m>"] = require("telescope.actions").preview_scrolling_down,
 
         --Git
         ["<A-c>"] = require("telescope.actions").git_create_branch,

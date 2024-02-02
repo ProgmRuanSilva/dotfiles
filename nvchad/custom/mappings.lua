@@ -160,44 +160,6 @@ M.general = {
     ["<leader>gs"] = {"<cmd>Telescope git_status<CR>"},
     ["<leader>gd"] = {"<cmd>LazyGit<CR>"},
 
-
-  --Octo
-
-    ["<leader>gh"] = {"<cmd>Octo actions<CR>", "help command of Octo"},
-
-    --Pull Requests
-    ["<leader>gpl"] = {"<cmd>Octo pr list<CR>"},
-    ["<leader>gpc"] = {"<cmd>Octo pr create<CR>"},
-    ["<leader>gpcd"] = {"<cmd>Octo pr delete<CR>"},
-
-    ["<leader>gpe"] = {"<cmd>Octo pr edit<CR>"},
-    ["<leader>gph"] = {"<cmd>Octo pr checkout<CR>"},
-    ["<leader>gpm"] = {"<cmd>Octo pr merge<CR>"},
-    -- ["<leader>gd"] =  {"<cmd>Octo pr diff<CR>"},
-    ["<leader>gpr"] = {"<cmd>Octo pr ready<CR>"},
-    ["<leader>qpb"] = {"<cmd>Octo pr browser<CR>"},
-
-    --Repository
-    ["<leader>gnl"] = {"<cmd>Octo repo list<CR>"},
-    ["<leader>gnc"] = {"<cmd>Octo repo create<CR>"},
-    ["<leader>gnd"] = {"<cmd>Octo repo delete<CR>"},
-
-    --Issue
-    ["<leader>gil"] = {"<cmd>Octo issue list<CR>"},
-    ["<leader>gic"] = {"<cmd>Octo issue create<CR>"},
-    ["<leader>gie"] = {"<cmd>Octo issue edit<CR>"},
-    ["<leader>gid"] = {"<cmd>Octo issue delete<CR>"},
-    ["<leader>gis"] = {"<cmd>Octo issue search<CR>"},
-
-    --Review
-    ["<leader>grs"] = {"<cmd>Octo review start<CR>"},
-    ["<leader>gru"] = {"<cmd>Octo review submit<CR>"},
-    ["<leader>grr"] = {"<cmd>Octo review resume<CR>"},
-    ["<leader>grd"] = {"<cmd>Octo review discard<CR>"},
-    ["<leader>grc"] = {"<cmd>Octo review comments<CR>"},
-    ["<leader>grm"] = {"<cmd>Octo review commit<CR>"},
-    ["<leader>grl"] = {"<cmd>Octo review close<CR>"},
-
   --Goto-Preview
     ["gpd"] = {"<cmd>lua require('goto-preview').goto_preview_definition()<CR>", "goto definition"},
     ["<S-d>"] = {"<cmd>lua require('goto-preview').goto_preview_references()<CR>", "goto reference"},

@@ -31,7 +31,6 @@ local plugins = {
       },
     },
     config = function()
-      -- require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end,
   },
@@ -54,14 +53,6 @@ local plugins = {
           require("luasnip/loaders/from_vscode").lazy_load()
         end,
       },
-
-      -- Ai based completion
-      -- {
-      --   "jcdickinson/codeium.nvim",
-      --   config = function()
-      --     require("codeium").setup {}
-      --   end,
-      -- },
     },
   },
 
@@ -142,19 +133,6 @@ local plugins = {
     cmd = "GitBlameToggle",
   },
 
-  -- {
-  --   "pwntester/octo.nvim",
-  --   event = {"VimEnter"},
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-telescope/telescope.nvim",
-  --     "nvim-tree/nvim-web-devicons",
-  --   },
-  --   config = function ()
-  --     require"custom.configs.telescope.octo"
-  --   end
-  -- },
-
   --Text Edition
   {
     "max397574/better-escape.nvim",
@@ -181,6 +159,18 @@ local plugins = {
         use_default_keymaps = false,
       }
     end,
+  },
+
+  {
+    "MunifTanjim/prettier.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+    config = function()
+      require("custom.configs.prettier")
+    end
   },
 
   {
@@ -271,8 +261,6 @@ local plugins = {
     end
   },
 
-    -- opts = overrides.telescope,
-
   {
     "hrsh7th/cmp-buffer",
     event = "VeryLazy",
@@ -286,6 +274,11 @@ local plugins = {
     config = function ()
       require"custom.configs.cmp"
     end
+  },
+
+  {
+    "itchyny/vim-cursorword",
+    event = "VeryLazy",
   },
 
   {
@@ -326,15 +319,6 @@ local plugins = {
     },
   },
 
-  -- {
-  --   "glepnir/dashboard-nvim",
-  --   event = {"VimEnter"},
-  --   dependencies = {"nvim-tree/nvim-web-devicons"},
-  --   config = function()
-  --     require"custom.configs.dashboard"
-  --   end,
-  -- },
-
   {
     "David-Kunz/gen.nvim",
     event = "VeryLazy",
@@ -359,23 +343,18 @@ local plugins = {
     end
   },
 
+  -- {
+  --   "glepnir/dashboard-nvim",
+  --   event = {"VimEnter"},
+  --   dependencies = {"nvim-tree/nvim-web-devicons"},
+  --   config = function()
+  --     require"custom.configs.dashboard"
+  --   end,
+  -- },
 
 -----------------
 --- TEST AREA----
 -----------------
-
-  -- {
-  --   "jackMort/ChatGPT.nvim",
-  --     event = "VeryLazy",
-  --     config = function()
-  --       require("custom.configs.gpt").setup()
-  --     end,
-  --     dependencies = {
-  --       "MunifTanjim/nui.nvim",
-  --       "nvim-lua/plenary.nvim",
-  --       "nvim-telescope/telescope.nvim"
-  --     }
-  -- },
 
   {
     "nvim-telescope/telescope-dap.nvim",
@@ -412,11 +391,6 @@ local plugins = {
 
   {
     "tpope/vim-dadbod",
-    event = "VeryLazy",
-  },
-
-  {
-    "tpope/vim-dadbod",
     opt = true,
     requires = {
       "kristijanhusak/vim-dadbod-ui",
@@ -430,31 +404,35 @@ local plugins = {
   {
     "kristijanhusak/vim-dadbod-ui",
     event = "VeryLazy",
-  },
-
-  {
-    "kristijanhusak/vim-dadbod-completion",
-    event = "VeryLazy",
-  },
-
-
-  {
-    "MunifTanjim/prettier.nvim",
-    event = "VeryLazy",
     dependencies = {
-      "neovim/nvim-lspconfig",
-      "jose-elias-alvarez/null-ls.nvim",
+      { 'tpope/vim-dadbod', lazy = true },
+      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
     },
-    config = function()
-      require("custom.configs.prettier")
-    end
+    cmd = {
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+    init = function()
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
   },
 
-  -- https://github.com/jamestthompson3/nvim-remote-containers?tab=readme-ov-file
-  {
-    "jamestthompson3/nvim-remote-containers",
-    event = "VeryLazy",
-  },
+  -- {
+  --   "",
+  --   event = "VeryLazy",
+  -- },
+
+  -- {
+  --   "",
+  --   event = "VeryLazy",
+  -- },
+
+  -- {
+  --   "",
+  --   event = "VeryLazy",
+  -- },
 
   -- {
   --   "",
