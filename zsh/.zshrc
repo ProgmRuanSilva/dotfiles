@@ -10,6 +10,11 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export EDITOR="nvim"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+export PNPM_HOME="/home/dev/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -194,10 +199,6 @@ fi
   # Grep
     alias grep='grep --color=auto'
 
-  # XH
-    alias http='xh'
-    alias httph='xh --help | bat'
-
   # Duf
     alias dufh='duf --help | bat'
 
@@ -207,23 +208,23 @@ fi
   # Find
     alias find='fd'
 
-  # Bat
-    alias less='bat --theme=Dracula --color always --decorations always --style full'
-    alias cat='bat --theme=Dracula --color always '
+  # Lsof
+    alias ports='lsof -i -P'
 
-  # ACT
-    alias actr='act -j'
-    alias actl='act -l'
+  # Bat
+    alias less='bat --theme=Dracula --color always '
+    alias cat='bat --theme=Dracula --color always '
 
   # Exa List
     alias l='exa -D --color=always --icons --sort=size --group-directories-first'
-    alias e='exa -xA --color=always --icons --sort=size --group-directories-first'
     alias ls="exa -T --color=always --icons --group-directories-first"
     alias le='exa -GA --color=always --icons --sort=size --group-directories-first'
     alias lej='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias lje='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias lejj='exa -xA --color=always --icons --sort=size --group-directories-first'
     alias el='exa -xA --color=always --icons --sort=size --group-directories-first'
     alias ej='exa -xA --color=always --icons --sort=size --group-directories-first'
-    alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
+    alias elj='exa -xA --color=always --icons --sort=size --group-directories-first'
 
 # System Information
   alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
@@ -256,6 +257,12 @@ fi
   alias n="nvim"
   alias jp="jump"
   alias volume='pavucontrol'
+  alias btop='sudo btop'
+  alias acn='autocannon'
+
+# ACT
+alias actr='act -j'
+alias actl='act -l'
 
 # Postgres
   alias pg="psql -U postgres"
@@ -265,6 +272,16 @@ fi
   alias nd="npm run dev"
   alias nr="npm run"
   alias ni="npm install"
+
+# Pnpm
+  alias p="pnpm"
+  alias pi="pnpm install"
+  alias pa="pnpm add"
+  alias px="pnpm dlx"
+  alias pr="pnpm run"
+  alias pns="pnpm start"
+  alias pd="pnpm run dev"
+  alias pb="pnpm run build"
 
 # Git
   alias gd="lazygit"
@@ -280,6 +297,7 @@ fi
   alias d="docker"
   alias dr="docker run"
   alias dps="lazydocker"
+  alias dsp="lazydocker"
   alias dhelp="docker --help"
   alias dimg="docker image ls"
   alias dexec="docker exec -it"
@@ -295,6 +313,14 @@ fi
   alias dcub="docker-compose up --build"
   alias dcud="docker-compose up --detach"
   alias dcubd="docker-compose up --build --detach"
+
+# Minikube
+  alias mn="minikube"
+  alias mnp="minikube status"
+  alias mns="minikube start"
+  alias mnd="minikube delete"
+  alias mnst="minikube stop"
+  alias mnan="minikube node add"
 
 # Ollama
   alias olm="ollama run mistral"
