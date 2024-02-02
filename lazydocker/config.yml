@@ -59,9 +59,12 @@ customCommands:
 
   images:
     - name: 'Build image'
+    - name: 'Rename container'
       attach: false
       command: 'docker buildx {{ .Container.ID }} .'
       description: 'Build image container'
+      command: 'docker rename {{ .Container.Name }} ruansilva-test-container'
+      description: 'Rename container'
 
     - name: 'Run image'
       attach: true
