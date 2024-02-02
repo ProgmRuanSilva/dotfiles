@@ -3,6 +3,7 @@
 	email = progmruansilva@gmail.com
 [core]
     editor = "nvim"
+    editor = "NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
     pager = diff-highlight | diff-so-fancy | less --tabs=4 -RSFX
 [diff]
     tool = lazygit
