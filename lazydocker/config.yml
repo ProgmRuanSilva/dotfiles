@@ -57,20 +57,21 @@ customCommands:
       command: 'docker exec -it {{ .Container.ID }} psql -U postgres'
       description: 'Open psql in the container'
 
-  images:
-    - name: 'Build image'
     - name: 'Rename container'
       attach: false
-      command: 'docker buildx {{ .Container.ID }} .'
-      description: 'Build image container'
       command: 'docker rename {{ .Container.Name }} ruansilva-test-container'
       description: 'Rename container'
 
+  images:
     - name: 'Run image'
       attach: true
-      command: 'docker run -it {{ .Container.ID }} -P '
-      description: 'Run image in the container'
+      command: 'docker run -it -P --name ruansilva-test-image {{ .Image.Name }}'
+      description: 'Run the image'
 
+    - name: 'Build image'
+      attach: false
+      command: 'docker build -t {{ .Image.ID }} .'
+      description: 'Build image container'
 oS:
   openCommand: nvim {{filename}}
   openLinkCommand: xdg-open {{link}}
