@@ -109,16 +109,16 @@ notARepository: 'prompt' # one of: 'prompt' | 'create' | 'skip' | 'quit'
 promptToReturnFromSubprocess: true # display confirmation when subprocess terminates
 keybinding:
   universal:
-    quit: '<esc>'
+    quit: 'q'
     quit-alt1: '<c-c>' # alternative/alias of quit
-    return: 'q' # return to previous menu, will quit if there's nowhere to return
+    return: ',' # return to previous menu, will quit if there's nowhere to return
     quitWithoutChangingDirectory: 'Q'
     togglePanel: '<tab>' # goto the next panel
     prevItem: '<up>' # go one line up
     nextItem: '<down>' # go one line down
     prevItem-alt: 'k' # go one line up
     nextItem-alt: 'j' # go one line down
-    prevPage: ',' # go to next page in list
+    prevPage: 'z' # go to next page in list
     nextPage: '.' # go to previous page in list
     gotoTop: '<' # go to top of list
     gotoBottom: '>' # go to bottom of list
@@ -227,8 +227,8 @@ keybinding:
     openLogMenu: '<c-l>'
     viewBisectOptions: 'b'
   customCommands:
-    - key: '<c-g>'
-      context: 'status'
+    - key: 'U'
+      context: 'global'
       command: 'git fetch && git pull origin main'
       description: 'Update repo'
   stash:
