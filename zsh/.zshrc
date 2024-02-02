@@ -170,19 +170,19 @@ fi
   bindkey '^[m' forward-word
   bindkey '^[n' backward-word
 
-  bindkey '^[l' clear-screen
+  bindkey '^[s' clear-screen
 
-  bindkey '^[s' end-of-line
+  bindkey '^[f' end-of-line
   bindkey '^[a' beginning-of-line
 
   bindkey '^[i' up-line-or-history
   bindkey '^[o' down-line-or-history
 
-  bindkey '^[f' fzf-file-widget
+  # bindkey '^[f' fzf-file-widget
   bindkey '^[c' fzf-cd-widget
   bindkey '^[g' zsh-interactive-cd
 
-  bindkey '^[f' leja
+  # bindkey '^[f' leja
   bindkey '^[v' cdback
 
 # Defaults Commands

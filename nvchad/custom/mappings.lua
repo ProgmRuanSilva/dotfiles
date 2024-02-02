@@ -89,16 +89,15 @@ M.general = {
 
   --Navigation between splits
     ["<A-j>"] = { "<C-w>h", "Window left" },
-    -- ["<A-l>"] = { "vim.fn.tabpagewinnr(0) == 1 || vim.fn.tabpagewinnr(0, '$') == 1 ? l :<cmd>TmuxNavigateLeft<CR> ", "Window right | <cmd>TmuxNavigateLeft<CR>" },
     ["<A-l>"] = { "<C-w>l", "Window right"},
     ["<A-h>"] = { "<C-w>j", "Window down"},
     ["<A-k>"] = { "<C-w>k", "Window up" },
 
     --Tmux
     ["<C-l>"] = {"<cmd>TmuxNavigateLeft<CR>"},
-    ["<C-h>"] = {"<cmd>TmuxNavigateRight<CR>"},
     ["<C-k>"] = {"<cmd>TmuxNavigateDown<CR>"},
-    ["<C-j>"] = {"<cmd>TmuxNavigateUp<CR>"},
+    -- ["<C-h>"] = {"<cmd>TmuxNavigateRight<CR>"},
+    -- ["<C-j>"] = {"<cmd>TmuxNavigateUp<CR>"},
 
   --Navigate Words
     ["n"] = {"b", "back one word for lazy people"},
@@ -152,7 +151,6 @@ M.general = {
     ["<leader>wm"] = {"<cmd>Telescope docker machines<CR>"},
     ["<leader>wf"] = {"<cmd>Telescope docker compose<CR>"},
     ["<leader>ld"] = {"<cmd>LazyDocker<CR>"},
-
 
     --Git
     ["<leader>gf"] = {"<cmd>GitBlameToggle<CR>"},
@@ -211,10 +209,6 @@ M.general = {
   --Database
     ["<leader>q"] = {"<cmd>DBUIToggle<CR>"},
 
-  -- Undo
-    ["<C-z>"] = {"<cmd>UndotreeToggle<CR>"},
-
-
   },
 
   v = {
@@ -235,9 +229,10 @@ M.general = {
     --Moviments on Command mode
     ["<A-p>"] = {"<Backspace>"},
     ["<A-j>"] = {"<Enter>"},
+    ["<A-m>"] = {"<Down>"},
+    ["<A-n>"] = {"<Up>"},
     ["<A-h>"] = {"<Left>"},
-    ["<A-l>"] = {"<Right>"},
-    ["<A-n>"] = {"<C-b>"},
+    -- ["<A-n>"] = {"<C-b>"},
   },
 
   --test
@@ -246,7 +241,6 @@ M.general = {
   }
 }
 
---Overwrites
 M.nvimtree = {
   n = {
     ["<C-n>"] = {"", "none"},
@@ -272,6 +266,19 @@ M.tabufline = {
   },
 }
 
+M.dap = {
+  plugin = true,
+  n = {
+    ["<leader>af"] = {
+      "<cmd> DapToggleBreakpoint <CR>",
+      "Add breakpoint at line"
+    },
+    ["<leader>ac"] = {
+      "<cmd> DapContinue <CR>",
+      "Run or continue the debugger"
+    }
+  },
+}
 
 -- M.nvterm = {
 
@@ -328,32 +335,6 @@ M.tabufline = {
 --         require("nvterm.terminal").send("clear && go run ." .. vim.fn.expand "%","vertical")
 --       end,
 --       "compile & run go file",
---     },
---   },
--- }
-
-M.dap = {
-  plugin = true,
-  n = {
-    ["<leader>af"] = {
-      "<cmd> DapToggleBreakpoint <CR>",
-      "Add breakpoint at line"
-    },
-    ["<leader>ac"] = {
-      "<cmd> DapContinue <CR>",
-      "Run or continue the debugger"
-    }
-  },
-}
-
--- M.lsp = {
---   n = {
---     ["<leader>fm"] = {
---
---       function()
---         require("conform").format()
---       end,
---       "format with conform",
 --     },
 --   },
 -- }
