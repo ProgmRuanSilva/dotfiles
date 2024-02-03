@@ -41,7 +41,7 @@ rofi_icon='Zafiro'
 
 # Terminal
 terminal_font_name='JetBrainsMono Nerd Font'
-terminal_font_size='10'
+terminal_font_size='9'
 
 # Geany
 geany_colors='arc.conf'
@@ -69,8 +69,8 @@ picom_shadow_r='14'
 picom_shadow_o='0.30'
 picom_shadow_x='-12'
 picom_shadow_y='-12'
-picom_blur_method='none'
-picom_blur_strength='0'
+picom_blur_method='dual_kawase'
+picom_blur_strength='60'
 
 # Bspwm
 bspwm_fbc="$accent"
@@ -78,5 +78,5 @@ bspwm_nbc="$background"
 bspwm_abc="$color7"
 bspwm_pfc="$color2"
 bspwm_border='1'
-bspwm_gap='10'
+bspwm_gap='5'
 bspwm_sratio='0.50'

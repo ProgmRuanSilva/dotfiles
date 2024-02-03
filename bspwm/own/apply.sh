@@ -109,12 +109,12 @@ apply_netmenu() {
 # Terminal ----------------------------------
 apply_terminal() {
 	# alacritty : fonts
-	sed -i ${PATH_TERM}/fonts.yml \
+	sed -i ${PATH_TERM}/fonts.toml\
 		-e "s/family: .*/family: \"$terminal_font_name\"/g" \
 		-e "s/size: .*/size: $terminal_font_size/g"
 
 	# alacritty : colors
-	cat > ${PATH_TERM}/colors.yml <<- _EOF_
+	cat > ${PATH_TERM}/colors.toml <<- _EOF_
 		## Colors configuration
 		colors:
 		  # Default colors
