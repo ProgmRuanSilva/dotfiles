@@ -212,8 +212,9 @@ fi
     alias ports='lsof -i -P'
 
   # Bat
-    alias less='bat --theme=Dracula --color always '
-    alias cat='bat --theme=Dracula --color always '
+    alias less='bat --theme=base16 --force-colorization --paging=always --style=plain,changes,grid,snip'
+    alias cat='bat --theme=base16 --force-colorization --paging=always --style=plain,changes,grid,snip'
+    # alias cat='bat --theme=Dracula --color always '
 
   # Exa List
     alias l='exa -D --color=always --icons --sort=size --group-directories-first'
@@ -262,8 +263,8 @@ fi
   alias acn='autocannon'
 
 # ACT
-alias actr='act -j'
-alias actl='act -l'
+  alias actr='act -j'
+  alias actl='act -l'
 
 # Postgres
   alias pg="psql -U postgres"
