@@ -258,6 +258,7 @@ fi
   alias jp="jump"
   alias volume='pavucontrol'
   alias btop='sudo btop'
+  alias bt='sudo btop'
   alias acn='autocannon'
 
 # ACT
