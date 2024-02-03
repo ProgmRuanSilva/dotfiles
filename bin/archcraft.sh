@@ -33,8 +33,6 @@ cp -r ../lazydocker/config.yml ~/.config/lazydocker/ ;
 # Zsh
 cp -r ../zsh/.zshrc ~/ ;
 
-# Psql
-cp -r ../psql/config/.psqlrc ~/ ;
 
 # Git
 cp -r ../git/.gitconfig ~/ ;
@@ -59,3 +57,6 @@ git clone https://github.com/MenkeTechnologies/zsh-cargo-completion ~/.oh-my-zsh
 
 # Projects
 mkdir ~/projects
+
+# Psql
+../psql/psql-toolkit-installer.sh ;
