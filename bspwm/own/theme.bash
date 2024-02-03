@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
-# Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+# Copyright (C) 2020-2024 Ruan Silva <progmruansilva@gmail.com>
 #
-# Onedark Theme
+# Own Theme
 # ------------------------------------------------------------------------------
 
 # Colors
@@ -70,7 +70,7 @@ picom_shadow_o='0.30'
 picom_shadow_x='-12'
 picom_shadow_y='-12'
 picom_blur_method='dual_kawase'
-picom_blur_strength='60'
+picom_blur_strength='55'
 
 # Bspwm
 bspwm_fbc="$accent"
