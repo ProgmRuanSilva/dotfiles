@@ -44,14 +44,14 @@ cp -r ../fzf/.fzf.zsh ~/ ;
 mkdir ~/.config/tmux/ ;
 cp -r ../tmux/tmux.conf ~/ ;
 
-# Nvim
-git clone https://github.com/ProgmRuanSilva/nvim ~/.config/nvim --depth 1 && nvim;
-
-# # Nvchad
+# Nvchad
 # git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && mkdir ~/.config/nvim/lua/custom && cp -r ../nvchad/custom/* ~/.config/nvim/lua/custom/ && nvim;
 
 # Keygen
 mkdir ~/.ssh/ && ssh-keygen ;
+
+# Nvim
+git clone git@github.com:ProgmRuanSilva/nvim.git ~/.config/nvim && nvim;
 
 # Oh-my-zsh Plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions ;
