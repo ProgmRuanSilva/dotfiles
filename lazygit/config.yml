@@ -101,10 +101,10 @@ keybinding:
         return: "q" # return to previous menu, will quit if there's nowhere to return
         quitWithoutChangingDirectory: "Q"
         # togglePanel: "<tab>" # goto the next panel
-        prevItem: "" # go one line up
-        nextItem: "" # go one line down
-        prevItem-alt: "k" # go one line up
-        nextItem-alt: "j" # go one line down
+        prevItem: "k" # go one line up
+        nextItem: "j" # go one line down
+        prevItem-alt: "" # go one line up
+        nextItem-alt: "" # go one line down
         prevPage: "" # go to next page in list
         nextPage: "" # go to previous page in list
         gotoTop: "G" # go to top of list
@@ -136,8 +136,8 @@ keybinding:
         scrollDownMain-alt2: "<c-d>" # main panel scroll down
         executeCustomCommand: ":"
         createRebaseOptionsMenu: "m"
-        pushFiles: "P"
-        pullFiles: "p"
+        pushFiles: "p"
+        pullFiles: "P"
         refresh: "R"
         createPatchOptionsMenu: "<c-p>"
         nextTab: "L"
@@ -153,8 +153,8 @@ keybinding:
         submitEditorText: "<enter>"
         extrasMenu: "@"
         toggleWhitespaceInDiffView: "<c-w>"
-        increaseContextInDiffView: "}"
-        decreaseContextInDiffView: "{"
+        increaseContextInDiffView: "H"
+        decreaseContextInDiffView: "L"
     status:
         checkForUpdate: "u"
         recentRepos: "<enter>"
@@ -233,15 +233,23 @@ customCommands:
       command: "git fetch && git pull origin main"
       context: "global"
       subprocess: true
-    - key: "8"
+    - key: "1"
+      command: "gh repo list"
+      context: "global"
+      subprocess: true
+    - key: "2"
+      command: "gh pr list"
+      context: "global"
+      subprocess: true
+    - key: "0"
       command: "gh issue list"
+      context: "global"
+      subprocess: true
+    - key: "9"
+      command: "gh issue comment"
       context: "global"
       subprocess: true
     - key: "7"
       command: "gh issue create"
-      context: "global"
-      subprocess: true
-    - key: "6"
-      command: "gh issue comment"
       context: "global"
       subprocess: true
