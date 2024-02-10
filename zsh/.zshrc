@@ -151,11 +151,11 @@ fi
   }
   zle -N cdback
 
-  leja() {
-    exa -xA --color=always --icons --sort=size --group-directories-first
+  quit() {
+    exit
     zle reset-prompt
   }
-  zle -N leja
+  zle -N quit
 
 # Unmapppings
   bindkey -r '^T'
@@ -163,11 +163,12 @@ fi
 # Command-Line Mappings #zle -al to see all widgets avalible
   bindkey '^[j' accept-line
 
+  bindkey '^[x' quit
   bindkey '^[w' delete-word
   bindkey '^[q' backward-delete-word
+  bindkey '^[e' kill-buffer
 
   bindkey '^[p' backward-delete-char
-  bindkey '^[e' kill-buffer
 
   bindkey '^[k' forward-char
   bindkey '^[h' backward-char
@@ -189,6 +190,7 @@ fi
 
   # bindkey '^[f' leja
   bindkey '^[v' cdback
+
 
 # Defaults Commands
     alias killp='kill -9'
