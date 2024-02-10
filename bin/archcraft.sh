@@ -44,8 +44,11 @@ cp -r ../fzf/.fzf.zsh ~/ ;
 mkdir ~/.config/tmux/ ;
 cp -r ../tmux/tmux.conf ~/ ;
 
-# Nvchad
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && mkdir ~/.config/nvim/lua/custom && cp -r ../nvchad/custom/* ~/.config/nvim/lua/custom/ && nvim;
+# Nvim
+git clone https://github.com/ProgmRuanSilva/nvim ~/.config/nvim --depth 1 && nvim;
+
+# # Nvchad
+# git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && mkdir ~/.config/nvim/lua/custom && cp -r ../nvchad/custom/* ~/.config/nvim/lua/custom/ && nvim;
 
 # Keygen
 mkdir ~/.ssh/ && ssh-keygen ;
