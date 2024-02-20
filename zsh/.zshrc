@@ -161,7 +161,7 @@ fi
   bindkey -r '^T'
 
 # Command-Line Mappings #zle -al to see all widgets avalible
-  bindkey '^[j' accept-line
+  bindkey '^[i' accept-line
 
   bindkey '^[x' quit
   bindkey '^[w' delete-word
@@ -170,7 +170,7 @@ fi
 
   bindkey '^[p' backward-delete-char
 
-  bindkey '^[k' forward-char
+  bindkey '^[g' forward-char
   bindkey '^[h' backward-char
 
   bindkey '^[m' forward-word
@@ -181,14 +181,11 @@ fi
   bindkey '^[f' end-of-line
   bindkey '^[a' beginning-of-line
 
-  bindkey '^[i' up-line-or-history
-  bindkey '^[o' down-line-or-history
+  bindkey '^[o' up-line-or-history
+  # bindkey '^[o' down-line-or-history
 
-  # bindkey '^[f' fzf-file-widget
   bindkey '^[c' fzf-cd-widget
-  bindkey '^[g' zsh-interactive-cd
 
-  # bindkey '^[f' leja
   bindkey '^[v' cdback
 
 
@@ -222,12 +219,16 @@ fi
     alias l='exa -D --color=always --icons --sort=size --group-directories-first'
     alias ls="exa -T --color=always --icons --group-directories-first"
     alias le='exa -GA --color=always --icons --sort=size --group-directories-first'
-    alias lej='exa -xA --color=always --icons --sort=size --group-directories-first'
-    alias lje='exa -xA --color=always --icons --sort=size --group-directories-first'
-    alias lejj='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias lei='exa -GA --color=always --icons --sort=size --group-directories-first'
     alias el='exa -xA --color=always --icons --sort=size --group-directories-first'
     alias ej='exa -xA --color=always --icons --sort=size --group-directories-first'
     alias elj='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias eli='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias lie='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias lei='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias li='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias il='exa -xA --color=always --icons --sort=size --group-directories-first'
+    alias el='exa -xA --color=always --icons --sort=size --group-directories-first'
 
 # System Information
   alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
@@ -260,9 +261,11 @@ fi
   alias n="nvim"
   alias jp="jump"
   alias volume='pavucontrol'
+  alias vol='pavucontrol'
   alias btop='sudo btop'
   alias bt='sudo btop'
   alias acn='autocannon'
+  alias cd='z'
 
 # ACT
   alias actr='act -j'
