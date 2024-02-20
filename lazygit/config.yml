@@ -115,9 +115,9 @@ keybinding:
         nextBlock: "l" # goto the next block / panel
         prevBlock-alt: "" # goto the previous block / panel
         nextBlock-alt: "" # goto the next block / panel
-        jumpToBlock: ["1", "2", "3", "4", "5"] # goto the Nth block / panel
-        nextMatch: "n"
-        prevMatch: "N"
+        # jumpToBlock: ["1", "2", "3", "4", "5"] # goto the Nth block / panel
+        nextMatch: "N"
+        prevMatch: "M"
         optionMenu: null # show help menu
         optionMenu-alt1: "?" # show help menu
         select: "<space>"
@@ -132,8 +132,8 @@ keybinding:
         scrollDownMain: "]" # main panel scroll down
         scrollUpMain-alt1: "" # main panel scroll up
         scrollDownMain-alt1: "" # main panel scroll down
-        scrollUpMain-alt2: "<c-u>" # main panel scroll up
-        scrollDownMain-alt2: "<c-d>" # main panel scroll down
+        scrollUpMain-alt2: "" # main panel scroll up
+        scrollDownMain-alt2: "" # main panel scroll down
         executeCustomCommand: ":"
         createRebaseOptionsMenu: "m"
         pushFiles: "p"
@@ -153,8 +153,8 @@ keybinding:
         submitEditorText: "<enter>"
         extrasMenu: "@"
         toggleWhitespaceInDiffView: "<c-w>"
-        increaseContextInDiffView: "H"
-        decreaseContextInDiffView: "L"
+        increaseContextInDiffView: "h"
+        decreaseContextInDiffView: "l"
     status:
         checkForUpdate: "u"
         recentRepos: "<enter>"
@@ -245,11 +245,11 @@ customCommands:
       command: "gh issue list"
       context: "global"
       subprocess: true
-    - key: "9"
-      command: "gh issue comment"
-      context: "global"
-      subprocess: true
     - key: "7"
       command: "gh issue create"
+      context: "global"
+      subprocess: true
+    - key: "2"
+      command: "gh pr create"
       context: "global"
       subprocess: true
