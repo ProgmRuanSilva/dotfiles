@@ -248,7 +248,7 @@ fi
   alias cp='cp -r'
   alias rst='touch ~/.zshsrc'
   alias update='backup; sudo yay -Syu'
-  alias backup="sh ~/dotfiles/scripts/backup.sh"
+  alias backup="sh ~/dotfiles/bin/backup.sh"
 
 # Configurations Files
   alias zshcfg="nvim ~/.zshrc"
@@ -337,11 +337,3 @@ fi
 # System
   alias off="poweroff"
   alias rbt="reboot"
-
-# pnpm
-export PNPM_HOME="/home/dev/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end

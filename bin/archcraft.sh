@@ -1,40 +1,66 @@
-yay -Syu  ;
+#!/bin/bash
 
-yay -S asdf-vm --noconfirm ;
+source $HOME/dotfiles/bin/utils.sh
 
-# Asdf
-asdf plugin add nodejs;asdf plugin add python; asdf plugin add ruby; asdf plugin add golang; asdf plugin add rust; asdf plugin add lua; asdf install nodejs latest; asdf install rust latest; asdf install lua latest; asdf install golang latest; asdf install python latest; asdf install ruby latest; asdf global nodejs latest; asdf global rust latest; asdf global lua latest; asdf global golang latest; asdf global python latest; asdf global ruby latest;
+setup () {
 
-# Proceed installation
-yay -S --noconfirm sqlite postgresql postgresql-libs redis libxml2 zlib ncurses5-compat-libs gdbm nss readline libffi yaml-cpp unzip gcc wget curl openssl libyaml ripgrep zsh memcached imagemagick ffmpeg mupdf mupdf-tools poppler yarn libxml2 ffmpeg mupdf mupdf-tools wget curl gcc git vim make cmake unzip mesa docker docker-compose docker-machine docker-buildx unixodbc sxhkd fzf gyp bat github-cli microsoft-edge-beta neovim fd shell-color-scripts sd exa dog xh duf jq jqp netcat ansible expac mariadb mariadb-libs libmariadbclient mariadb-clients lazygit tmux entr w3m parallel docker-scout
+  u_header "Archcraft"
 
-# Bspwm
-cp -r ../bspwm/bspwmrc ~/.config/bspwm/
-cp -r ../bspwm/sxhkdrc ~/.config/bspwm/
-cp -r ../alacritty/* ~/.config/bspwm/alacritty/
-cp -r ../bspwm/own ~/.config/bspwm/themes/ && sh ~/.config/bspwm/themes/own/apply.sh
+  u_bold "Updating..."
+  source $HOME/dotfiles/bin/update.sh
+  u_success "Completed"
 
-# Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-curl -sS https://starship.rs/install.sh | sh
+  u_bold "Installing Asdf..."
+  source $HOME/dotfiles/bin/asdf.sh
+  u_success "Asdf installed"
 
-# Starship
-mkdir ~/.config/starship
-cp -r ../starship/starship.toml ~/.config/starship/ ;
+  u_bold "Installing Packages..."
+  seek_confirmation "Do you want to install packages?"
+  yay -S --noconfirm sqlite postgreSQL postgresql-libs redis libxml2 zlib ncurses5-compat-libs gdbm nss readline libffi yaml-cpp unzip gcc wget curl openssl libyaml ripgrep zsh memcached imagemagick ffmpeg mupdf mupdf-tools poppler yarn libxml2 ffmpeg mupdf mupdf-tools wget curl gcc git vim make cmake unzip mesa docker docker-compose docker-machine docker-buildx unixodbc sxhkd fzf gyp bat github-cli microsoft-edge-beta neovim fd shell-color-scripts sd exa dog xh duf jq jqp netcat ansible expac mariadb mariadb-libs libmariadbclient mariadb-clients lazygit tmux entr w3m parallel docker-scout zoxide picom-ibhagwan-git
+  u_success "Packages installed"
 
-# Lazygit
-mkdir ~/.config/lazygit
-cp -r ../lazygit/config.yml ~/.config/lazygit/ ;
+  u_bold "Installing Ollama.."
+    source $HOME/dotfiles/bin/ollama.sh
+  u_success "Ollama installed"
 
-# Lazydocker
-mkdir ~/.config/lazydocker
-cp -r ../lazydocker/config.yml ~/.config/lazydocker/ ;
+  u_bold "Installing Lazygit.."
+    source $HOME/dotfiles/bin/lazygit.sh
+  u_success "Lazygit installed"
 
-# Zsh
-cp -r ../zsh/.zshrc ~/ ;
+  u_bold "Installing Lazydocker.."
+    source $HOME/dotfiles/bin/lazydocker.sh
+  u_success "Lazydocker installed"
 
-# Psql
-cp -r ../psql/config/.psqlrc ~/ ;
+  u_bold "Installing Starship.."
+    source $HOME/dotfiles/bin/starship.sh
+  u_success "Starship installed"
+
+  u_bold "Installign Tmux..."
+    source $HOME/dotfiles/bin/tmux.sh
+  u_success "Tmux installed"
+
+  u_bold "Installing Tpm..."
+    source $HOME/dotfiles/bin/tpm.sh
+  u_success "Tpm installed"
+
+  u_bold "Installing Nvim..."
+    source $HOME/dotfiles/bin/nvim.sh
+  u_success "Nvim installed"
+
+  u_bold "Installing Docker..."
+    source $HOME/dotfiles/bin/docker.sh
+  u_success "Docker installed"
+
+  u_bold "Installing Bspwm..."
+    source $HOME/dotfiles/bin/bspwm.sh
+  u_success "Bspwm installed"
+
+  u_bold "Installing Psql..."
+    source $HOME/dotfiles/bin/psql.sh
+  u_success "Psql installed"
+}
+
+setup 
 
 # Git
 cp -r ../git/.gitconfig ~/ ;
@@ -42,20 +68,10 @@ cp -r ../git/.gitconfig ~/ ;
 # Fzf
 cp -r ../fzf/.fzf.zsh ~/ ;
 
-# Tmux
-mkdir ~/.config/tmux
-cp -r ../tmux/tmux.conf ~/ ;
-
-# Nvchad
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim && cp -r ../nvchad/custom/* ~/.config/nvim/lua/custom/ ;
-
 # Keygen
 mkdir ~/.ssh/ && ssh-keygen ;
 
-# Oh-my-zsh Plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions ;
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/plugins/zsh-syntax-highlighting ;
-git clone https://github.com/MenkeTechnologies/zsh-cargo-completion ~/.oh-my-zsh/plugins/zsh-cargo-completion ;
-
 # Projects
-mkdir ~/projects
+mkdir ~/projects ;
+
+gh auth login ;
