@@ -50,4 +50,4 @@
 	smudge = git-lfs smudge %f
 	required = true
 [pull]
-	rebase = true
+	rebase = false

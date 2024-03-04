@@ -337,3 +337,11 @@ fi
 # System
   alias off="poweroff"
   alias rbt="reboot"
+
+# pnpm
+export PNPM_HOME="/home/dev/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
