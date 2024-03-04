@@ -1,6 +1,6 @@
 #!/bin/bash
 
-packages() {
+setup() {
     source $HOME/dotfiles/bin/utils.sh
 
     local sh_files=(*.sh)
@@ -49,4 +49,4 @@ packages() {
     done
 }
 
-packages
+setup
