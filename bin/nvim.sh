@@ -10,10 +10,11 @@ nvim() {
   u_success "Nvim installed"
 
   u_bold "Installing Ruan Silva's nvim..."
-  git clone https://github.com/ProgmRuanSilva/nvim ~/.config/nvim --depth 1 && nvim
+  git clone https://github.com/ProgmRuanSilva/nvim ~/.config/nvim
 
-  u_bold "Quiting..."
-  break
+  u_note "Run: nvim to complete installation"
+
+  u_success "Nvim installed"
 }
 
 nvim

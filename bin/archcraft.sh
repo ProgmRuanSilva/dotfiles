@@ -16,7 +16,7 @@ setup () {
 
   u_bold "Installing Packages..."
   seek_confirmation "Do you want to install packages?"
-  yay -S --noconfirm sqlite postgreSQL postgresql-libs redis libxml2 zlib ncurses5-compat-libs gdbm nss readline libffi yaml-cpp unzip gcc wget curl openssl libyaml ripgrep zsh memcached imagemagick ffmpeg mupdf mupdf-tools poppler yarn libxml2 ffmpeg mupdf mupdf-tools wget curl gcc git vim make cmake unzip mesa docker docker-compose docker-machine docker-buildx unixodbc sxhkd fzf gyp bat github-cli microsoft-edge-beta neovim fd shell-color-scripts sd exa dog xh duf jq jqp netcat ansible expac mariadb mariadb-libs libmariadbclient mariadb-clients lazygit tmux entr w3m parallel docker-scout zoxide picom-ibhagwan-git
+  yay -S --noconfirm sqlite postgreSQL postgresql-libs redis libxml2 zlib ncurses5-compat-libs gdbm nss readline libffi yaml-cpp unzip gcc wget curl openssl libyaml ripgrep zsh memcached imagemagick ffmpeg mupdf mupdf-tools poppler yarn libxml2 ffmpeg mupdf mupdf-tools wget curl gcc git vim make cmake unzip mesa docker docker-compose docker-machine docker-buildx unixodbc sxhkd fzf gyp bat github-cli microsoft-edge-beta neovim fd shell-color-scripts sd exa dog xh duf jq jqp netcat ansible expac mariadb mariadb-libs libmariadbclient mariadb-clients lazygit tmux entr w3m parallel docker-scout zoxide picom-ibhagwan-git btop
   u_success "Packages installed"
 
   u_bold "Installing Ollama.."
@@ -62,16 +62,5 @@ setup () {
 
 setup 
 
-# Git
-cp -r ../git/.gitconfig ~/ ;
-
-# Fzf
-cp -r ../fzf/.fzf.zsh ~/ ;
-
-# Keygen
-mkdir ~/.ssh/ && ssh-keygen ;
-
 # Projects
-mkdir ~/projects ;
-
-gh auth login ;
+mkdir ~/projects
