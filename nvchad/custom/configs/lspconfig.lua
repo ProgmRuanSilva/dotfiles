@@ -5,6 +5,15 @@ local util = require "lspconfig/util"
 local on_attach = config.on_attach
 local capabilities = config.capabilities
 
+local function organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = "",
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
 lspconfig.eslint.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -20,6 +29,12 @@ lspconfig.eslint.setup {
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  commands = {
+    OrganizeImports = {
+      organize_imports,
+      description = "Organize Imports",
+    },
+  },
   init_options = {
     preferences = {
       disableSuggestions = false,
@@ -27,10 +42,9 @@ lspconfig.tsserver.setup {
   },
 }
 
-lspconfig.pylint.setup {
+lspconfig.bashls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { ".py" },
 }
 
 lspconfig.pylsp.setup {
