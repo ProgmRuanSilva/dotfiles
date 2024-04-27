@@ -19,11 +19,16 @@ git pull origin main
 # Create a new split
 tmux splitw -h
 
+tmux swap-pane -D
+
+tmux resize-pane -R 15
+
 # Install dependencies
 npm install
 
 # Run setup
 npm run setup
 
-# TODO
-# make the script execute on the split
+cd "$folder"
+
+# TODO make the script execute on the split

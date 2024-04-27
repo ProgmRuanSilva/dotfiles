@@ -262,6 +262,7 @@ alias btop='sudo btop'
 alias bt='sudo btop'
 alias acn='autocannon'
 alias cd='z'
+alias localstack='./home/dev/apps/LocalStack-Desktop-community-1.0.4.AppImage'
 
 # ACT
 alias actr='act -j'
