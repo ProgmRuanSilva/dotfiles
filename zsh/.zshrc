@@ -1,4 +1,3 @@
-# If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 export asdf="$HOME/.asdf/asdf.sh"
@@ -6,6 +5,10 @@ export MANPATH="/usr/local/man:$MANPATH"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export FZF_BASE="/$HOME/.fzf/"
 export FLYCTL_INSTALL="/home/dev/.fly"
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOPATH
+export PATH=$PATH:$GOROOT/bin
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export EDITOR="nvim"
 eval "$(starship init zsh)"
@@ -23,7 +26,7 @@ esac
 ZSH_THEME="dracula"
 
 # Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="true"
+CASE_SENSITIVE="false"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -79,15 +82,13 @@ export VISUAL="/usr/bin/nvim"
 export ARCHFLAGS="-arch x86_64"
 
 # Mapping for Abnt keyborad (if u are ussing)
-setxkbmap -model abnt2 -layout br -variant abnt2
+# setxkbmap -model abnt2 -layout br -variant abnt2
+setxkbmap -model en -layout us -variant altgr-intl
 setxkbmap -option terminate:ctrl_alt_bksp
 
 # Plugins
 # See configs oh-my-zsh plugins
-# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/`jump`
-
-# Remember to install fzf
-# https://github.com/junegunn/fzf#installation
+ZSH_TMUX_AUTOSTART=true
 
 plugins=(
 	git
@@ -105,6 +106,7 @@ plugins=(
 	copyfile
 	extract
 	fzf
+	tmux
 	jump
 	sudo
 	singlechar
@@ -118,9 +120,6 @@ plugins=(
 	zsh-cargo-completion
 	zsh-syntax-highlighting
 )
-
-# Tmux
-tmux
 
 # Oh My Zsh
 source $ZSH/oh-my-zsh.sh
@@ -208,21 +207,20 @@ alias cat='bat --theme=base16 --force-colorization --paging=always --style=plain
 # alias cat='bat --theme=Dracula --color always '
 
 # Exa List
-alias l='exa -D --color=always --icons --sort=size --group-directories-first'
+alias l='exa --tree --level=2 --icons --git'
 alias ls="exa -T --color=always --icons --group-directories-first"
 alias le='exa -GA --color=always --icons --sort=size --group-directories-first'
 alias lei='exa -GA --color=always --icons --sort=size --group-directories-first'
 alias el='exa -xA --color=always --icons --sort=size --group-directories-first'
+alias e='exa -xA --color=always --icons --sort=size --group-directories-first'
 alias ej='exa -xA --color=always --icons --sort=size --group-directories-first'
 alias elj='exa -xA --color=always --icons --sort=size --group-directories-first'
 alias eli='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias lie='exa -xA --color=always --icons --sort=size --group-directories-first'
+alias lejj='exa -xA --color=always --icons --sort=size --group-directories-first'
 alias lej='exa -xA --color=always --icons --sort=size --group-directories-first'
 alias lel='exa -xA --color=always --icons --sort=size --group-directories-first'
 alias lei='exa -xA --color=always --icons --sort=size --group-directories-first'
 alias li='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias il='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias el='exa -xA --color=always --icons --sort=size --group-directories-first'
 
 # System Information
 alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
@@ -240,10 +238,10 @@ alias rnm='vidir'
 alias hm='cd ~/'
 alias rm='rm -rf'
 alias cp='cp -r'
-alias rst='touch ~/.zshsrc'
 alias update='backup; sudo yay -Syu'
 alias backup="sh ~/dotfiles/bin/backup.sh"
-alias gnew="sh ~/dotfiles/bin/gwt.sh"
+alias gwn="sh ~/dotfiles/bin/gwa.sh \$@"
+alias gnw="sh ~/dotfiles/bin/gnw.sh \$@"
 
 # Configurations Files
 alias zshcfg="nvim ~/.zshrc"
@@ -262,7 +260,8 @@ alias btop='sudo btop'
 alias bt='sudo btop'
 alias acn='autocannon'
 alias cd='z'
-alias localstack='./home/dev/apps/LocalStack-Desktop-community-1.0.4.AppImage'
+alias cdi='zi'
+alias r='ranger'
 
 # ACT
 alias actr='act -j'
@@ -288,7 +287,7 @@ alias pd="pnpm run dev"
 alias pb="pnpm run build"
 
 # Git
-alias gd="lazygit"
+alias gd="sh /home/dev/projects/tmux-lazygit/lazy.sh"
 alias gph="git push"
 alias gpl="git pull"
 alias gco="gitmoji -c"
@@ -308,7 +307,7 @@ alias dexec="docker exec -it"
 alias dbuild="docker build -it "
 
 alias dc="docker-compose"
-alias dcw="docker-compose watch"
+alias dcw="docker-compose up --watch"
 alias dcd="docker-compose down"
 alias dcps="docker-compose ps"
 alias dcb="docker-compose build"
@@ -328,10 +327,13 @@ alias mnst="minikube stop"
 alias mnan="minikube node add"
 
 # Ollama
-alias olm="ollama run mistral"
-alias olc="ollama run codellama"
-alias oll="ollama run llama"
+alias oll="ollama run llama3:instruct"
+alias oln="ollama run llama3"
+# alias oll="ollama run llama3:instruct"
 
 # System
 alias off="poweroff"
 alias rbt="reboot"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

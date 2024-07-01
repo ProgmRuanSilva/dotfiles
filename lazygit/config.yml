@@ -50,7 +50,7 @@ git:
     useConfig: false
   commit:
     signOff: false
-    verbose: default # one of 'default' | 'always' | 'never'
+    verbose: aways # one of 'default' | 'always' | 'never'
   merging:
     # only applicable to unix users
     manualCommit: false
@@ -76,12 +76,12 @@ git:
   parseEmoji: false
   diffContextSize: 3 # how many lines of context are shown around a change in diffs
 os:
-  editPreset: "" # see 'Configuring File Editing' section
-  edit: ""
-  editAtLine: ""
-  editAtLineAndWait: ""
-  open: ""
-  openLink: ""
+  editPreset: "nvim" # see 'Configuring File Editing' section
+  edit: "nvim"
+  editAtLine: "nvim"
+  editAtLineAndWait: "nvim"
+  open: "nvim"
+  openLink: "microsoft-edge-beta"
 refresher:
   refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
   fetchInterval: 60 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
@@ -97,9 +97,9 @@ promptToReturnFromSubprocess: true # display confirmation when subprocess termin
 keybinding:
   universal:
     quit: ","
-    quit-alt1: "<c-c>" # alternative/alias of quit
+    quit-alt1: "<esc>" # alternative/alias of quit
     return: "q" # return to previous menu, will quit if there's nowhere to return
-    quitWithoutChangingDirectory: "Q"
+    quitWithoutChangingDirectory: "<c-c>"
     # togglePanel: "<tab>" # goto the next panel
     prevItem: "k" # go one line up
     nextItem: "j" # go one line down
@@ -118,7 +118,7 @@ keybinding:
     # jumpToBlock: ["1", "2", "3", "4", "5"] # goto the Nth block / panel
     nextMatch: "N"
     prevMatch: "M"
-    optionMenu: null # show help menu
+    optionMenu: <disabled> # show help menu
     optionMenu-alt1: "?" # show help menu
     select: "<space>"
     goInto: "f"
@@ -162,48 +162,48 @@ keybinding:
     commitChanges: "C"
     commitChangesWithoutHook: "w" # commit changes without pre-commit hook
     amendLastCommit: "A"
-    commitChangesWithEditor: ""
+    commitChangesWithEditor: "e"
     ignoreFile: "I"
     refreshFiles: "r"
     stashAllChanges: "s"
     viewStashOptions: "S"
     toggleStagedAll: "a" # stage/unstage all
     viewResetOptions: "D"
-    fetch: ""
+    fetch: "F"
     toggleTreeView: "`"
     openMergeTool: "M"
     openStatusFilter: "<c-b>"
   branches:
-    createPullRequest: "O"
+    createPullRequest: ""
     viewPullRequestOptions: "o"
     checkoutBranchByName: "C"
     forceCheckoutBranch: "F"
-    rebaseBranch: "r"
-    renameBranch: "R"
+    rebaseBranch: "R"
+    renameBranch: "r"
     mergeIntoCurrentBranch: "M"
     viewGitFlowOptions: "i"
     fastForward: "F" # fast-forward this branch from its upstream
-    createTag: "T"
-    pushTag: "P"
+    createTag: "t"
+    pushTag: "T"
     setUpstream: "U" # set as upstream of checked-out branch
     fetchRemote: "f"
   commits:
     squashDown: "s"
-    renameCommit: "r"
-    renameCommitWithEditor: "R"
+    renameCommit: "R"
+    renameCommitWithEditor: "r"
     viewResetOptions: "g"
-    markCommitAsFixup: "f"
+    markCommitAsFixup: "m"
     createFixupCommit: "F" # create fixup commit for this commit
     squashAboveCommits: "S"
     moveDownCommit: "<c-j>" # move commit down one
     moveUpCommit: "<c-k>" # move commit up one
     amendToCommit: "A"
-    pickCommit: "p" # pick commit (when mid-rebase)
-    revertCommit: "t"
+    pickCommit: "P" # pick commit (when mid-rebase)
+    revertCommit: "f"
     cherryPickCopy: "c"
     cherryPickCopyRange: "C"
-    pasteCommits: "v"
-    tagCommit: "T"
+    pasteCommits: "p"
+    tagCommit: "t"
     checkoutCommit: "<space>"
     resetCherryPick: "<c-R>"
     copyCommitMessageToClipboard: "<c-y>"
@@ -232,28 +232,4 @@ customCommands:
   - key: "u"
     command: "git fetch && git pull origin main"
     context: "global"
-    subprocess: true
-  - key: "1"
-    command: "gh repo list"
-    context: "global"
-    subprocess: true
-  - key: "2"
-    command: "gh pr list"
-    context: "global"
-    subprocess: true
-  - key: "0"
-    command: "gh issue list"
-    context: "global"
-    subprocess: true
-  - key: "7"
-    command: "gh issue create"
-    context: "global"
-    subprocess: true
-  - key: "2"
-    command: "gh pr create"
-    context: "global"
-    subprocess: true
-  - key: "a"
-    command: "gh pr checkout"
-    context: "remotes"
     subprocess: true

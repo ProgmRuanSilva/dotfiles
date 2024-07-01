@@ -2,10 +2,10 @@
 	name = Ruan Silva
 	email = progmruansilva@gmail.com
 [core]
-    editor = "NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
-    pager = diff-highlight | diff-so-fancy | less --tabs=4 -RSFX
+    editor = nvim
 [diff]
-    tool = lazygit
+    tool = nvimdiff
+    guitool = nvimdiff
 [difftool]
     prompt = false
 [alias]
@@ -37,10 +37,12 @@
 	newNormal = green bold
 	newHighlight = green bold 22
 [merge]
-    tool = splice
-[mergetool "splice"]
-    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
-    trustExitCode = true
+    tool = nvimdiff
+    conflictstyle = diff3
+[mergetool]
+  keepBackup = false
+  trustExitCode = true
+  prompt = true
 [push]
     default = simple
 [rerere]

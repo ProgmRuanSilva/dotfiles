@@ -36,6 +36,18 @@ super + {b,m,n,r,s,t,w,x}
 super + shift + {f,w,e}
 	{thunar,firefox,geany}
 
+# Laouch microsoft edge
+super + e
+  microsoft-edge-beta
+
+# Laouch microsoft-edge-beta
+super + h
+  pavucontrol
+
+# Lauch Whatsap 
+super + q
+  whatsdesk
+
 # Terminal Apps
 ctrl + alt + {v,r,h}
 	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e {vim,ranger,htop}
