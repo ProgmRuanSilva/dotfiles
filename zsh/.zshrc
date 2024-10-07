@@ -11,13 +11,13 @@ export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export EDITOR="nvim"
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-export PNPM_HOME="/home/dev/.local/share/pnpm"
-case ":$PATH:" in
-*":$PNPM_HOME:"*) ;;
-*) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+#eval "$(starship init zsh)"
+#eval "$(zoxide init zsh)"
+#export PNPM_HOME="/home/dev/.local/share/pnpm"
+# ":$PATH:" in
+#*":$PNPM_HOME:"*) ;;
+#*) export PATH="$PNPM_HOME:$PATH" ;;
+#
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -83,8 +83,8 @@ export ARCHFLAGS="-arch x86_64"
 
 # Mapping for Abnt keyborad (if u are ussing)
 # setxkbmap -model abnt2 -layout br -variant abnt2
-setxkbmap -model en -layout us -variant altgr-intl
-setxkbmap -option terminate:ctrl_alt_bksp
+# setxkbmap -model en -layout us -variant altgr-intl
+# setxkbmap -option terminate:ctrl_alt_bksp
 
 # Plugins
 # See configs oh-my-zsh plugins
@@ -98,10 +98,8 @@ plugins=(
 	golang
 	heroku
 	bundler
-	postgres
 	gitignore
 	jsontools
-	docker-machine
 	catimg
 	copyfile
 	extract
@@ -112,7 +110,6 @@ plugins=(
 	singlechar
 	starship
 	systemd
-	web-search
 	last-working-dir
 	command-not-found
 	zsh-interactive-cd
@@ -125,16 +122,16 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Switch groups, Necessary for docker run
-if [[ $(id -gn) != "docker" ]]; then
-	newgrp docker
-	exit
-fi
+##if [[ $(id -gn) != "docker" ]]; then
+#	newgrp docker
+#	exit
+#fi
 
 # Shell Colored Scripts
-colorscript random
+# colorscript random
 
 # My scripts
 cdback() {
@@ -334,6 +331,3 @@ alias oln="ollama run llama3"
 # System
 alias off="poweroff"
 alias rbt="reboot"
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

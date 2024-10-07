@@ -6,21 +6,17 @@
 ## GENERAL --------------------------------------------------------
 
 ## Import additional configuration files.
-import = ["~/.config/alacritty/colors.toml", "~/.config/alacritty/fonts.toml"]
-
-## You can set shell.program to the path of your favorite shell, e.g. /bin/zsh.
-## Entries in shell.args are passed as arguments to the shell.
-#shell = { program = "/bin/zsh", args = ["--login"] }
+#import = ["~/.config/alacritty/colors.toml", "~/.config/alacritty/fonts.toml"]
 
 ## Directory the shell is started in. When this is unset, or "None",
 ## the working directory of the parent process will be used.
-#working_directory = "None"
+working_directory = "None"
 
 ## Live config reload
 live_config_reload = true
 
 ## Offer IPC using alacritty msg
-ipc_socket = true
+ipc_socket = true 
 
 ## ENVIRONMENT ----------------------------------------------------
 
@@ -32,12 +28,12 @@ WINIT_X11_SCALE_FACTOR = "1.0"
 
 [window]
 position = "None"
-dynamic_padding = true
-decorations = "full"
-opacity = 0
-blur = false
-startup_mode = "Windowed"
-dynamic_title = true
+dynamic_padding = false
+decorations = "None"
+opacity = 0.8
+blur = true
+startup_mode = "Fullscreen"
+dynamic_title = false 
 class = { instance = "Alacritty", general = "Alacritty" }
 decorations_theme_variant = "None"
 
@@ -54,9 +50,9 @@ history = 10000
 multiplier = 3
 
 [bell]
-animation = "Linear"
-duration = 20
-command = { program = "paplay", args = ["/usr/share/sounds/freedesktop/stereo/dialog-error.oga"] }
+# animation = "Linear"
+# duration = 20
+# command = { program = "paplay", args = ["/usr/share/sounds/freedesktop/stereo/dialog-error.oga"] }
 
 [selection]
 save_to_clipboard = true
