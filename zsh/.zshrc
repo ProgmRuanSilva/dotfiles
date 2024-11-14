@@ -11,13 +11,8 @@ export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export EDITOR="nvim"
-#eval "$(starship init zsh)"
-#eval "$(zoxide init zsh)"
-#export PNPM_HOME="/home/dev/.local/share/pnpm"
-# ":$PATH:" in
-#*":$PNPM_HOME:"*) ;;
-#*) export PATH="$PNPM_HOME:$PATH" ;;
-#
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -81,13 +76,7 @@ export VISUAL="/usr/bin/nvim"
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# Mapping for Abnt keyborad (if u are ussing)
-# setxkbmap -model abnt2 -layout br -variant abnt2
-# setxkbmap -model en -layout us -variant altgr-intl
-# setxkbmap -option terminate:ctrl_alt_bksp
-
 # Plugins
-# See configs oh-my-zsh plugins
 ZSH_TMUX_AUTOSTART=true
 
 plugins=(
@@ -122,16 +111,13 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Fzf
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+ [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Switch groups, Necessary for docker run
-##if [[ $(id -gn) != "docker" ]]; then
-#	newgrp docker
-#	exit
-#fi
-
-# Shell Colored Scripts
-# colorscript random
+if [[ $(id -gn) != "docker" ]]; then
+	newgrp docker
+	exit
+fi
 
 # My scripts
 cdback() {
@@ -152,30 +138,30 @@ bindkey -r '^T'
 # Command-Line Mappings #zle -al to see all widgets avalible
 bindkey '^[j' accept-line
 
-bindkey '^[x' quit
-bindkey '^[w' delete-word
-bindkey '^[q' backward-delete-word
-bindkey '^[e' kill-buffer
+bindkey '^[q' quit
+bindkey '^[e' delete-word
+bindkey '^[w' backward-delete-word
+bindkey '^[h' kill-buffer
 
-bindkey '^[p' backward-delete-char
+# bindkey '^[p' backward-delete-char
 
-bindkey '^[g' forward-char
-bindkey '^[i' backward-char
+# bindkey '^[g' forward-char
+# bindkey '^[i' backward-char
 
-bindkey '^[m' forward-word
-bindkey '^[n' backward-word
+bindkey '^[s' forward-word
+bindkey '^[a' backward-word
 
-bindkey '^[s' clear-screen
+bindkey '^[d' clear-screen
 
-bindkey '^[f' end-of-line
-bindkey '^[v' beginning-of-line
+bindkey '^[m' end-of-line
+bindkey '^[n' beginning-of-line
 
 bindkey '^[o' up-line-or-history
-# bindkey '^[u' down-line-or-history
+bindkey '^[p' down-line-or-history
 
 bindkey '^[c' fzf-cd-widget
 
-bindkey '^[a' cdback
+# bindkey '^[g' cdback
 
 # Defaults Commands
 alias killp='kill -9'
@@ -201,7 +187,6 @@ alias ports='lsof -i -P'
 # Bat
 alias less='bat --theme=base16 --force-colorization --paging=always --style=plain,changes,grid,snip'
 alias cat='bat --theme=base16 --force-colorization --paging=always --style=plain,changes,grid,snip'
-# alias cat='bat --theme=Dracula --color always '
 
 # Exa List
 alias l='exa --tree --level=2 --icons --git'
@@ -284,7 +269,7 @@ alias pd="pnpm run dev"
 alias pb="pnpm run build"
 
 # Git
-alias gd="sh /home/dev/projects/tmux-lazygit/lazy.sh"
+alias gd="sh ~/projects/tmux-lazygit/lazy.sh"
 alias gph="git push"
 alias gpl="git pull"
 alias gco="gitmoji -c"
@@ -325,8 +310,7 @@ alias mnan="minikube node add"
 
 # Ollama
 alias oll="ollama run llama3:instruct"
-alias oln="ollama run llama3"
-# alias oll="ollama run llama3:instruct"
+alias oln="ollama run llama3.1"
 
 # System
 alias off="poweroff"

@@ -134,17 +134,17 @@ keybinding:
     scrollDownMain-alt1: "" # main panel scroll down
     scrollUpMain-alt2: "" # main panel scroll up
     scrollDownMain-alt2: "" # main panel scroll down
-    executeCustomCommand: ":"
+    executeShellCommand: ":"
     createRebaseOptionsMenu: "m"
-    pushFiles: "p"
-    pullFiles: "P"
+    pushFiles: "P"
+    pullFiles: "p"
     refresh: "R"
     createPatchOptionsMenu: "<c-p>"
     nextTab: "L"
     prevTab: "H"
     nextScreenMode: "+"
     prevScreenMode: "_"
-    undo: "z"
+    undo: "u"
     redo: "<c-z>"
     filteringMenu: "<c-s>"
     diffingMenu: "W"
@@ -178,8 +178,8 @@ keybinding:
     viewPullRequestOptions: "o"
     checkoutBranchByName: "C"
     forceCheckoutBranch: "F"
-    rebaseBranch: "R"
-    renameBranch: "r"
+    rebaseBranch: "r"
+    renameBranch: "R"
     mergeIntoCurrentBranch: "M"
     viewGitFlowOptions: "i"
     fastForward: "F" # fast-forward this branch from its upstream
@@ -193,13 +193,13 @@ keybinding:
     renameCommitWithEditor: "r"
     viewResetOptions: "g"
     markCommitAsFixup: "m"
-    createFixupCommit: "F" # create fixup commit for this commit
+    createFixupCommit: "M" # create fixup commit for this commit
     squashAboveCommits: "S"
     moveDownCommit: "<c-j>" # move commit down one
     moveUpCommit: "<c-k>" # move commit up one
     amendToCommit: "A"
     pickCommit: "P" # pick commit (when mid-rebase)
-    revertCommit: "f"
+    revertCommit: "F"
     cherryPickCopy: "c"
     cherryPickCopyRange: "C"
     pasteCommits: "p"
@@ -210,7 +210,7 @@ keybinding:
     openLogMenu: "<c-l>"
     viewBisectOptions: "b"
   stash:
-    popStash: "g"
+    popStash: "s"
     renameStash: "r"
   commitFiles:
     checkoutCommitFile: "c"
@@ -228,8 +228,4 @@ customCommands:
   - key: "c"
     command: "gitmoji -c"
     context: "files"
-    subprocess: true
-  - key: "u"
-    command: "git fetch && git pull origin main"
-    context: "global"
     subprocess: true

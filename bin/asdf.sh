@@ -6,7 +6,7 @@ install () {
   u_header "Asdf Installer"
 
   u_bold "Installing asdf..."
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf 
 
   u_success "Asdf Installed"
 
