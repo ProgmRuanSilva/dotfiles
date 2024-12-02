@@ -13,6 +13,7 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export EDITOR="nvim"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+export OLLAMA_ORIGINS=app://obsidian.md*
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
