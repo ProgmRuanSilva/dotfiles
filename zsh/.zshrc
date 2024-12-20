@@ -6,6 +6,7 @@ export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export FZF_BASE="/$HOME/.fzf/"
 export FLYCTL_INSTALL="/home/dev/.fly"
 export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
@@ -14,6 +15,7 @@ export EDITOR="nvim"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 export OLLAMA_ORIGINS=app://obsidian.md*
+# export OLLAMA_ORIGINS=*
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -46,7 +48,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -140,9 +142,10 @@ bindkey -r '^T'
 bindkey '^[j' accept-line
 
 bindkey '^[q' quit
+# bindkey '^[e' list
 bindkey '^[e' delete-word
-bindkey '^[w' backward-delete-word
-bindkey '^[h' kill-buffer
+# bindkey '^[w' backward-delete-word
+bindkey '^[w' kill-buffer
 
 # bindkey '^[p' backward-delete-char
 
@@ -154,7 +157,7 @@ bindkey '^[a' backward-word
 
 bindkey '^[d' clear-screen
 
-bindkey '^[m' end-of-line
+bindkey '^[f' end-of-line
 bindkey '^[n' beginning-of-line
 
 bindkey '^[o' up-line-or-history
@@ -162,7 +165,7 @@ bindkey '^[p' down-line-or-history
 
 bindkey '^[c' fzf-cd-widget
 
-# bindkey '^[g' cdback
+bindkey '^[m' cdback
 
 # Defaults Commands
 alias killp='kill -9'
@@ -193,17 +196,8 @@ alias cat='bat --theme=base16 --force-colorization --paging=always --style=plain
 alias l='exa --tree --level=2 --icons --git'
 alias ls="exa -T --color=always --icons --group-directories-first"
 alias le='exa -GA --color=always --icons --sort=size --group-directories-first'
-alias lei='exa -GA --color=always --icons --sort=size --group-directories-first'
-alias el='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias e='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias ej='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias elj='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias eli='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias lejj='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias lej='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias lel='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias lei='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias li='exa -xA --color=always --icons --sort=size --group-directories-first'
+alias lej='exa -GA --color=always --icons --sort=size --group-directories-first'
+alias el='exa -GA --color=always --icons --sort=size --group-directories-first'
 
 # System Information
 alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
@@ -242,9 +236,9 @@ alias vol='pavucontrol'
 alias btop='sudo btop'
 alias bt='sudo btop'
 alias acn='autocannon'
-alias cd='z'
-alias cdi='zi'
-alias r='ranger'
+alias c='z'
+alias f='z'
+alias ci='zi'
 
 # ACT
 alias actr='act -j'
@@ -301,6 +295,10 @@ alias dcu="docker-compose up --build --detach"
 alias dcubd="docker-compose up --build --detach"
 alias du="docker-compose up --build --detach"
 
+# Rails
+alias r="bin/rails"
+alias rs="bin/rails server"
+
 # Minikube
 alias mn="minikube"
 alias mnp="minikube status"
@@ -310,9 +308,18 @@ alias mnst="minikube stop"
 alias mnan="minikube node add"
 
 # Ollama
-alias oll="ollama run llama3:instruct"
-alias oln="ollama run llama3.1"
+alias oll="ollama run llama3.1"
+alias olc="ollama run qwen2.5-coder:14b"
+alias olcs="ollama stop qwen2.5-coder:14b"
+alias olvs="ollama stop llama3.2-vision"
+alias olv="ollama run llama3.2-vision"
+alias o="ollama"
+alias os="ollama stop"
 
 # System
 alias off="poweroff"
 alias rbt="reboot"
+
+alias p="python"
+alias pattern="exa -GA --color=always --icons --sort=size --group-directories-first /home/dev/.config/fabric/patterns/"
+
