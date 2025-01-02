@@ -10,6 +10,7 @@ export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
+export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 export EDITOR="nvim"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
@@ -154,7 +155,7 @@ bindkey '^[a' backward-word
 
 bindkey '^[d' clear-screen
 
-bindkey '^[m' end-of-line
+bindkey '^[m' cdback
 bindkey '^[n' beginning-of-line
 
 bindkey '^[o' up-line-or-history
@@ -188,6 +189,8 @@ alias ports='lsof -i -P'
 # Bat
 alias less='bat --theme=base16 --force-colorization --paging=always --style=plain,changes,grid,snip'
 alias cat='bat --theme=base16 --force-colorization --paging=always --style=plain,changes,grid,snip'
+
+alias f="flyctl"
 
 # Exa List
 alias l='exa --tree --level=2 --icons --git'
@@ -242,7 +245,7 @@ alias vol='pavucontrol'
 alias btop='sudo btop'
 alias bt='sudo btop'
 alias acn='autocannon'
-alias cd='z'
+alias c='z'
 alias cdi='zi'
 alias r='ranger'
 
