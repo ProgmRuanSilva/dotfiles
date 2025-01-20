@@ -319,3 +319,6 @@ alias oln="ollama run llama3.1"
 # System
 alias off="poweroff"
 alias rbt="reboot"
+# Shacn
+alias sha="pnpm dlx shadcn@latest add"
+alias shi="pnpm dlx shadcn@latest init"
