@@ -95,40 +95,10 @@ function dkp() {
   [ -n "$cid" ] && docker stop "$cid"
 }
 
-# Custom fuzzy completion for "doge" command
-#   e.g. doge **<TAB>
-# _fzf_complete_doge() {
-#   _fzf_complete --multi --reverse --prompt="doge> " -- "$@" < <(
-#     echo very
-#     echo wow
-#     echo such
-#     echo doge
-#   )
-# }
-#
-# _fzf_complete_foo() {
-#  _fzf_complete --multi --reverse --header-lines=3 -- "$@" < <(
-#    exa -xA --color=always --icons --sort=size --group-directories-first
-#  )
-# }
-#
-# _fzf_complete_foo_post() {
-#  awk '{print $NF}'
-# }
-#
-# [ -n "$BASH" ] && complete -F _fzf_complete_foo -o default -o bashdefault foo
-
 # Setup fzf
-# ---------
 if [[ ! "$PATH" = /usr/share/fzf/* ]]; then
   export PATH="$PATH:$HOME/.fzf/bin"
 fi
-
-# Man path
-# --------
-# if [[ ! "$MANPATH" =~ "$HOME"/.fzf/man && -d "$HOME/.fzf/man" ]]; then
-#   export MANPATH="$MANPATH:$HOME/.fzf/man"
-# fi
 
 # Auto-completion
 # ---------------

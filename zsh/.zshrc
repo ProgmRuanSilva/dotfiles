@@ -1,6 +1,6 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
-export asdf="$HOME/.asdf/asdf.sh"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export FZF_BASE="/$HOME/.fzf/"
@@ -11,10 +11,17 @@ export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
-export EDITOR="nvim"
+export ANDROID_HOME=$HOME/Android/Sdk
+export JAVA_HOME=$HOME/.asdf/installs/java/adoptopenjdk-17.0.0+35/
+export OLLAMA_ORIGINS=app://obsidian.md*
+export PATH="$PATH":"$HOME/.maestro/bin"
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-export OLLAMA_ORIGINS=app://obsidian.md*
+
+# asdf stuff
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+autoload -Uz compinit && compinit
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -72,7 +79,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 export LANG=en_US.UTF-8
 
 # Default Editor
-# export EDITOR="/usr/bin/nvim"
+export EDITOR="/usr/bin/nvim"
 export VISUAL="/usr/bin/nvim"
 
 # Compilation flags
@@ -82,11 +89,9 @@ export ARCHFLAGS="-arch x86_64"
 ZSH_TMUX_AUTOSTART=true
 
 plugins=(
-	git
+  asdf
 	ruby
-	asdf
 	rails
-	golang
 	heroku
 	bundler
 	gitignore
@@ -96,7 +101,6 @@ plugins=(
 	extract
 	fzf
 	tmux
-	jump
 	sudo
 	singlechar
 	starship
@@ -134,21 +138,40 @@ quit() {
 }
 zle -N quit
 
+spf-widget() {
+  zle reset-prompt        # Optional: refresh the line
+  zle -I                  # Clear input
+  BUFFER="spf"            # Set the command
+  zle accept-line         # Run it immediately
+}
+zle -N spf-widget
+
+
+# ff() {
+#  IFS=$'\n' files=($(fzf-tmux -p80%,60%  --preview 'bat -n --color=always {}' --query="$1" --multi --select-1 --reverse --# exit-0  --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-# k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'  ))
+#  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+#}
+
+# ff-widget() {
+#   ff
+#   zle reset-prompt
+# }
+# zle -N ff-widget
+
+
 # Unmapppings
 bindkey -r '^T'
 
-# Command-Line Mappings #zle -al to see all widgets avalible
+bindkey "^[c" spf-widget  # ^[ is ESC, so this binds Alt+b
+# bindkey  "^[f" ff-widget
+
+#TIP: zle -al to see all widgets avalible
 bindkey '^[j' accept-line
 
 bindkey '^[q' quit
 bindkey '^[e' delete-word
 bindkey '^[w' backward-delete-word
 bindkey '^[h' kill-buffer
-
-# bindkey '^[p' backward-delete-char
-
-# bindkey '^[g' forward-char
-# bindkey '^[i' backward-char
 
 bindkey '^[s' forward-word
 bindkey '^[a' backward-word
@@ -161,11 +184,8 @@ bindkey '^[n' beginning-of-line
 bindkey '^[o' up-line-or-history
 bindkey '^[p' down-line-or-history
 
-bindkey '^[c' fzf-cd-widget
 
-# bindkey '^[g' cdback
-
-# Defaults Commands
+# Aliases
 alias killp='kill -9'
 alias jctl="journalctl -xb"
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq);yay -c' # cleanup orphaned packages
@@ -193,10 +213,11 @@ alias cat='bat --theme=base16 --force-colorization --paging=always --style=plain
 alias f="flyctl"
 
 # Exa List
-alias l='exa --tree --level=2 --icons --git'
-alias ls="exa -T --color=always --icons --group-directories-first"
+alias lei='exa --tree --level=2 --icons --git'
+alias ls="exa -GA --color=always --icons --sort=size --group-directories-first"
+alias l="exa -GA --color=always --icons --sort=size --group-directories-first"
+alias le='exa -T --color=always --icons --group-directories-first'
 alias le='exa -GA --color=always --icons --sort=size --group-directories-first'
-alias lei='exa -GA --color=always --icons --sort=size --group-directories-first'
 alias el='exa -xA --color=always --icons --sort=size --group-directories-first'
 alias e='exa -xA --color=always --icons --sort=size --group-directories-first'
 alias ej='exa -xA --color=always --icons --sort=size --group-directories-first'
@@ -228,6 +249,7 @@ alias update='backup; sudo yay -Syu'
 alias backup="sh ~/dotfiles/bin/backup.sh"
 alias gwn="sh ~/dotfiles/bin/gwa.sh \$@"
 alias gnw="sh ~/dotfiles/bin/gnw.sh \$@"
+alias d="z"
 
 # Configurations Files
 alias zshcfg="nvim ~/.zshrc"
@@ -265,7 +287,7 @@ alias ni="npm install"
 # Pnpm
 alias p="pnpm"
 alias pi="pnpm install"
-alias pa="pnpm add"
+alias pa="pnpm run android"
 alias px="pnpm dlx"
 alias pr="pnpm run"
 alias pns="pnpm start"
@@ -283,7 +305,6 @@ alias gcb="git checkout -b"
 alias gstp="git fetch; git pull origin main"
 
 # Docker Compose
-alias d="docker"
 alias dr="docker run"
 alias dps="lazydocker"
 alias dsp="lazydocker"
@@ -322,3 +343,7 @@ alias rbt="reboot"
 # Shacn
 alias sha="pnpm dlx shadcn@latest add"
 alias shi="pnpm dlx shadcn@latest init"
+
+alias gtt="sh ~/projects/git-stack/main.sh"
+
+export PATH=$PATH:$HOME/.maestro/bin

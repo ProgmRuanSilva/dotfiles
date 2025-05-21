@@ -1,6 +1,6 @@
 gui:
   # stuff relating to the UI
-  windowSize: "normal" # one of 'normal' | 'half' | 'full' default is 'normal'
+  screenMode: "normal" # one of 'normal' | 'half' | 'full' default is 'normal'
   scrollHeight: 4 # how many lines you scroll by
   scrollPastBottom: true # enable scrolling past the bottom
   sidePanelWidth: 0.3333 # number from 0 to 1
@@ -186,7 +186,7 @@ keybinding:
     createTag: "t"
     pushTag: "T"
     setUpstream: "U" # set as upstream of checked-out branch
-    fetchRemote: "f"
+    fetchRemote: "F"
   commits:
     squashDown: "s"
     renameCommit: "R"

@@ -41,6 +41,9 @@ cp -frv ~/.config/lazydocker/config.yml ~/dotfiles/lazydocker/
 # lazygit
 cp -frv ~/.config/lazygit/config.yml ~/dotfiles/lazygit/
 
+# kitty
+cp -frv ~/.config/kitty/kitty.conf ~/dotfiles/kitty/
+
 # cp -frv ~/dotfiles/
 # cp -frv ~/dotfiles/
 # cp -frv ~/dotfiles/
