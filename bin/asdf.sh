@@ -53,7 +53,7 @@ install () {
                           version="latest"
                       fi
                       asdf install nodejs "$version"
-                      asdf global nodejs "$version"
+                      asdf set -u nodejs "$version"
                       ;;
                   "python")
                       asdf plugin add python
@@ -61,7 +61,7 @@ install () {
                           version="latest"
                       fi
                       asdf install python "$version"
-                      asdf global python "$version"
+                      asdf set -u python "$version"
                       ;;
                   "ruby")
                       asdf plugin add ruby
@@ -69,7 +69,7 @@ install () {
                           version="latest"
                       fi
                       asdf install ruby "$version"
-                      asdf global ruby "$version"
+                      asdf set -u ruby "$version"
                       ;;
                   "golang")
                       asdf plugin add golang
@@ -77,7 +77,7 @@ install () {
                           version="latest"
                       fi
                       asdf install golang "$version"
-                      asdf global golang "$version"
+                      asdf set -u golang "$version"
                       ;;
                   "rust")
                       asdf plugin add rust
@@ -85,7 +85,7 @@ install () {
                           version="latest"
                       fi
                       asdf install rust "$version"
-                      asdf global rust "$version"
+                      asdf set -u rust "$version"
                       ;;
                   "lua")
                       asdf plugin add lua
@@ -93,7 +93,7 @@ install () {
                           version="latest"
                       fi
                       asdf install lua "$version"
-                      asdf global lua "$version"
+                      asdf set -u lua "$version"
                       ;;
                   *)
                       u_error "Invalid option: $selected_option"
