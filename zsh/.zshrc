@@ -1,16 +1,17 @@
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-export MANPATH="/usr/local/man:$MANPATH"
-export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export FZF_BASE="/$HOME/.fzf/"
-export FLYCTL_INSTALL="/home/dev/.fly"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
+export PATH=$PATH:$HOME/.maestro/bin
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
+export PATH=$PATH:$HOME/Android/Sdk/emulator/
+
 export ANDROID_HOME=$HOME/Android/Sdk
 export JAVA_HOME=$HOME/.asdf/installs/java/adoptopenjdk-17.0.0+35/
 export OLLAMA_ORIGINS=app://obsidian.md*
@@ -43,6 +44,8 @@ zstyle ':omz:update' mode auto # update automatically without asking
 
 # Uncomment the following line to change how often to auto-update (in days).
 zstyle ':omz:update' frequency 13
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 DISABLE_MAGIC_FUNCTIONS="true"
@@ -116,6 +119,9 @@ plugins=(
 # Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
+# Carapace
+source <(carapace _carapace)
+
 # Fzf
  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -125,64 +131,109 @@ if [[ $(id -gn) != "docker" ]]; then
 	exit
 fi
 
-# My scripts
-cdback() {
-	cd ..
-	zle reset-prompt
-}
-zle -N cdback
-
+# Functions
 quit() {
 	exit
 	zle reset-prompt
 }
 zle -N quit
 
-spf-widget() {
-  zle reset-prompt        # Optional: refresh the line
-  zle -I                  # Clear input
-  BUFFER="spf"            # Set the command
-  zle accept-line         # Run it immediately
+ff-widget() {
+   ff
+   zle reset-prompt
+ }
+ zle -N ff-widget
+
+# Toggle between zoxide history
+dj() {
+    local first second current
+    first=$(zoxide query -l | sed -n '1p')
+    second=$(zoxide query -l | sed -n '2p')
+    current=$(pwd)
+
+    if [ -z "$first" ] || [ -z "$second" ]; then
+        echo "Not enough zoxide history to toggle."
+        return 1
+    fi
+
+    if [ "$current" = "$second" ]; then
+        cd "$first" || echo "Failed to cd into $first"
+    else
+        cd "$second" || echo "Failed to cd into $second"
+    fi
 }
-zle -N spf-widget
 
-
-# ff() {
-#  IFS=$'\n' files=($(fzf-tmux -p80%,60%  --preview 'bat -n --color=always {}' --query="$1" --multi --select-1 --reverse --# exit-0  --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-# k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'  ))
-#  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
-#}
-
-# ff-widget() {
-#   ff
-#   zle reset-prompt
-# }
-# zle -N ff-widget
-
+# Function to "Cdback" in zoxide jumps
+dj() {
+    local dirs_output=$(dirs -v)
+    local current_dir=$(pwd)
+    local found_current=false
+    local prev_dir=""
+    
+    while IFS= read -r line; do
+        local dir_path=$(echo "$line" | sed 's/^[[:space:]]*[0-9][0-9]*[[:space:]]*//')
+        
+        if [[ "$dir_path" == "~"* ]]; then
+            dir_path="${dir_path/#\~/$HOME}"
+        fi
+        
+        dir_path=$(cd "$dir_path" 2>/dev/null && pwd)
+        
+        if [[ "$found_current" == true ]]; then
+            prev_dir="$dir_path"
+            break
+        fi
+        
+        if [[ "$dir_path" == "$current_dir" ]]; then
+            found_current=true
+        fi
+    done <<< "$dirs_output"
+    
+    if [[ -n "$prev_dir" && "$prev_dir" != "$current_dir" ]]; then
+        z "$prev_dir"
+    else
+        local current_index=0
+        local target_dir=""
+        
+        while IFS= read -r dir; do
+            if [[ "$dir" == "$current_dir" ]]; then
+                if [[ $current_index -eq 0 ]]; then
+                    target_dir=$(zoxide query -l | sed -n '2p')
+                else
+                    
+                fi
+                break
+            fi
+            target_dir="$dir"
+            ((current_index++))
+        done < <(zoxide query -l)
+        
+        if [[ -n "$target_dir" ]]; then
+            cd "$target_dir" || echo "Failed to cd into $target_dir"
+        else
+            echo "No recent zoxide entries found."
+        fi
+    fi
+}
 
 # Unmapppings
 bindkey -r '^T'
 
-bindkey "^[c" spf-widget  # ^[ is ESC, so this binds Alt+b
-# bindkey  "^[f" ff-widget
-
 #TIP: zle -al to see all widgets avalible
-bindkey '^[j' accept-line
+bindkey '^J' accept-line
 
-bindkey '^[q' quit
-bindkey '^[e' delete-word
-bindkey '^[w' backward-delete-word
-bindkey '^[h' kill-buffer
+bindkey '^Q' quit
+bindkey '^E' delete-word
+bindkey '^H' kill-buffer
 
-bindkey '^[s' forward-word
-bindkey '^[a' backward-word
+bindkey '^S' forward-word
+bindkey '^A' backward-word
 
-bindkey '^[d' clear-screen
+#WARN: Needed to don't let zsh exit on Kitty console
+stty eof ''
+bindkey '^D' clear-screen
 
-bindkey '^[m' cdback
-bindkey '^[n' beginning-of-line
-
-bindkey '^[o' up-line-or-history
-bindkey '^[p' down-line-or-history
+bindkey '^O' up-line-or-history
 
 
 # Aliases
@@ -210,24 +261,11 @@ alias ports='lsof -i -P'
 alias less='bat --theme=base16 --force-colorization --paging=always --style=plain,changes,grid,snip'
 alias cat='bat --theme=base16 --force-colorization --paging=always --style=plain,changes,grid,snip'
 
-alias f="flyctl"
-
 # Exa List
-alias lei='exa --tree --level=2 --icons --git'
+alias lsa='exa --tree --level=2 --icons --git'
 alias ls="exa -GA --color=always --icons --sort=size --group-directories-first"
 alias l="exa -GA --color=always --icons --sort=size --group-directories-first"
-alias le='exa -T --color=always --icons --group-directories-first'
-alias le='exa -GA --color=always --icons --sort=size --group-directories-first'
-alias el='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias e='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias ej='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias elj='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias eli='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias lejj='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias lej='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias lel='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias lei='exa -xA --color=always --icons --sort=size --group-directories-first'
-alias li='exa -xA --color=always --icons --sort=size --group-directories-first'
+alias j="exa -GA --color=always --icons --sort=size --group-directories-first"
 
 # System Information
 alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
@@ -241,39 +279,28 @@ alias lspkglong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 |
 # Zsh
 alias q='exit'
 alias mv='mv -i'
-alias rnm='vidir'
 alias hm='cd ~/'
 alias rm='rm -rf'
 alias cp='cp -r'
-alias update='backup; sudo yay -Syu'
+alias update='yay -Syu'
 alias backup="sh ~/dotfiles/bin/backup.sh"
 alias gwn="sh ~/dotfiles/bin/gwa.sh \$@"
 alias gnw="sh ~/dotfiles/bin/gnw.sh \$@"
+
+# Zoxide
 alias d="z"
+alias dd="z .."
+alias f="z"
+alias fj='zi'
 
 # Configurations Files
 alias zshcfg="nvim ~/.zshrc"
-alias tmcfg="nvim ~/.config/tmux/tmux.conf"
-alias fzfcfg="nvim ~/.fzf.zsh"
-alias nvcfg="cd ~/.config/nvim/lua/custom/;nvim"
-alias strcfg="nvim ~/.config/starship/starship.toml"
 
 # Apps
 alias nv="nvim"
-alias n="nvim"
-alias jp="jump"
-alias volume='pavucontrol'
-alias vol='pavucontrol'
 alias btop='sudo btop'
 alias bt='sudo btop'
-alias acn='autocannon'
-alias c='z'
-alias cdi='zi'
-alias r='ranger'
-
-# ACT
-alias actr='act -j'
-alias actl='act -l'
+alias yay="yay -S"
 
 # Postgres
 alias pg="psql -U postgres"
@@ -295,6 +322,8 @@ alias pd="pnpm run dev"
 alias pb="pnpm run build"
 
 # Git
+alias g="gemini"
+alias gg="lazygit"
 alias gd="sh ~/projects/tmux-lazygit/lazy.sh"
 alias gph="git push"
 alias gpl="git pull"
@@ -316,7 +345,6 @@ alias dbuild="docker build -it "
 alias dc="docker-compose"
 alias dcw="docker-compose up --watch"
 alias dcd="docker-compose down"
-alias dcps="docker-compose ps"
 alias dcb="docker-compose build"
 alias dch="docker-compose --help"
 alias dcub="docker-compose up --build"
@@ -325,25 +353,15 @@ alias dcu="docker-compose up --build --detach"
 alias dcubd="docker-compose up --build --detach"
 alias du="docker-compose up --build --detach"
 
-# Minikube
-alias mn="minikube"
-alias mnp="minikube status"
-alias mns="minikube start"
-alias mnd="minikube delete"
-alias mnst="minikube stop"
-alias mnan="minikube node add"
-
-# Ollama
-alias oll="ollama run llama3:instruct"
-alias oln="ollama run llama3.1"
+# Gradle
+alias gw="./gradlew "
+alias gwb="./gradlew build"
+alias gwr="./gradlew run"
+alias gwt="./gradlew test"
 
 # System
 alias off="poweroff"
 alias rbt="reboot"
-# Shacn
-alias sha="pnpm dlx shadcn@latest add"
-alias shi="pnpm dlx shadcn@latest init"
 
-alias gtt="sh ~/projects/git-stack/main.sh"
 
-export PATH=$PATH:$HOME/.maestro/bin
+

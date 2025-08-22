@@ -25,7 +25,7 @@ export FZF_ALT_C_OPTS="
   --padding=1
   --height=80%
   --preview 'bat -n --color=always {}'
-  --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'
+  --bind 'ctrl-j:accept,ctrl-q:abort,ctrl-p:backward-delete-char,ctrl-l:up,ctrl-a:beginning-of-line,ctrl-s:end-of-line,ctrl-k:down,ctrl-w:backward-kill-word,ctrl-e:kill-word,ctrl-m:forward-word,ctrl-n:backward-word,tab:toggle'
   "
 
 export FZF_CTRL_T_OPTS="
@@ -34,30 +34,30 @@ export FZF_CTRL_T_OPTS="
   --padding=1
   --height=80%
   --preview 'bat -n --color=always {}'
-  --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'"
+  --bind 'ctrl-j:accept,ctrl-q:abort,ctrl-p:backward-delete-char,ctrl-l:up,ctrl-a:beginning-of-line,ctrl-s:end-of-line,ctrl-k:down,ctrl-w:backward-kill-word,ctrl-e:kill-word,ctrl-m:forward-word,ctrl-n:backward-word,tab:toggle'"
 
 # Tmux
 # export FZF_TMUX_OPTS='-p80%,60%'
 
 # Options to fzf command
-export FZF_COMPLETION_TRIGGER=''
-export FZF_COMPLETION_OPTS=' --height=40% --layout=reverse --info=inline --border --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle,alt-l:up''
+# export FZF_COMPLETION_TRIGGER=''
+export FZF_COMPLETION_OPTS=' --height=40% --layout=reverse --info=inline --border --bind 'ctrl-j:accept,ctrl-q:abort,ctrl-p:backward-delete-char,ctrl-a:beginning-of-line,ctrl-s:end-of-line,ctrl-k:down,ctrl-w:backward-kill-word,ctrl-e:kill-word,ctrl-m:forward-word,ctrl-n:backward-word,tab:toggle,ctrl-l:up''
 
 # Commands
 # Open File or Directory
 ff() {
-  IFS=$'\n' files=($(fzf-tmux -p80%,60%  --preview 'bat -n --color=always {}' --query="$1" --multi --select-1 --reverse --exit-0  --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'  ))
+  IFS=$'\n' files=($(fzf-tmux -p80%,60%  --preview 'bat -n --color=always {}' --query="$1" --multi --select-1 --reverse --exit-0  --bind 'ctrl-j:accept,ctrl-q:abort,ctrl-p:backward-delete-char,ctrl-l:up,ctrl-a:beginning-of-line,ctrl-s:end-of-line,ctrl-k:down,ctrl-w:backward-kill-word,ctrl-e:kill-word,ctrl-m:forward-word,ctrl-n:backward-word,tab:toggle'  ))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 ii() {
-  IFS=$'\n' files=($(fzf-tmux -p80%,60%  --preview 'bat -n --color=always {}' --query="$1" --multi --select-1 --reverse --exit-0  --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'  ))
+  IFS=$'\n' files=($(fzf-tmux -p80%,60%  --preview 'bat -n --color=always {}' --query="$1" --multi --select-1 --reverse --exit-0  --bind 'ctrl-j:accept,ctrl-q:abort,ctrl-p:backward-delete-char,ctrl-l:up,ctrl-a:beginning-of-line,ctrl-s:end-of-line,ctrl-k:down,ctrl-w:backward-kill-word,ctrl-e:kill-word,ctrl-m:forward-word,ctrl-n:backward-word,tab:toggle'  ))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 # fh - repeat history
 fh() {
-  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --reverse --border --height=40% --bind 'alt-j:accept,alt-q:abort,alt-p:backward-delete-char,alt-l:up,alt-a:beginning-of-line,alt-s:end-of-line,alt-k:down,alt-w:backward-kill-word,alt-e:kill-word,alt-m:forward-word,alt-n:backward-word,tab:toggle'| sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --reverse --border --height=40% --bind 'ctrl-j:accept,ctrl-q:abort,ctrl-p:backward-delete-char,ctrl-l:up,ctrl-a:beginning-of-line,ctrl-s:end-of-line,ctrl-k:down,ctrl-w:backward-kill-word,ctrl-e:kill-word,ctrl-m:forward-word,ctrl-n:backward-word,tab:toggle'| sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }
 
 # Another CTRL-T script to select a directory and paste it into line
@@ -102,7 +102,7 @@ fi
 
 # Auto-completion
 # ---------------
-[[ $- =~ i ]] && source "/usr/share/fzf/completion.zsh"
+# [[ $- =~ i ]] && source "/usr/share/fzf/completion.zsh"
 
 # Key bindings
 # ------------

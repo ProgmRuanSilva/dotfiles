@@ -1,4 +1,8 @@
 {
   "answerclean": "None",
-  "answerdiff": "None"
+  "answerdiff": "None",
+  "answercleanmenu": "None",
+  "answerdiffmenu": "None",
+  "answerproceed": "Yes",
+  "removemake": true
 }
