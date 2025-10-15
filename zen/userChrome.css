@@ -1,0 +1,57 @@
+/* Move button box a bit to the left */
+.titlebar-buttonbox {
+  margin-right: 20px;
+}
+
+/* Base styling for titlebar buttons */
+.titlebar-button {
+  padding: 0px !important;
+  min-height: 13px !important;
+  min-width: 13px !important;
+  height: 13px !important;
+  align-self: center;
+  margin-left: 5px !important;
+  border-radius: 50px;
+  transition: all 100ms;
+  list-style-image: none !important;
+  -moz-appearance: none !important;
+  background-image: none !important;
+}
+
+/* Minimize button color */
+.titlebar-min {
+  background-color: hsl(48, 89%, 60%) !important;
+}
+
+/* Maximize / restore button color */
+.titlebar-max,
+.titlebar-restore {
+  background-color: hsl(96, 47%, 58%) !important;
+}
+
+/* Close button color */
+.titlebar-close {
+  background-color: hsl(0, 78%, 59%) !important;
+}
+
+/* Show icons when buttons are visible */
+.titlebar-button > image,
+.titlebar-button::before,
+.titlebar-button::after {
+  opacity: 1 !important;
+  transition: opacity 100ms !important;
+}
+
+#browser {
+  clip-path: path(
+    "M0,20 C0,8 8,0 20,0 Hcalc(100% - 20) Ccalc(100% - 8,0) calc(100%,8) calc(100%,20) Vcalc(100% - 20) Ccalc(100%,calc(100% - 8)) calc(100% - 8,100%) calc(100% - 20,100%) H20 C8,100% 0,calc(100% - 8) 0,calc(100% - 20) Z"
+  );
+  overflow: hidden;
+}
+
+/* html:not([sizemode="fullscreen"]) { */
+/*   .browserStack, */
+/*   browser { */
+/*     clip-path: inset(0 round var(--zen-native-inner-radius)); */
+/*   } */
+/* } */
