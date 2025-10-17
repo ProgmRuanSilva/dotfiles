@@ -17,11 +17,11 @@ export JAVA_HOME=$HOME/.asdf/installs/java/adoptopenjdk-17.0.0+35/
 export OLLAMA_ORIGINS=app://obsidian.md*
 export PATH="$PATH":"$HOME/.maestro/bin"
 
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
+#eval "$(starship init zsh)"
+#eval "$(zoxide init zsh)"
 
 # asdf stuff
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+#fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 autoload -Uz compinit && compinit
 
 # Set name of the theme to load --- if set to "random", it will
@@ -120,16 +120,16 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Carapace
-source <(carapace _carapace)
+#source <(carapace _carapace)
 
 # Fzf
- [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Switch groups, Necessary for docker run
-if [[ $(id -gn) != "docker" ]]; then
-	newgrp docker
-	exit
-fi
+#if [[ $(id -gn) != "docker" ]]; then
+#	newgrp docker
+#	exit
+#fi
 
 # Functions
 quit() {
