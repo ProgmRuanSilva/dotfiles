@@ -1,12 +1,13 @@
 #!/bin/bash
 
+#TODO: Install UV curl -LsSf https://astral.sh/uv/install.sh | sh
 install () {
   source $HOME/dotfiles/bin/utils.sh
 
   u_header "Asdf Installer"
 
   u_bold "Installing asdf..."
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf 
+  yay -S asdf-vm
 
   u_success "Asdf Installed"
 
