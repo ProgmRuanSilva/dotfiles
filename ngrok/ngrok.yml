@@ -1,0 +1,3 @@
+version: "3"
+agent:
+  console_ui_color: transparent
