@@ -123,7 +123,7 @@
   opacity: 1 !important;
 }
 
-#tabbrowser-tabbox:not([sizemode="fullscreen"]) .tabbrowser-tab[selected] {
+#tabbrowser-tabbox:not([sizemode="fullscreen"]) {
   clip-path: var(--clip-path-squircle-24) !important;
 }
 
