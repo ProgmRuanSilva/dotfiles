@@ -1,0 +1,263 @@
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+
+syntax on            " Enable syntax highlight
+set hidden           " Hides the current buffer when a new file is openned"
+set nobackup         " No backup files"
+set autoread         " Update vim after file update from outside
+set smarttab         " insert tabs on the start of a line according to shiftwidth
+set expandtab        " On pressing tab, insert 4 spaces
+set incsearch        " Incremental search
+set smartcase        " Consider case if there is a upper case character
+set ignorecase       " Ingore case in search
+set smartindent      " Automatically inserts one extra level of indentation in some cases
+set splitright       " Create the vertical splits to the right
+set splitbelow       " Create the horizontal splits below
+set nowritebackup    " No backup files
+set tabstop=4        " Show existing tab with 2 spaces width
+set scrolloff=5      " Minimum number of lines to keep above and below the cursor
+set cmdheight=1      " Give more space for displaying messages
+set shiftwidth=4     " When indenting with '>', use 4 spaces width
+set softtabstop=2    " Show existing tab with 4 spaces width
+set updatetime=100   " Time in miliseconds to consider the changes
+set encoding=utf-8   " The encoding should be utf-8 to activate the font icons
+set nocompatible
+set relativenumber
+set visualbell
+
+" Don't beep when errors occur
+set noerrorbells
+set visualbell
+
+" Faster scrolling
+" set lazyredraw
+
+filetype on          " Detect and set the filetype option and trigger the FileType Event
+filetype plugin on   " Load the plugin file for the file type, if any
+filetype indent on   " Load the indent file for the file type, if any
+
+" --- Leader Key ---
+let mapleader = " "
+
+" --------------------------------------------------------------
+"  MOVEMENT / JUMPING — AceJump Integration
+" --------------------------------------------------------------
+
+" Requires AceJump plugin (IDs confirmed from actionlist.txt)
+" AceAction -> word/char jump
+" AceLineAction -> line jump
+" AceTargetAction -> symbol/target jump
+
+" Jump to any word/char in buffer
+nmap fk :action AceAction<CR>
+vmap fk :action AceAction<CR>
+
+" Jump to any line (Hop line equivalent)
+nmap fl :action AceLineAction<CR>
+vmap fl :action AceLineAction<CR>
+
+" Jump to specific symbol or target (like Neohop)
+nmap ft :action AceTargetAction<CR>
+vmap ft :action AceTargetAction<CR>
+
+" --------------------------------------------------------------
+"  NORMAL & VISUAL MODE MAPPINGS
+" --------------------------------------------------------------
+
+" Copy selected code 
+vnoremap y "+y
+
+" Simple deletions
+noremap dj diw
+noremap dd dd
+
+" Move up / down / left / right
+noremap <C-a> a
+noremap <C-c> $a
+
+" Move up / down
+noremap <C-f> <C-d>zz
+noremap <C-d> <C-u>zz
+
+" Move with brackets
+noremap <C-e> }
+noremap <C-w> {
+
+" Move left / right 
+noremap a b
+noremap s w
+
+" Move to beginning / end of line
+noremap , o<Esc>
+noremap . O<Esc>
+
+" Delete word backwards
+noremap <C-BS> vdi
+noremap <C-q> <C-w>
+
+" Paste
+noremap <C-v> "+p
+nmap \y "+y
+nmap \p "*p
+xnoremap \y "+y
+
+" Folds
+noremap ff zz
+noremap fe zb
+noremap fw zt
+noremap fs za
+noremap <C-j> za
+noremap fc zA
+noremap fo zM
+
+" Tab navigation
+noremap <C-1> :action GoToTab1<CR>
+noremap <C-2> :action GoToTab2<CR>
+noremap <C-3> :action GoToTab3<CR>
+noremap <C-4> :action GoToTab4<CR>
+noremap <C-5> :action GoToTab5<CR>
+noremap <C-6> :action GoToTab6<CR>
+noremap <C-7> :action GoToTab7<CR>
+noremap <C-8> :action GoToTab8<CR>
+noremap <C-9> :action GoToTab9<CR>
+
+nnoremap <Leader>s :action SaveAll<CR>
+
+nnoremap <Leader>q :action CloseContent<CR>
+
+nnoremap <Leader>j :action ActivateProjectToolWindow<CR>
+
+nnoremap <Leader>f :action GotoFile<CR>
+
+nnoremap <Leader>F :action FindInPath<CR>
+
+" LSP
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gt :action GotoTypeDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gl :action GotoLine<CR>
+
+nnoremap <Leader>r :action Run<CR>
+nnoremap <Leader>t :action ActivateTerminalToolWindow<CR>
+
+
+" Insertion mode
+inoremap <C-q> <Esc>
+inoremap <C-s> <Esc>wa
+inoremap <C-a> <Esc>bi
+
+inoremap <C-h> <Esc>hi
+inoremap <C-l> <Esc>la
+
+inoremap <C-j> <Esc>ji
+inoremap <C-k> <Esc>ka
+
+inoremap <C-c> <Esc>$0i
+inoremap <C-f> <Esc>$a
+
+inoremap <C-u> <Esc>ua
+inoremap <C-o> <C-o>o
+
+" inoremap <C-o> <Esc>o
+
+inoremap <C-BS> <Esc>diwi
+
+inoremap <C-9> ()<Esc>i
+
+" --------------------------------------------------------------
+"  WINDOW / TAB MANAGEMENT
+" --------------------------------------------------------------
+
+" Next / previous tab
+nnoremap <Leader>l :action NextEditorTab<CR>
+nnoremap <Leader>h :action PreviousEditorTab<CR>
+
+" Close current tab
+nnoremap <Leader>x :action CloseContent<CR>
+
+" Maximize / minimize editor
+nnoremap <Leader>m :action HideAllWindows<CR>
+nnoremap <Leader>M :action MaximizeToolWindow<CR>
+
+" --------------------------------------------------------------
+"  CODE ACTIONS / REFACTORING
+" --------------------------------------------------------------
+
+" Quick actions (equivalent to Telescope code actions)
+nnoremap <Leader>a :action ShowIntentionActions<CR>
+
+" Rename symbol
+nnoremap <Leader>rn :action RenameElement<CR>
+
+" Format code
+nnoremap <Leader>p :action ReformatCode<CR>
+
+" Comment / Uncomment
+nnoremap <Leader>c :action CommentByLineComment<CR>
+vnoremap <Leader>c :action CommentByLineComment<CR>
+
+" --------------------------------------------------------------
+"  GIT / VERSION CONTROL
+" --------------------------------------------------------------
+
+" Open Git tool window
+nnoremap <Leader>gg :action ActivateVersionControlToolWindow<CR>
+
+" Commit
+nnoremap <Leader>gc :action CheckinProject<CR>
+
+" Push
+nnoremap <Leader>gp :action Git.PushUpToCommit<CR>
+
+" Fetch / Pull
+nnoremap <Leader>gf :action Git.Fetch<CR>
+nnoremap <Leader>gu :action Git.Pull<CR>
+
+" Open file history
+nnoremap <Leader>gh :action LocalHistory.ShowHistory<CR>
+
+" --------------------------------------------------------------
+"  SEARCH & NAVIGATION
+" --------------------------------------------------------------
+
+" Search symbol (like Telescope lsp_document_symbols)
+nnoremap <Leader>ss :action GotoSymbol<CR>
+
+" Search usages (like Telescope references)
+nnoremap <Leader>su :action FindUsages<CR>
+
+" Toggle problems / inspection view
+" nnoremap <Leader>i :action ActivateProblemsViewToolWindow<CR>
+
+" --------------------------------------------------------------
+"  MISCELLANEOUS / UTILITIES
+" --------------------------------------------------------------
+
+" Open settings
+nnoremap <Leader>/ :action ShowSettings<CR>
+
+" Toggle terminal
+nnoremap <Leader>' :action ActivateTerminalToolWindow<CR>
+
+" --------------------------------------------------------------
+"  VISUAL MODE UTILITIES
+" --------------------------------------------------------------
+noremap vj viw
+vnoremap q <ESC>
+vnoremap <C-q> <ESC>
+vnoremap Q <C-q>
+
+" Indent / outdent visually selected text
+vnoremap H <gv
+vnoremap L >gv
+
+" Keep selection after shifting / indenting
+xnoremap H <gv
+xnoremap L >gv
+
+
