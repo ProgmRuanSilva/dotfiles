@@ -216,6 +216,24 @@ dj() {
     fi
 }
 
+# Help command to list defined aliases and functions
+help() {
+    local config="$HOME/.zshrc"
+    echo "Available definitions in .zshrc:"
+    echo ""
+    echo "[Functions]"
+    grep -E "^[a-zA-Z0-9_-]+\(\) \{" "$config" | sed 's/() {.*//'
+    echo ""
+    echo "[Aliases]"
+    grep "^alias" "$config" | sed "s/^alias //" | sort
+}
+
+rmSwap() {
+    find . -name "swap-pane" -exec rm {} \;
+}
+
+rmSwap
+
 # Unmapppings
 bindkey -r '^T'
 
