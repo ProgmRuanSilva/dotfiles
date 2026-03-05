@@ -145,23 +145,23 @@ ff-widget() {
  zle -N ff-widget
 
 # Toggle between zoxide history
-dj() {
-    local first second current
-    first=$(zoxide query -l | sed -n '1p')
-    second=$(zoxide query -l | sed -n '2p')
-    current=$(pwd)
-
-    if [ -z "$first" ] || [ -z "$second" ]; then
-        echo "Not enough zoxide history to toggle."
-        return 1
-    fi
-
-    if [ "$current" = "$second" ]; then
-        cd "$first" || echo "Failed to cd into $first"
-    else
-        cd "$second" || echo "Failed to cd into $second"
-    fi
-}
+# dj() {
+#     local first second current
+#     first=$(zoxide query -l | sed -n '1p')
+#     second=$(zoxide query -l | sed -n '2p')
+#     current=$(pwd)
+#
+#     if [ -z "$first" ] || [ -z "$second" ]; then
+#         echo "Not enough zoxide history to toggle."
+#         return 1
+#     fi
+#
+#     if [ "$current" = "$second" ]; then
+#         cd "$first" || echo "Failed to cd into $first"
+#     else
+#         cd "$second" || echo "Failed to cd into $second"
+#     fi
+# }
 
 # Function to "Cdback" in zoxide jumps
 dj() {
@@ -380,6 +380,8 @@ alias gwt="./gradlew test"
 # System
 alias off="poweroff"
 alias rbt="reboot"
+
+
 
 
 
