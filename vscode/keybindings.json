@@ -1,0 +1,94 @@
+[
+    {
+        "key": "ctrl+w q",
+        "command": "-workbench.action.closeActiveEditor",
+        "when": "!editorTextFocus && !filesExplorerFocus && !searchViewletFocus && !terminalFocus && neovim.mode != 'cmdline'"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "-workbench.action.quit"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "vscode-neovim.escape",
+        "when": "editorTextFocus && neovim.init && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "vscode-neovim.send",
+        "args": "<C-q>",
+        "when": "neovim.init && neovim.mode == 'insert'"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "-workbench.action.closeWindow"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "-editor.action.clipboardCopyAction"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "vscode-neovim.send",
+        "args": "<C-c>",
+        "when": "editorTextFocus && neovim.init"
+    },
+    {
+        "key": "ctrl+s",
+        "command": "-workbench.action.files.save"
+    },
+    {
+        "key": "ctrl+s",
+        "command": "vscode-neovim.send",
+        "args": "<C-s>",
+        "when": "editorTextFocus && neovim.init"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "vscode-neovim.send",
+        "args": "<C-j>",
+        "when": "editorTextFocus && neovim.init"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "vscode-neovim.send",
+        "args": "<C-u>",
+        "when": "editorTextFocus && neovim.mode == 'normal'"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "vscode-neovim.send",
+        "args": "<C-f>",
+        "when": "editorTextFocus && neovim.mode == 'normal'"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "workbench.action.closeActiveEditor"
+    },
+    {
+        "key": "space",
+        "command": "vscode-neovim.send",
+        "args": "<space>",
+        "when": "editorTextFocus && neovim.mode != 'insert'"
+    },
+    {
+        "key": "ctrl+2",
+        "command": "workbench.action.focusSecondEditorGroup"
+    },
+    {
+        "key": "ctrl+3",
+        "command": "workbench.action.focusThirdEditorGroup"
+    }
+]

@@ -27,6 +27,8 @@ set encoding=utf-8   " The encoding should be utf-8 to activate the font icons
 set nocompatible
 set relativenumber
 set visualbell
+set which-key
+set notimeout
 
 " Don't beep when errors occur
 set noerrorbells
