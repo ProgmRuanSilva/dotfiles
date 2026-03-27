@@ -1,0 +1,23 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "YouTube Transcript",
+	"behavior": "create",
+	"noteContentFormat": "![{{title}}]({{schema:@VideoObject:embedUrl|replace:\"embed/\":\"watch?v=\"}})\n\n## Transcript\n\n{{selectorHtml:transcript-segment-view-model .yt-core-attributed-string\n  |replace:(\" “\":\" \",\" ”\":\" \")\n  |join\n  |markdown}}",
+	"properties": [
+		{
+			"name": "url",
+			"value": "{{schema:@VideoObject:embedUrl|replace:\\\"embed/\\\":\\\"watch?v=\\\"}}",
+			"type": "text"
+		},
+		{
+			"name": "author",
+			"value": "{{schema:@VideoObject:author}}",
+			"type": "multitext"
+		}
+	],
+	"triggers": [
+		"https://www.youtube.com/watch"
+	],
+	"noteNameFormat": "{{schema:@VideoObject:name|safe_name|trim}}",
+	"path": "web"
+}
