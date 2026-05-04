@@ -1,0 +1,10 @@
+sudo -i -u postgres
+initdb -D /var/lib/postgres/data/
+psql
+\password
+
+ubuntu
+  sudo nvim /etc/postgresql/14/main/pg_hba.conf
+
+arch
+  sudo nvim /var/lib/postgres/data/pg_hba.conf

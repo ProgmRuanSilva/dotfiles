@@ -1,0 +1,8 @@
+app.zen_browser.zen
+be.alexandervanhee.gradia
+com.jetbrains.IntelliJ-IDEA-Ultimate
+com.rustdesk.RustDesk
+com.ticktick.TickTick
+me.kozec.syncthingtk
+org.audacityteam.Audacity
+org.filezillaproject.Filezilla

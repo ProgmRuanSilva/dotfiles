@@ -1,0 +1,148 @@
+[
+    {
+        "command": "-workbench.action.closeActiveEditor",
+        "key": "ctrl+w q",
+        "when": "!editorTextFocus && !filesExplorerFocus && !searchViewletFocus && !terminalFocus && neovim.mode != 'cmdline'"
+    },
+    {
+        "command": "-workbench.action.quit",
+        "key": "ctrl+q"
+    },
+    {
+        "command": "vscode-neovim.escape",
+        "key": "ctrl+q",
+        "when": "editorTextFocus && neovim.init && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "args": "<C-q>",
+        "command": "vscode-neovim.send",
+        "key": "ctrl+q",
+        "when": "neovim.init && neovim.mode == 'insert'"
+    },
+    {
+        "command": "-workbench.action.closeWindow",
+        "key": "ctrl+q"
+    },
+    {
+        "command": "-editor.action.clipboardCopyAction",
+        "key": "ctrl+c"
+    },
+    {
+        "args": "<C-c>",
+        "command": "vscode-neovim.send",
+        "key": "ctrl+c",
+        "when": "editorTextFocus && neovim.init"
+    },
+    {
+        "command": "-workbench.action.files.save",
+        "key": "ctrl+s"
+    },
+    {
+        "command": "workbench.action.files.save",
+        "key": "ctrl+s"
+    },
+    {
+        "command": "-workbench.action.togglePanel",
+        "key": "ctrl+j"
+    },
+    {
+        "args": "<C-j>",
+        "command": "vscode-neovim.send",
+        "key": "ctrl+j",
+        "when": "editorTextFocus && neovim.init"
+    },
+    {
+        "command": "workbench.action.navigateLeft",
+        "key": "ctrl+h"
+    },
+    {
+        "command": "workbench.action.navigateUp",
+        "key": "ctrl+k"
+    },
+    {
+        "command": "workbench.action.navigateRight",
+        "key": "ctrl+l"
+    },
+    {
+        "args": "<C-u>",
+        "command": "vscode-neovim.send",
+        "key": "ctrl+d",
+        "when": "editorTextFocus && neovim.mode == 'normal'"
+    },
+    {
+        "command": "-workbench.action.terminal.focusFind",
+        "key": "ctrl+f"
+    },
+    {
+        "args": "e",
+        "command": "cursorPageDown",
+        "key": "ctrl+f",
+        "when": "editorTextFocus && neovim.mode == 'normal'"
+    },
+    {
+        "command": "workbench.action.closeActiveEditor",
+        "key": "ctrl+w"
+    },
+    {
+        "command": "editor.action.extensioneditor.showfind",
+        "key": "<space><space>"
+        // "when": "editorTextFocus && neovim.mode == 'normal'"
+    },
+    {
+        "command": "workbench.action.toggleSidebarVisibility",
+        "key": "ctrl+,"
+    },
+    {
+        "command": "antigravity.toggleChatFocus",
+        "key": "ctrl+.",
+        "when": "editorTextFocus && neovim.mode == 'normal'"
+    },
+    {
+        "command": "workbench.action.quickOpen",
+        "key": "ctrl+e",
+        "when": "editorTextFocus"
+    },
+    {
+        "command": "editor.action.codeAction",
+        "key": "ctrl+g",
+        "when": "editorFocus && neovim.mode == 'normal'"
+    },
+    {
+        "args": ">",
+        "command": "workbench.action.quickOpen",
+        "key": "ctrl+;"
+    },
+    {
+        "command": "workbench.action.splitEditorLeft",
+        "key": "ctrl+shift+i",
+        "when": "editorTextFocus"
+    },
+    {
+        "command": "workbench.action.closeEditorsInGroup",
+        "key": "ctrl+shift+w",
+        "when": ""
+    },
+    {
+        "command": "editor.action.triggerSuggest",
+        "key": "ctrl+v",
+        "when": "editorTextFocus && neovim.mode == 'insert'"
+    },
+    {
+        "key": "ctrl+[",
+        "command": "workbench.action.togglePanel",
+        "when": "editorFocus || terminalFocus"
+    },
+    {
+        "key": "ctrl+g",
+        "command": "-workbench.action.terminal.goToRecentDirectory",
+        "when": "terminalFocus"
+    },
+    // { TODO: Fazer isso funcionar
+    //     "key": "f",
+    //     "command": "vscode-neovim.send",
+    //     "args": "zz",
+    //     "when": "editorTextFocus && neovim.mode = 'normal'"
+    // }
+    // TODO: Adicionar os keybinds do lazygit quando estiver com o painel do git aberto
+    // TODO: Adicionar qj pra fechar o buffer
+]

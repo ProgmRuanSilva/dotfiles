@@ -1,0 +1,10 @@
+rounded-window-corners@fxgn
+hidetopbar@mathieu.bidon.ca
+blur-my-shell@aunetx
+search-light@icedman.github.com
+appindicatorsupport@rgcjonas.gmail.com
+dash-to-dock@micxgx.gmail.com
+gnome-ui-tune@itstime.tech
+legacyschemeautoswitcher@joshimukul29.gmail.com
+pamac-updates@manjaro.org
+user-theme@gnome-shell-extensions.gcampax.github.com
