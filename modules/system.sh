@@ -10,9 +10,10 @@ yay -Syu --noconfirm
 
 u_bold "Installing base packages..."
 yay -S --noconfirm \
-    yaml-cpp unzip make gcc wget curl fzf libyaml ripgrep zsh git cmake mesa \
+    yaml-cpp unzip asdf-vm make gcc xh curl fzf libyaml ripgrep zsh git cmake mesa \
     docker docker-compose docker-machine docker-buildx unixodbc sxhkd gyp \
     bat fakeroot pkgconf neovim fd btop carapace-bin \
-    gnome-tweaks dconf-editor
+    gnome-tweaks dconf-editor zoxide lazydocker lazygit \
+    antigravity sassc exa
 
 u_success "System base setup complete"

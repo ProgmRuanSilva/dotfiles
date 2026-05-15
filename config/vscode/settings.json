@@ -1,4 +1,5 @@
 {
+    "editor.fontFamily": "'Comic Mono'",
     "workbench.colorTheme": "Dracula Theme",
     "editor.minimap.enabled": false,
     "python.languageServer": "Default",
@@ -8,5 +9,39 @@
     "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/init.lua",
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
-    }
+    },
+    "terminal.external.linuxExec": "kitty",
+    "vscode-neovim.logOutputToConsole": true,
+    "vscode-neovim.revealCursorScrollLine": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorBlinking": "solid",
+    "editor.cursorStyle": "block",
+    "editor.formatOnPaste": true,
+    "diffEditor.experimental.useTrueInlineView": true,
+    "diffEditor.renderSideBySide": false,
+    "terminal.explorerKind": "external",
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.cursorStyleInactive": "block",
+    "terminal.integrated.defaultProfile.linux": "tmux",
+    "vscode-neovim.afterInitConfig": [
+        "cmdheight=0",
+        "set laststatus=1",
+        "set showcmd",
+        "set noshowmode"
+    ],
+    "terminal.integrated.fontFamily": "Comic Mono",
+    "terminal.integrated.fontLigatures.enabled": true,
+    "terminal.integrated.defaultLocation": "editor",
+    "terminal.integrated.env.linux": {
+        "LANG": "en_US.UTF-8"
+    },
+    "terminal.integrated.shell.osx": "/bin/zsh",
+    "terminal.integrated.enableImages": true,
+    "editor.cursorSurroundingLinesStyle": "all",
+    "editor.cursorSurroundingLines": 50,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.commandsToSkipShell": [
+        "kilo-code.new.agentManagerOpen",
+        "kilo-code.new.agentManager.showTerminal"
+    ]
 }

@@ -13,7 +13,7 @@ fi
 u_bold "Adding Flathub remote..."
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-FLATPAK_LIST="$DOTFILES_DIR/flatpak/flatpak-apps.txt"
+FLATPAK_LIST="$DOTFILES_DIR/config/flatpak/flatpak-apps.txt"
 
 if [ -f "$FLATPAK_LIST" ]; then
     u_bold "Installing apps from list..."

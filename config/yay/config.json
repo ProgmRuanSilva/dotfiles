@@ -1,7 +1,8 @@
 {
-  "answerclean": "None",
+  "removemake": "Yes",
   "answerdiff": "None",
-  "answercleanmenu": "None",
+  "answerclean": "None",
+  "answerproceed": "Yes",
   "answerdiffmenu": "None",
-  "answerproceed": "Yes"
+  "answercleanmenu": "None",
 }

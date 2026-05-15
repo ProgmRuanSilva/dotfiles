@@ -2,27 +2,8 @@ export ZSH="$HOME/.oh-my-zsh"
 export FZF_BASE="/$HOME/.fzf/"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOPATH
-export PATH=$PATH:$GOROOT/bin
-export PATH=$PATH:$HOME/.maestro/bin
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
-export PATH=$PATH:$HOME/Android/Sdk/emulator/
-
-export ANDROID_HOME=$HOME/Android/Sdk
-export JAVA_HOME=$HOME/.asdf/installs/java/adoptopenjdk-17.0.0+35/
-export OLLAMA_ORIGINS=app://obsidian.md*
-export PATH="$PATH":"$HOME/.maestro/bin"
-
-#eval "$(starship init zsh)"
-#eval "$(zoxide init zsh)"
-
-# asdf stuff
-#fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-autoload -Uz compinit && compinit
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -92,22 +73,16 @@ export ARCHFLAGS="-arch x86_64"
 ZSH_TMUX_AUTOSTART=true
 
 plugins=(
-  asdf
-	ruby
-	rails
-	heroku
-	bundler
-	gitignore
-	jsontools
-	catimg
-	copyfile
-	extract
 	fzf
 	tmux
 	sudo
-	singlechar
+  asdf
+	catimg
+	extract
 	starship
-	systemd
+	copyfile
+	gitignore
+	singlechar
 	last-working-dir
 	command-not-found
 	zsh-interactive-cd
@@ -120,16 +95,16 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Carapace
-#source <(carapace _carapace)
+source <(carapace _carapace)
 
 # Fzf
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+ [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Switch groups, Necessary for docker run
-#if [[ $(id -gn) != "docker" ]]; then
-#	newgrp docker
-#	exit
-#fi
+if [[ $(id -gn) != "docker" ]]; then
+	newgrp docker
+	exit
+fi
 
 # Functions
 quit() {
@@ -144,27 +119,8 @@ ff-widget() {
  }
  zle -N ff-widget
 
-# Toggle between zoxide history
-# dj() {
-#     local first second current
-#     first=$(zoxide query -l | sed -n '1p')
-#     second=$(zoxide query -l | sed -n '2p')
-#     current=$(pwd)
-#
-#     if [ -z "$first" ] || [ -z "$second" ]; then
-#         echo "Not enough zoxide history to toggle."
-#         return 1
-#     fi
-#
-#     if [ "$current" = "$second" ]; then
-#         cd "$first" || echo "Failed to cd into $first"
-#     else
-#         cd "$second" || echo "Failed to cd into $second"
-#     fi
-# }
-
 # Function to "Cdback" in zoxide jumps
-dj() {
+dg() {
     local dirs_output=$(dirs -v)
     local current_dir=$(pwd)
     local found_current=false
@@ -380,3 +336,6 @@ alias gwt="./gradlew test"
 # System
 alias off="poweroff"
 alias rbt="reboot"
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+

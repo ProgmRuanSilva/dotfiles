@@ -41,10 +41,10 @@ bash modules/yay.sh
 u_header "Phase 2: Core Shell & Git"
 bash modules/zsh.sh
 bash modules/git.sh
+bash modules/asdf.sh
 bash modules/gh.sh
 bash modules/fzf.sh
 bash modules/starship.sh
-bash modules/asdf.sh
 
 # Phase 3: Development Tools
 u_header "Phase 3: Development Tools"
@@ -78,4 +78,5 @@ bash modules/nvim.sh
 u_header "Installation Complete!"
 u_success "All modules have been processed."
 u_bold "Please restart your terminal or run: source ~/.zshrc"
+u_bold "Install Tmux plugins by running Ctrl+G I"
 u_bold "Don't forget to run 'gh auth login' to finish GitHub setup."
